@@ -18,9 +18,7 @@
         "doctrine/phpcr-odm": "~1.0"
     },
     "suggest": {
-        "doctrine/doctrine-bundle": "ORM support",
         "doctrine/orm": "ORM support",
-        "doctrine/phpcr-bundle": "PHPCR ODM support",
         "doctrine/phpcr-odm": "PHPCR ODM support",
         "ext-apc": "Caching with ext/apc",
         "ext-memcached": "Caching with ext/memcached",
