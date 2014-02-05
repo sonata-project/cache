@@ -15,8 +15,8 @@ before_script:
   - echo "extension=mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo "extension=memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo "extension=apc.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - sudo /home/travis/.phpenv/versions/$(phpenv version-name)/bin/composer.phar self-update
-  - composer install --dev --prefer-source
+  - wget https://getcomposer.org/composer.phar
+  - php composer.phar install --dev --prefer-source
   # must be set after composer to avoid issue with autoloading
   - echo "apc.enable_cli=On" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
