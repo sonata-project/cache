@@ -11,7 +11,7 @@
 
 namespace Sonata\Cache\Adapter\Counter;
 
-use Sonata\Cache\Adapter\Counter;
+use Sonata\Cache\Counter;
 
 /**
  * Handles APC cache
