@@ -12,14 +12,10 @@
             "homepage": "http://sonata-project.org/"
         }
     ],
-    "require": {
-        "symfony/http-foundation": "~2.2",
-        "symfony/security": "~2.2",
-        "symfony/process": "~2.2"
-    },
     "require-dev": {
         "doctrine/orm": "~2.2",
-        "predis/predis": "~0.8"
+        "predis/predis": "~0.8",
+        "doctrine/phpcr-odm": "~1.0"
     },
     "suggest": {
         "doctrine/doctrine-bundle": "ORM support",
