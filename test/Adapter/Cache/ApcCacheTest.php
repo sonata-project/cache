@@ -29,7 +29,7 @@ class ApcCacheTest extends \PHPUnit_Framework_TestCase
 
     public function testInitCache()
     {
-        $cache = new ApcCache('http://localhost', 'token', 'prefix_', array());
+        $cache = new ApcCache('http://localhost', 'prefix_', array());
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
