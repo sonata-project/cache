@@ -13,7 +13,7 @@ namespace Sonata\Cache\Adapter\Cache;
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
 
-class MongoCache implements CacheAdapterInterface
+class MongoCache extends BaseCacheHandler
 {
     private $servers;
 
@@ -103,7 +103,7 @@ class MongoCache implements CacheAdapterInterface
     {
         $record = $this->getRecord($keys);
 
-        return $record ? unserialize($record['_value']->bin) : null;
+        return $this->handleGet($keys, $record ? unserialize($record['_value']->bin) : null);
     }
 
     /**

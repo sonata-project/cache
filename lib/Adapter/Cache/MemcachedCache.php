@@ -13,7 +13,7 @@ namespace Sonata\Cache\Adapter\Cache;
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
 
-class MemcachedCache implements CacheAdapterInterface
+class MemcachedCache extends BaseCacheHandler
 {
     protected $servers;
 
@@ -102,7 +102,7 @@ class MemcachedCache implements CacheAdapterInterface
      */
     public function get(array $keys)
     {
-        return $this->getCollection()->get($this->computeCacheKeys($keys));
+        return $this->handleGet($keys, $this->getCollection()->get($this->computeCacheKeys($keys)));
     }
 
     /**

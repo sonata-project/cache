@@ -27,9 +27,17 @@ class ApcCacheTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @return ApcCache
+     */
+    public function getCache()
+    {
+        return new ApcCache('http://localhost', 'prefix_', array());
+    }
+
     public function testInitCache()
     {
-        $cache = new ApcCache('http://localhost', 'prefix_', array());
+        $cache = $this->getCache();
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
@@ -45,5 +53,15 @@ class ApcCacheTest extends \PHPUnit_Framework_TestCase
         $cacheElement = $cache->get(array('id' => 7));
 
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+    }
+
+    public function testNonExistantCache()
+    {
+        $cache = $this->getCache();
+
+        $cacheElement = $cache->get(array("invalid"));
+
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        $this->assertTrue($cacheElement->isExpired());
     }
 }

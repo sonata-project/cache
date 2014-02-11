@@ -44,14 +44,21 @@ class PRedisCacheTest extends \PHPUnit_Framework_TestCase
         $client->flushdb();
     }
 
-    public function testInitCache()
+    /**
+     * @return PRedisCache
+     */
+    public function getCache()
     {
-        $cache = new PRedisCache(array(
+        return new PRedisCache(array(
             'host'     => '127.0.0.1',
             'port'     => 6379,
             'database' => 42
         ));
+    }
 
+    public function testInitCache()
+    {
+        $cache = $this->getCache();
         $cache->set(array('id' => 7), 'data');
         $cacheElement = $cache->set(array('id' => 42), 'data');
 
@@ -70,5 +77,15 @@ class PRedisCacheTest extends \PHPUnit_Framework_TestCase
         $cache->flushAll();
 
         $this->assertFalse($cache->has(array('id' => 7)));
+    }
+
+    public function testNonExistantCache()
+    {
+        $cache = $this->getCache();
+
+        $cacheElement = $cache->get(array("invalid"));
+
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        $this->assertTrue($cacheElement->isExpired());
     }
 }

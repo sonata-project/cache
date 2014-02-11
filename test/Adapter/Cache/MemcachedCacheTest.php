@@ -40,11 +40,19 @@ class MemcachedCacheTest extends \PHPUnit_Framework_TestCase
         $memcached->fetchAll();
     }
 
-    public function testInitCache()
+    /**
+     * @return MemcachedCache
+     */
+    public function getCache()
     {
-        $cache = new MemcachedCache('sonata_cache_test', array(
+        return new MemcachedCache('sonata_cache_test', array(
             array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100)
         ));
+    }
+
+    public function testInitCache()
+    {
+        $cache = $this->getCache();
 
         $cache->set(array('id' => 7), 'data');
         $cacheElement = $cache->set(array('id' => 42), 'data');
@@ -64,5 +72,15 @@ class MemcachedCacheTest extends \PHPUnit_Framework_TestCase
         $cache->flushAll();
 
         $this->assertFalse($cache->has(array('id' => 7)));
+    }
+
+    public function testNonExistantCache()
+    {
+        $cache = $this->getCache();
+
+        $cacheElement = $cache->get(array("invalid"));
+
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        $this->assertTrue($cacheElement->isExpired());
     }
 }

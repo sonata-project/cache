@@ -17,7 +17,7 @@ use Sonata\Cache\CacheElement;
 /**
  * Handles APC cache
  */
-class ApcCache implements CacheAdapterInterface
+class ApcCache extends BaseCacheHandler
 {
     /**
      * @var string
@@ -153,7 +153,7 @@ class ApcCache implements CacheAdapterInterface
      */
     public function get(array $keys)
     {
-        return apc_fetch($this->computeCacheKeys($keys));
+        return $this->handleGet($keys, apc_fetch($this->computeCacheKeys($keys)));
     }
 
     /**

@@ -14,7 +14,7 @@ use Predis\Client;
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
 
-class PRedisCache implements CacheAdapterInterface
+class PRedisCache extends BaseCacheHandler
 {
     protected $parameters;
 
@@ -118,7 +118,7 @@ class PRedisCache implements CacheAdapterInterface
      */
     public function get(array $keys)
     {
-        return unserialize($this->getClient()->hget($this->computeCacheKeys($keys), "sonata__data"));
+        return $this->handleGet($keys, unserialize($this->getClient()->hget($this->computeCacheKeys($keys), "sonata__data")));
     }
 
     /**

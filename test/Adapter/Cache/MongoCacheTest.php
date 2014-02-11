@@ -42,9 +42,17 @@ class MongoCacheTest extends \PHPUnit_Framework_TestCase
             ->remove(array());
     }
 
+    /**
+     * @return MongoCache
+     */
+    public function getCache()
+    {
+        return new MongoCache(array('127.0.0.1:27017'), 'sonata_cache_test', 'cache');
+    }
+
     public function testInitCache()
     {
-        $cache = new MongoCache(array('127.0.0.1:27017'), 'sonata_cache_test', 'cache');
+        $cache = $this->getCache();
 
         $cache->set(array('id' => 7), 'data');
         $cacheElement = $cache->set(array('id' => 42), 'data');
@@ -65,4 +73,15 @@ class MongoCacheTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($cache->has(array('id' => 7)));
     }
+
+    public function testNonExistantCache()
+    {
+        $cache = $this->getCache();
+
+        $cacheElement = $cache->get(array("invalid"));
+
+        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        $this->assertTrue($cacheElement->isExpired());
+    }
+
 }
