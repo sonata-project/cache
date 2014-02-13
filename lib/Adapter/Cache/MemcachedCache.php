@@ -81,7 +81,11 @@ class MemcachedCache extends BaseCacheHandler
         $this->getCollection()->set(
             $this->computeCacheKeys($keys),
             $cacheElement,
-            time() + $cacheElement->getTtl()
+            /**
+             * The driver does not seems to behave as documented, so we provide a timestamp if the ttl > 30d
+             *   http://code.google.com/p/memcached/wiki/NewProgramming#Cache_Invalidation
+             */
+            $cacheElement->getTtl() + ($cacheElement->getTtl() > 2592000 ? time() : 0)
         );
 
         return $cacheElement;

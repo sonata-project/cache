@@ -98,7 +98,7 @@ class PRedisCache extends BaseCacheHandler
             $this->getClient()->hset($key, $name, $value);
         }
 
-        $this->getClient()->expire($key, time() + $cacheElement->getTtl());
+        $this->getClient()->expire($key, $cacheElement->getTtl());
 
         return $cacheElement;
     }
