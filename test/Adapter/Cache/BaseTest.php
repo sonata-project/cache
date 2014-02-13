@@ -20,20 +20,21 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
      */
     abstract function getCache();
 
-    public function testBasicOperation()
+    public function testBasicOperations()
     {
         // init cache
         $cache = $this->getCache();
-        $cache->set(array('id' => 7), 'data');
-
-        // set cache
-        $cacheElement = $cache->set(array('id' => 42), 'data');
+        $cacheElement = $cache->set(array('id' => 7), 'data');
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
         $this->assertTrue($cache->has(array('id' => 7)));
 
         // test flush
+        $cache->set(array('id' => 42), 'data');
+        $this->assertTrue($cache->has(array('id' => 42)));
+
         $cache->flush(array('id' => 42));
         $this->assertFalse($cache->has(array('id' => 42)));
+
         $cacheElement = $cache->get(array('id' => 7));
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
@@ -57,7 +58,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
     {
         $cache = $this->getCache();
 
-        $cache->set(array('mykey'), "hello", 1);
+        $cache->set(array('expired'), "hello", 1);
 
         sleep(2);
 

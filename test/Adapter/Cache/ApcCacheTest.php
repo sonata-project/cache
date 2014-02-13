@@ -12,6 +12,7 @@
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
 use Sonata\Cache\Adapter\Cache\ApcCache;
+use Symfony\Component\Routing\RouterInterface;
 
 class ApcCacheTestextends extends BaseTest
 {
@@ -24,6 +25,9 @@ class ApcCacheTestextends extends BaseTest
         if (ini_get('apc.enable_cli') == 0) {
             $this->markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
         }
+
+        apc_clear_cache();
+        apc_clear_cache('user');
     }
 
     /**
@@ -31,6 +35,11 @@ class ApcCacheTestextends extends BaseTest
      */
     public function getCache()
     {
-        return new ApcCache('http://localhost', 'prefix_', array());
+        $cache = new ApcCache('http://localhost', 'prefix_', array());
+
+        // force to clear the current apc instance (ie, ignore the servers informations)
+        $cache->setCurrentOnly(true);
+
+        return $cache;
     }
 }

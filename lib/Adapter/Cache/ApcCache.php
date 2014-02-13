@@ -34,6 +34,8 @@ class ApcCache extends BaseCacheHandler
      */
     protected $servers;
 
+    protected $currentOnly;
+
     /**
      * Constructor
      *
@@ -49,7 +51,15 @@ class ApcCache extends BaseCacheHandler
     }
 
     /**
-     *
+     * @param $bool
+     */
+    public function setCurrentOnly($bool)
+    {
+        $this->currentOnly = $bool;
+    }
+
+    /**
+     * @return string
      */
     protected function getUrl()
     {
@@ -61,6 +71,10 @@ class ApcCache extends BaseCacheHandler
      */
     public function flushAll()
     {
+        if ($this->currentOnly) {
+            return apc_clear_cache('user');
+        }
+
         $result = true;
 
         foreach ($this->servers as $server) {
@@ -107,6 +121,10 @@ class ApcCache extends BaseCacheHandler
      */
     public function flush(array $keys = array())
     {
+        if ($this->currentOnly) {
+            return apc_delete($this->computeCacheKeys($keys));
+        }
+
         return $this->flushAll();
     }
 
@@ -125,7 +143,7 @@ class ApcCache extends BaseCacheHandler
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 
-        $result = apc_store(
+        apc_store(
             $this->computeCacheKeys($keys),
             $cacheElement,
             $cacheElement->getTtl()
@@ -137,7 +155,7 @@ class ApcCache extends BaseCacheHandler
     /**
      * Computes the given cache keys
      *
-     * @param CacheElement $cacheElement
+     * @param array $keys
      *
      * @return string
      */
