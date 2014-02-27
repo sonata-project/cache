@@ -39,7 +39,8 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
         // test flush all
-        $cache->flushAll();
+        $res = $cache->flushAll();
+        $this->assertTrue(true === $res); // make sure it's really boolean TRUE
 
         $this->assertFalse($cache->has(array('id' => 7)));
     }
