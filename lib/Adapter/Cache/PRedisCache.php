@@ -40,7 +40,9 @@ class PRedisCache extends BaseCacheHandler
      */
     public function flushAll()
     {
-        return $this->getClient()->flushdb();
+        /** @var $res \Predis\Response\Status **/
+        $res = $this->getClient()->flushdb();
+        return (bool)stristr($res->getPayload(), 'OK');
     }
 
     /**
