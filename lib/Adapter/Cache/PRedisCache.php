@@ -26,13 +26,17 @@ class PRedisCache extends BaseCacheHandler
     protected $client;
 
     /**
-     * @param array $parameters
-     * @param array $options
+     * @param array $parameters Connection parameters for one or more servers, passed to Predis\Client constructor
+     * @param array $options    Options to configure some behaviours of the client.
      */
     public function __construct(array $parameters = array(), array $options = array())
     {
-        $this->prefix  = $parameters;
-        $this->servers = $options;
+        // When an array of connections parameters is provided, Predis automatically
+        // works in clustering mode using client-side sharding.
+        // Don't trigger it unnecessarily if only one connection info is provided,
+        // so e.g. FLUSHDB works correctly.
+        $this->parameters = count($parameters) > 1 ? $parameters : array_shift($parameters);
+        $this->options = $options;
     }
 
     /**
@@ -40,6 +44,11 @@ class PRedisCache extends BaseCacheHandler
      */
     public function flushAll()
     {
+        // You cannot use 'FLUSHDB' over clusters of connections.
+        if (is_a($this->getClient()->getConnection(), 'Predis\Connection\PredisCluster')) {
+            return false;
+        }
+
         /** @var $res \Predis\Response\Status **/
         $res = $this->getClient()->flushdb();
         return (bool)stristr($res->getPayload(), 'OK');
