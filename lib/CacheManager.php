@@ -58,7 +58,7 @@ class CacheManager implements CacheManagerInterface
     public function getCacheService($name)
     {
         if (!$this->hasCacheService($name)) {
-            throw new \RuntimeException(sprintf('The cache service %s does not exist.',$name));
+            throw new \RuntimeException(sprintf('The cache service %s does not exist.', $name));
         }
 
         return $this->cacheServices[$name];
