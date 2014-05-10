@@ -43,10 +43,10 @@ final class CacheElement
      *
      * @param array   $keys           An array of keys
      * @param mixed   $data           Data
-     * @param integer $ttl            A time to live, default 84600 seconds
+     * @param integer $ttl            A time to live, default 86400 seconds
      * @param array   $contextualKeys An array of contextual keys
      */
-    public function __construct(array $keys, $data, $ttl = 84600, array $contextualKeys = array())
+    public function __construct(array $keys, $data, $ttl = 86400, array $contextualKeys = array())
     {
         $this->createdAt      = new \DateTime;
         $this->keys           = $keys;
