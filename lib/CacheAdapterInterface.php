@@ -41,7 +41,7 @@ interface CacheAdapterInterface
      *
      * @return CacheElement
      */
-    function set(array $keys, $value, $ttl = 84600, array $contextualKeys = array());
+    function set(array $keys, $value, $ttl = 86400, array $contextualKeys = array());
 
     /**
      * Flushes data from cache identified by keys
