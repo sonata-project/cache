@@ -42,7 +42,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = 84600, array $contextualKeys = array())
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
     {
         return new CacheElement($keys, $data, $ttl, $contextualKeys);
     }

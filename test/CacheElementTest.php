@@ -42,7 +42,7 @@ class CacheElementTest extends \PHPUnit_Framework_TestCase
           'block_id' => '1'
         );
 
-        $cache = new CacheElement($cacheKeys, 'data', 84600, array('foo' => 'bar'));
+        $cache = new CacheElement($cacheKeys, 'data', CacheElement::DAY, array('foo' => 'bar'));
 
         $this->assertEquals(array('foo' => 'bar'), $cache->getContextualKeys());
     }

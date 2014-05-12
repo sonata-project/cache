@@ -13,6 +13,12 @@ namespace Sonata\Cache;
 
 final class CacheElement
 {
+    const MINUTE = 60;
+    const HOUR = 3600;
+    const DAY = 86400;
+    const WEEK = 604800;
+    const MONTH = 2.63e+6;
+
     /**
      * @var integer
      */
@@ -43,10 +49,10 @@ final class CacheElement
      *
      * @param array   $keys           An array of keys
      * @param mixed   $data           Data
-     * @param integer $ttl            A time to live, default 84600 seconds
+     * @param integer $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
      * @param array   $contextualKeys An array of contextual keys
      */
-    public function __construct(array $keys, $data, $ttl = 84600, array $contextualKeys = array())
+    public function __construct(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
     {
         $this->createdAt      = new \DateTime;
         $this->keys           = $keys;

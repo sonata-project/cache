@@ -36,12 +36,12 @@ interface CacheAdapterInterface
      *
      * @param array   $keys           An array of keys
      * @param mixed   $value          Value to store
-     * @param integer $ttl            A time to live, default 84600 seconds
+     * @param integer $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
      * @param array   $contextualKeys An array of contextual keys
      *
      * @return CacheElement
      */
-    function set(array $keys, $value, $ttl = 84600, array $contextualKeys = array());
+    function set(array $keys, $value, $ttl = CacheElement::DAY, array $contextualKeys = array());
 
     /**
      * Flushes data from cache identified by keys

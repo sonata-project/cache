@@ -36,7 +36,7 @@ $keys = array(
     'objectId' => 10
 );
 
-$adapter->set($keys, "MyValue", 84600);
+$adapter->set($keys, "MyValue", 86400);
 
 $cacheElement = $adapter->get($keys);
 
