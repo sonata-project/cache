@@ -11,11 +11,12 @@
 
 namespace Sonata\Cache\Adapter\Cache;
 
-use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
 
 /**
  * Handles APC cache
+ *
+ * @link http://php.net/apc_clear_cache
  */
 class ApcCache extends BaseCacheHandler
 {
@@ -30,10 +31,18 @@ class ApcCache extends BaseCacheHandler
     protected $prefix;
 
     /**
+     * string
+     */
+    protected $type;
+
+    /**
      * @var array
      */
     protected $servers;
 
+    /**
+     * @var bool
+     */
     protected $currentOnly;
 
     /**
@@ -42,12 +51,14 @@ class ApcCache extends BaseCacheHandler
      * @param string $url     A router instance
      * @param string $prefix  A prefix to avoid clash between instances
      * @param array  $servers An array of servers
+     * @param string $type    A cache type to clear
      */
-    public function __construct($url, $prefix, array $servers)
+    public function __construct($url, $prefix, array $servers, $type = 'user')
     {
         $this->url     = $url;
         $this->prefix  = $prefix;
         $this->servers = $servers;
+        $this->type    = $type;
     }
 
     /**
@@ -72,7 +83,7 @@ class ApcCache extends BaseCacheHandler
     public function flushAll()
     {
         if ($this->currentOnly) {
-            return apc_clear_cache('user');
+            return $this->clear();
         }
 
         $result = true;
@@ -126,6 +137,27 @@ class ApcCache extends BaseCacheHandler
         }
 
         return $this->flushAll();
+    }
+
+    /**
+     * Clears APC cache depending on type property
+     */
+    protected function clear()
+    {
+        switch ($this->type) {
+            case 'all':
+                apc_clear_cache('user');
+                apc_clear_cache();
+                break;
+
+            case 'user':
+                apc_clear_cache('user');
+                break;
+
+            case 'system':
+                apc_clear_cache();
+                break;
+        }
     }
 
     /**
