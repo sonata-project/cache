@@ -11,7 +11,6 @@
 namespace Sonata\Cache\Adapter\Cache;
 
 use Predis\Client;
-use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
 
 class PRedisCache extends BaseCacheHandler

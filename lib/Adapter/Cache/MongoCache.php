@@ -10,7 +10,6 @@
 
 namespace Sonata\Cache\Adapter\Cache;
 
-use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
 
 class MongoCache extends BaseCacheHandler
