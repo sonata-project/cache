@@ -53,7 +53,7 @@ final class Counter
      *
      * @return Counter
      */
-    static function create($name, $value = 0)
+    public static function create($name, $value = 0)
     {
         return new self($name, $value);
     }
