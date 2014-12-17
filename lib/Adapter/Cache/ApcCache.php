@@ -77,7 +77,7 @@ class ApcCache extends BaseCacheHandler
         $result = true;
 
         foreach ($this->servers as $server) {
-            if (count(explode('.', $server['ip'])) == 3) {
+            if (count(explode('.', $server['ip'])) == 4) {
                 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
             } else {
                 $socket = socket_create(AF_INET6, SOCK_STREAM, SOL_TCP);
