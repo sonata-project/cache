@@ -55,4 +55,54 @@ class PRedisCacheTest extends BaseTest
             'database' => 42
         ));
     }
+
+    /**
+     * Tests the flushAll method when connection is a single one
+     */
+    public function testFlushAllForSingleConnection()
+    {
+        $cache = $this->getMockBuilder('Sonata\Cache\Adapter\Cache\PRedisCache')
+            ->setMethods(array('getClient'))
+            ->getMock();
+
+        $command = $this->getMock('Predis\Command\CommandInterface');
+
+        $client = $this->getMock('Predis\ClientInterface');
+        $client->expects($this->exactly(2))->method('createCommand')->with($this->equalTo('flushdb'))->will($this->returnValue($command));
+        $client->expects($this->exactly(2))->method('getConnection');
+        $client->expects($this->exactly(2))->method('executeCommand')->with($this->equalTo($command))->will($this->onConsecutiveCalls(false, true));
+
+        $cache->expects($this->exactly(6))->method('getClient')->will($this->returnValue($client));
+
+        $this->assertFalse($cache->flushAll());
+        $this->assertTrue($cache->flushAll());
+    }
+
+    /**
+     * Tests the flushAll method when connection is a cluster one
+     */
+    public function testFlushAllForClusterConnection()
+    {
+        $cache = $this->getMockBuilder('Sonata\Cache\Adapter\Cache\PRedisCache')
+            ->setMethods(array('getClient'))
+            ->getMock();
+
+        $command = $this->getMock('Predis\Command\CommandInterface');
+
+        $connection = $this->getMock('Predis\Connection\PredisCluster');
+        $connection->expects($this->exactly(5))->method('executeCommandOnNodes')->with($this->equalTo($command))->will($this->onConsecutiveCalls(array(false), array(true), array(false, true), array(true, false), array(true, true)));
+
+        $client = $this->getMock('Predis\ClientInterface');
+        $client->expects($this->exactly(5))->method('createCommand')->with($this->equalTo('flushdb'))->will($this->returnValue($command));
+        $client->expects($this->exactly(5))->method('getConnection')->will($this->returnValue($connection));
+        $client->expects($this->never())->method('executeCommand');
+
+        $cache->expects($this->exactly(10))->method('getClient')->will($this->returnValue($client));
+
+        $this->assertFalse($cache->flushAll());
+        $this->assertTrue($cache->flushAll());
+        $this->assertFalse($cache->flushAll());
+        $this->assertFalse($cache->flushAll());
+        $this->assertTrue($cache->flushAll());
+    }
 }
