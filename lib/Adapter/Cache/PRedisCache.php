@@ -11,6 +11,8 @@
 namespace Sonata\Cache\Adapter\Cache;
 
 use Predis\Client;
+use Predis\Connection\PredisCluster;
+
 use Sonata\Cache\CacheElement;
 
 class PRedisCache extends BaseCacheHandler
@@ -39,7 +41,20 @@ class PRedisCache extends BaseCacheHandler
      */
     public function flushAll()
     {
-        return $this->getClient()->flushdb();
+        $command    = $this->getClient()->createCommand('flushdb');
+        $connection = $this->getClient()->getConnection();
+
+        if ($connection instanceof PredisCluster) {
+            foreach ($connection->executeCommandOnNodes($command) as $status) {
+                if (!$status) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return $this->getClient()->executeCommand($command);
     }
 
     /**
@@ -63,18 +78,6 @@ class PRedisCache extends BaseCacheHandler
     public function has(array $keys)
     {
         return $this->getClient()->exists($this->computeCacheKeys($keys));
-    }
-
-    /**
-     * @return Client
-     */
-    private function getClient()
-    {
-        if (!$this->client) {
-            $this->client = new Client($this->parameters, $this->options);
-        }
-
-        return $this->client;
     }
 
     /**
@@ -112,16 +115,6 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    private function computeCacheKeys(array $keys)
-    {
-        ksort($keys);
-
-        return md5(serialize($keys));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function get(array $keys)
     {
         return $this->handleGet($keys, unserialize($this->getClient()->hget($this->computeCacheKeys($keys), "sonata__data")));
@@ -133,5 +126,27 @@ class PRedisCache extends BaseCacheHandler
     public function isContextual()
     {
         return false;
+    }
+
+    /**
+     * @return Client
+     */
+    protected function getClient()
+    {
+        if (!$this->client) {
+            $this->client = new Client($this->parameters, $this->options);
+        }
+
+        return $this->client;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    private function computeCacheKeys(array $keys)
+    {
+        ksort($keys);
+
+        return md5(serialize($keys));
     }
 }
