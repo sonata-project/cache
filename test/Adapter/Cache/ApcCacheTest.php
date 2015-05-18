@@ -35,7 +35,7 @@ class ApcCacheTestextends extends BaseTest
      */
     public function getCache()
     {
-        $cache = new ApcCache('http://localhost', 'prefix_', array());
+        $cache = new ApcCache('http://localhost', 'prefix_', array(), array());
 
         // force to clear the current apc instance (ie, ignore the servers informations)
         $cache->setCurrentOnly(true);

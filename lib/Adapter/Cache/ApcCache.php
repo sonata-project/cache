@@ -33,7 +33,15 @@ class ApcCache extends BaseCacheHandler
      */
     protected $servers;
 
+    /**
+     * @var boolean
+     */
     protected $currentOnly;
+
+    /**
+     * @var array
+     */
+    protected $timeout = array();
 
     /**
      * Constructor
@@ -41,28 +49,29 @@ class ApcCache extends BaseCacheHandler
      * @param string $url     A router instance
      * @param string $prefix  A prefix to avoid clash between instances
      * @param array  $servers An array of servers
+     * @param array  $timeout An array of timeout options
      */
-    public function __construct($url, $prefix, array $servers)
+    public function __construct($url, $prefix, array $servers, array $timeout = array())
     {
         $this->url     = $url;
         $this->prefix  = $prefix;
         $this->servers = $servers;
+
+        $defaultTimeout = array(
+            'sec'  => 5,
+            'usec' => 0,
+        );
+
+        $this->timeout['RCV'] = isset($timeout['RCV']) ? array_merge($defaultTimeout, $timeout['RCV']) : $defaultTimeout;
+        $this->timeout['SND'] = isset($timeout['SND']) ? array_merge($defaultTimeout, $timeout['SND']) : $defaultTimeout;
     }
 
     /**
-     * @param $bool
+     * @param boolean $bool
      */
     public function setCurrentOnly($bool)
     {
         $this->currentOnly = $bool;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getUrl()
-    {
-        return $this->url;
     }
 
     /**
@@ -94,8 +103,8 @@ class ApcCache extends BaseCacheHandler
             $command .= "Connection: Close\r\n\r\n";
 
             // setup the default timeout (avoid max execution time)
-            socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => 2, 'usec' => 0));
-            socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array('sec' => 2, 'usec' => 0));
+            socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $this->timeout['SND']);
+            socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $this->timeout['RCV']);
 
             socket_connect($socket, $server['ip'], $server['port']);
             socket_write($socket, $command);
@@ -152,20 +161,6 @@ class ApcCache extends BaseCacheHandler
     }
 
     /**
-     * Computes the given cache keys
-     *
-     * @param array $keys
-     *
-     * @return string
-     */
-    private function computeCacheKeys($keys)
-    {
-        ksort($keys);
-
-        return md5($this->prefix.serialize($keys));
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function get(array $keys)
@@ -179,5 +174,27 @@ class ApcCache extends BaseCacheHandler
     public function isContextual()
     {
         return false;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Computes the given cache keys
+     *
+     * @param array $keys
+     *
+     * @return string
+     */
+    private function computeCacheKeys($keys)
+    {
+        ksort($keys);
+
+        return md5($this->prefix.serialize($keys));
     }
 }
