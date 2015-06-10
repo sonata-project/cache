@@ -6,6 +6,10 @@ php:
   - 5.5
   - hhvm
 
+cache:
+  directories:
+    - vendor
+
 services:
   - memcached
   - mongodb
