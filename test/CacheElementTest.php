@@ -18,7 +18,7 @@ class CacheElementTest extends \PHPUnit_Framework_TestCase
     public function testCache()
     {
         $cacheKeys = array(
-          'block_id' => '1'
+          'block_id' => '1',
         );
 
         $cache = new CacheElement($cacheKeys, 'data', 20);
@@ -33,13 +33,12 @@ class CacheElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('data', $cache->getData());
 
         $cache->getExpirationDate();
-
     }
 
     public function testContextual()
     {
         $cacheKeys = array(
-          'block_id' => '1'
+          'block_id' => '1',
         );
 
         $cache = new CacheElement($cacheKeys, 'data', CacheElement::DAY, array('foo' => 'bar'));

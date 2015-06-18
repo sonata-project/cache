@@ -61,7 +61,6 @@ class MongoCounterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(10, $counter->getValue());
         $this->assertEquals('mycounter', $counter->getName());
 
-
         $counter = $backend->increment($counter);
         $this->assertEquals(11, $counter->getValue());
 

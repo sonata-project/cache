@@ -12,9 +12,8 @@
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
 use Sonata\Cache\Adapter\Cache\ApcCache;
-use Symfony\Component\Routing\RouterInterface;
 
-class ApcCacheTestextends extends BaseTest
+class ApcCacheTest extends BaseTest
 {
     public function setUp()
     {

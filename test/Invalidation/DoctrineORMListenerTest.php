@@ -11,10 +11,8 @@
 
 namespace Sonata\Cache\Tests\Cache\Invalidation;
 
-use Sonata\Cache\Invalidation\ModelCollectionIdentifiers;
 use Sonata\Cache\Invalidation\DoctrineORMListener;
-
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Sonata\Cache\Invalidation\ModelCollectionIdentifiers;
 
 class DoctrineORMListenerTest_Model
 {
@@ -28,14 +26,14 @@ class DoctrineORMListenerTest extends \PHPUnit_Framework_TestCase
 {
     public function test()
     {
-        $collection = new ModelCollectionIdentifiers;
+        $collection = new ModelCollectionIdentifiers();
 
         $listener = new DoctrineORMListener($collection, array());
 
         $event = $this->getMock('Doctrine\ORM\Event\LifecycleEventArgs', array(), array(), '', false);
         $event->expects($this->exactly(4))
             ->method('getEntity')
-            ->will($this->returnValue(new DoctrineORMListenerTest_Model));
+            ->will($this->returnValue(new DoctrineORMListenerTest_Model()));
 
         $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
         $cache->expects($this->exactly(2))

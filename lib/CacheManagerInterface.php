@@ -11,62 +11,61 @@
 
 namespace Sonata\Cache;
 
-use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\Invalidation\Recorder;
 
 interface CacheManagerInterface
 {
     /**
-     * Adds a cache service
+     * Adds a cache service.
      *
-     * @param string         $name         A cache name
+     * @param string                $name         A cache name
      * @param CacheAdapterInterface $cacheManager A cache service
      */
-    function addCacheService($name, CacheAdapterInterface $cacheManager);
+    public function addCacheService($name, CacheAdapterInterface $cacheManager);
 
     /**
-     * Gets a cache service by a given name
+     * Gets a cache service by a given name.
      *
      * @param string $name A cache name
      *
      * @return CacheAdapterInterface
      */
-    function getCacheService($name);
+    public function getCacheService($name);
 
     /**
-     * Returns related cache services
+     * Returns related cache services.
      *
      * @return array
      */
-    function getCacheServices();
+    public function getCacheServices();
 
     /**
-     * Returns TRUE whether a cache service identified by id exists
+     * Returns TRUE whether a cache service identified by id exists.
      *
      * @param string $id
      *
-     * @return boolean
+     * @return bool
      */
-    function hasCacheService($id);
+    public function hasCacheService($id);
 
     /**
-     * Invalidates the cache by the given keys
+     * Invalidates the cache by the given keys.
      *
      * @param array $keys
      */
-    function invalidate(array $keys);
+    public function invalidate(array $keys);
 
     /**
-     * Sets the recorder
+     * Sets the recorder.
      *
      * @param Recorder $recorder
      */
-    function setRecorder(Recorder $recorder);
+    public function setRecorder(Recorder $recorder);
 
     /**
-     * Gets the recorder
+     * Gets the recorder.
      *
      * @return Recorder
      */
-    function getRecorder();
+    public function getRecorder();
 }

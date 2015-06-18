@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -29,8 +30,6 @@ class Recorder
 
     /**
      * @param $object
-     *
-     * @return void
      */
     public function add($object)
     {
@@ -52,19 +51,17 @@ class Recorder
     }
 
     /**
-     * Add a new elements into the stack
-     *
-     * @return void
+     * Add a new elements into the stack.
      */
     public function push()
     {
         $this->stack[$this->current + 1] = $this->stack[$this->current];
 
-        $this->current++;
+        ++$this->current;
     }
 
     /**
-     * Remove an element from the stack and return it
+     * Remove an element from the stack and return it.
      *
      * @return array
      */
@@ -74,7 +71,7 @@ class Recorder
 
         unset($this->stack[$this->current]);
 
-        $this->current--;
+        --$this->current;
 
         if ($this->current < 0) {
             $this->reset();
@@ -84,7 +81,6 @@ class Recorder
     }
 
     /**
-     * @return void
      */
     public function reset()
     {

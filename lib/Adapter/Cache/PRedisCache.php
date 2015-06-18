@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -12,7 +13,6 @@ namespace Sonata\Cache\Adapter\Cache;
 
 use Predis\Client;
 use Predis\Connection\PredisCluster;
-
 use Sonata\Cache\CacheElement;
 
 class PRedisCache extends BaseCacheHandler
@@ -89,7 +89,7 @@ class PRedisCache extends BaseCacheHandler
 
         $key = $this->computeCacheKeys($keys);
 
-        $this->getClient()->hset($key, "sonata__data", serialize($cacheElement));
+        $this->getClient()->hset($key, 'sonata__data', serialize($cacheElement));
 
         foreach ($contextualKeys as $name => $value) {
             if (!is_scalar($value)) {
@@ -117,7 +117,7 @@ class PRedisCache extends BaseCacheHandler
      */
     public function get(array $keys)
     {
-        return $this->handleGet($keys, unserialize($this->getClient()->hget($this->computeCacheKeys($keys), "sonata__data")));
+        return $this->handleGet($keys, unserialize($this->getClient()->hget($this->computeCacheKeys($keys), 'sonata__data')));
     }
 
     /**

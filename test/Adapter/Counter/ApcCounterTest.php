@@ -11,7 +11,6 @@
 
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
-
 use Sonata\Cache\Adapter\Counter\ApcCounter;
 use Sonata\Cache\Counter;
 
@@ -27,7 +26,7 @@ class ApcCounterTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
         }
 
-        apc_clear_cache("user");
+        apc_clear_cache('user');
     }
 
     public function testCounterBackend()

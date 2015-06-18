@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -62,12 +63,12 @@ class MongoCounter extends BaseCounter
 
         $result = $this->getCollection()->findAndModify(
             array('counter' => $counter->getName()),
-            array('$inc'    => array("value" => $number)),
+            array('$inc'    => array('value' => $number)),
             array(),
-            array('new'     => true,)
+            array('new'     => true)
         );
 
-        return $this->handleIncrement(count($result) === 0 ? false : $result["value"], $counter, $number);
+        return $this->handleIncrement(count($result) === 0 ? false : $result['value'], $counter, $number);
     }
 
     /**
@@ -79,12 +80,12 @@ class MongoCounter extends BaseCounter
 
         $result = $this->getCollection()->findAndModify(
             array('counter' => $counter->getName()),
-            array('$inc'    => array("value" => -1 * $number)),
+            array('$inc'    => array('value' => -1 * $number)),
             array(),
-            array('new'     => true,)
+            array('new'     => true)
         );
 
-        return $this->handleDecrement(count($result) === 0 ? false : $result["value"], $counter, $number);
+        return $this->handleDecrement(count($result) === 0 ? false : $result['value'], $counter, $number);
     }
 
     /**
@@ -93,13 +94,13 @@ class MongoCounter extends BaseCounter
     public function set(Counter $counter)
     {
         $result = $this->getCollection()->findAndModify(
-            array('counter' => $counter->getName()),
-            array('$setOnInsert' => array("value" => $counter->getValue())),
+            array('counter'      => $counter->getName()),
+            array('$setOnInsert' => array('value' => $counter->getValue())),
             array(),
-            array('upsert' => true, 'new' => true,)
+            array('upsert' => true, 'new' => true)
         );
 
-        return Counter::create($counter->getName(), $result["value"]);
+        return Counter::create($counter->getName(), $result['value']);
     }
 
     /**
@@ -109,6 +110,6 @@ class MongoCounter extends BaseCounter
     {
         $result = $this->getCollection()->findOne(array('counter' => $name));
 
-        return Counter::create($name, $result ? (int)$result["value"] : 0);
+        return Counter::create($name, $result ? (int) $result['value'] : 0);
     }
 }

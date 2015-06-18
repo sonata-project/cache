@@ -14,55 +14,55 @@ namespace Sonata\Cache;
 interface CacheAdapterInterface
 {
     /**
-     * Gets data from cache
+     * Gets data from cache.
      *
      * @param array $keys
      *
      * @return CacheElement
      */
-    function get(array $keys);
+    public function get(array $keys);
 
     /**
-     * Returns TRUE whether cache contains data identified by keys
+     * Returns TRUE whether cache contains data identified by keys.
      *
      * @param array $keys
      *
-     * @return boolean
+     * @return bool
      */
-    function has(array $keys);
+    public function has(array $keys);
 
     /**
-     * Sets value in cache
+     * Sets value in cache.
      *
-     * @param array   $keys           An array of keys
-     * @param mixed   $value          Value to store
-     * @param integer $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
-     * @param array   $contextualKeys An array of contextual keys
+     * @param array $keys           An array of keys
+     * @param mixed $value          Value to store
+     * @param int   $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
+     * @param array $contextualKeys An array of contextual keys
      *
      * @return CacheElement
      */
-    function set(array $keys, $value, $ttl = CacheElement::DAY, array $contextualKeys = array());
+    public function set(array $keys, $value, $ttl = CacheElement::DAY, array $contextualKeys = array());
 
     /**
-     * Flushes data from cache identified by keys
+     * Flushes data from cache identified by keys.
      *
      * @param array $keys
      *
-     * @return boolean
+     * @return bool
      */
-    function flush(array $keys = array());
+    public function flush(array $keys = array());
 
     /**
-     * Flushes all data from cache
+     * Flushes all data from cache.
      *
-     * @return boolean
+     * @return bool
      */
-    function flushAll();
+    public function flushAll();
 
     /**
-     * Returns TRUE whether cache is contextual
+     * Returns TRUE whether cache is contextual.
      *
-     * @return boolean
+     * @return bool
      */
-    function isContextual();
+    public function isContextual();
 }

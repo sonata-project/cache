@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -10,8 +11,8 @@
 
 namespace Sonata\Cache\Adapter\Counter;
 
-use Sonata\Cache\Counter;
 use Predis\Client;
+use Sonata\Cache\Counter;
 
 class PRedisCounter extends BaseCounter
 {

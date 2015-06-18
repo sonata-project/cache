@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -10,8 +11,8 @@
 
 namespace Sonata\Cache\Invalidation;
 
-use Sonata\Cache\CacheAdapterInterface;
 use Psr\Log\LoggerInterface;
+use Sonata\Cache\CacheAdapterInterface;
 
 class SimpleCacheInvalidation implements InvalidationInterface
 {
@@ -34,7 +35,6 @@ class SimpleCacheInvalidation implements InvalidationInterface
     public function invalidate(array $caches, array $keys)
     {
         foreach ($caches as $cache) {
-
             if (!$cache instanceof CacheAdapterInterface) {
                 throw new \RuntimeException('The object must implements the CacheAdapterInterface interface');
             }
@@ -45,9 +45,7 @@ class SimpleCacheInvalidation implements InvalidationInterface
                 }
 
                 $cache->flush($keys);
-
             } catch (\Exception $e) {
-
                 if ($this->logger) {
                     $this->logger->alert(sprintf('[%s] %s', __CLASS__, $e->getMessage()));
                 } else {

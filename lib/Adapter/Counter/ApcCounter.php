@@ -14,7 +14,7 @@ namespace Sonata\Cache\Adapter\Counter;
 use Sonata\Cache\Counter;
 
 /**
- * Handles APC cache
+ * Handles APC cache.
  */
 class ApcCounter extends BaseCounter
 {
@@ -24,14 +24,13 @@ class ApcCounter extends BaseCounter
     protected $prefix;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $prefix  A prefix to avoid clash between instances
+     * @param string $prefix A prefix to avoid clash between instances
      */
     public function __construct($prefix)
     {
         $this->prefix  = $prefix;
-
     }
 
     /**

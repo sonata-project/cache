@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -80,7 +81,7 @@ class MemcachedCache extends BaseCacheHandler
         $this->getCollection()->set(
             $this->computeCacheKeys($keys),
             $cacheElement,
-            /**
+            /*
              * The driver does not seems to behave as documented, so we provide a timestamp if the ttl > 30d
              *   http://code.google.com/p/memcached/wiki/NewProgramming#Cache_Invalidation
              */

@@ -12,16 +12,16 @@
 namespace Sonata\Cache\Tests\Cache\Invalidation;
 
 use Sonata\Cache\Invalidation\SimpleCacheInvalidation;
-use Sonata\Cache\Cache\CacheInterface;
 
 class SimpleCacheInvalidationTest_Cache
-{}
+{
+}
 
 class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
 {
     public function testInvalidate()
     {
-        $cacheInvalidation = new SimpleCacheInvalidation;
+        $cacheInvalidation = new SimpleCacheInvalidation();
 
         $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
         $cache->expects($this->exactly(1))->method('flush');
@@ -36,10 +36,10 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
      */
     public function testWithoutLogger()
     {
-        $cacheInvalidation = new SimpleCacheInvalidation;
+        $cacheInvalidation = new SimpleCacheInvalidation();
 
         $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
-        $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception));
+        $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception()));
 
         $caches = array($cache);
 
@@ -55,7 +55,7 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
         $cacheInvalidation = new SimpleCacheInvalidation($logger);
 
         $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
-        $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception));
+        $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception()));
 
         $caches = array($cache);
 
@@ -69,7 +69,7 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
     {
         $cacheInvalidation = new SimpleCacheInvalidation();
 
-        $caches = array(new SimpleCacheInvalidationTest_Cache);
+        $caches = array(new SimpleCacheInvalidationTest_Cache());
 
         $cacheInvalidation->invalidate($caches, array('page_id' => 1));
     }

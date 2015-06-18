@@ -14,7 +14,7 @@ namespace Sonata\Cache\Adapter\Cache;
 use Sonata\Cache\CacheElement;
 
 /**
- * Handles APC cache
+ * Handles APC cache.
  */
 class ApcCache extends BaseCacheHandler
 {
@@ -34,7 +34,7 @@ class ApcCache extends BaseCacheHandler
     protected $servers;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $currentOnly;
 
@@ -44,7 +44,7 @@ class ApcCache extends BaseCacheHandler
     protected $timeout = array();
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $url     A router instance
      * @param string $prefix  A prefix to avoid clash between instances
@@ -67,7 +67,7 @@ class ApcCache extends BaseCacheHandler
     }
 
     /**
-     * @param boolean $bool
+     * @param bool $bool
      */
     public function setCurrentOnly($bool)
     {
@@ -185,7 +185,7 @@ class ApcCache extends BaseCacheHandler
     }
 
     /**
-     * Computes the given cache keys
+     * Computes the given cache keys.
      *
      * @param array $keys
      *

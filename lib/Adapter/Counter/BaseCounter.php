@@ -16,7 +16,6 @@ use Sonata\Cache\CounterAdapterInterface;
 
 abstract class BaseCounter implements CounterAdapterInterface
 {
-
     /**
      * @param $counter
      *
@@ -34,7 +33,7 @@ abstract class BaseCounter implements CounterAdapterInterface
     /**
      * @param mixed   $value
      * @param Counter $counter
-     * @param integer $number
+     * @param int     $number
      *
      * @return Counter
      */
@@ -52,7 +51,7 @@ abstract class BaseCounter implements CounterAdapterInterface
     /**
      * @param mixed   $value
      * @param Counter $counter
-     * @param integer $number
+     * @param int     $number
      *
      * @return Counter
      */

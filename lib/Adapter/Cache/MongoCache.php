@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -48,7 +49,7 @@ class MongoCache extends BaseCacheHandler
     public function flush(array $keys = array())
     {
         $result = $this->getCollection()->remove($keys, array(
-            'w' => 1
+            'w' => 1,
         ));
 
         return $result['ok'] == 1 && $result['err'] === null;
@@ -83,7 +84,7 @@ class MongoCache extends BaseCacheHandler
     }
 
     /**
-     * Returns the valid Mongo class client for the current php driver
+     * Returns the valid Mongo class client for the current php driver.
      *
      * @return string
      */
@@ -126,7 +127,8 @@ class MongoCache extends BaseCacheHandler
     }
 
     /**
-     * @param  array      $keys
+     * @param array $keys
+     *
      * @return array|null
      */
     private function getRecord(array $keys)
@@ -139,7 +141,7 @@ class MongoCache extends BaseCacheHandler
             return $results->getNext();
         }
 
-        return null;
+        return;
     }
 
     /**
