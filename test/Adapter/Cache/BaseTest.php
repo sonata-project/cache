@@ -29,7 +29,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cache->has(array('id' => 7)));
 
         // test flush
-        $cache->set(array('id' => 42), 'data');
+        $cache->set(array('id'                   => 42), 'data');
         $this->assertTrue($cache->has(array('id' => 42)));
 
         $res = $cache->flush(array('id' => 42));
@@ -50,7 +50,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
     {
         $cache = $this->getCache();
 
-        $cacheElement = $cache->get(array("invalid"));
+        $cacheElement = $cache->get(array('invalid'));
 
         $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
         $this->assertTrue($cacheElement->isExpired());
@@ -60,7 +60,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
     {
         $cache = $this->getCache();
 
-        $cache->set(array('expired'), "hello", 1);
+        $cache->set(array('expired'), 'hello', 1);
 
         sleep(2);
 

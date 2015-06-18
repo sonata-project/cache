@@ -12,4 +12,5 @@
 namespace Sonata\Cache\Exception;
 
 class NotSupportedException extends \RuntimeException
-{}
+{
+}

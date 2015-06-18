@@ -24,7 +24,6 @@ class Recorder_Model_1
 
 class Recorder_Model_2
 {
-
     public function getId()
     {
         return 2;
@@ -33,7 +32,6 @@ class Recorder_Model_2
 
 class Recorder_Model_3
 {
-
     public function getId()
     {
         return 3;
@@ -42,11 +40,10 @@ class Recorder_Model_3
 
 class RecorderTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testRecorder()
     {
         $collection = new ModelCollectionIdentifiers(array(
-            'Sonata\Cache\Tests\Invalidation\Recorder_Model_1' => 'getCacheIdentifier'
+            'Sonata\Cache\Tests\Invalidation\Recorder_Model_1' => 'getCacheIdentifier',
         ));
 
         $m1 = new Recorder_Model_1();

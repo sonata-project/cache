@@ -17,7 +17,7 @@ class NoopCacheTest extends \PHPUnit_Framework_TestCase
 {
     public function testNoopCache()
     {
-        $cache = new NoopCache;
+        $cache = new NoopCache();
 
         $this->assertTrue($cache->flush(array()));
         $this->assertTrue($cache->flushAll());
@@ -30,7 +30,7 @@ class NoopCacheTest extends \PHPUnit_Framework_TestCase
      */
     public function getGet()
     {
-        $cache = new NoopCache;
+        $cache = new NoopCache();
         $cache->get(array());
     }
 }

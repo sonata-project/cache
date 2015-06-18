@@ -25,7 +25,7 @@ class CounterTest extends \PHPUnit_Framework_TestCase
 
     public function testClass()
     {
-        $counter = Counter::create("mycounter", 42);
+        $counter = Counter::create('mycounter', 42);
 
         $this->assertEquals('mycounter', $counter->getName());
         $this->assertEquals(42, $counter->getValue());

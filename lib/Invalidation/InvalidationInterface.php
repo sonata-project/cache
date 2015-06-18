@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -13,10 +14,8 @@ namespace Sonata\Cache\Invalidation;
 interface InvalidationInterface
 {
     /**
-     * @param  array $caches
-     * @param  array $array
-     *
-     * @return void
+     * @param array $caches
+     * @param array $array
      */
     public function invalidate(array $caches, array $array);
 }

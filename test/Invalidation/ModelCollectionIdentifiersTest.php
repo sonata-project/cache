@@ -23,7 +23,6 @@ class Model_1
 
 class Model_2
 {
-
     public function getId()
     {
         return 2;
@@ -32,7 +31,6 @@ class Model_2
 
 class Model_3 extends Model_2
 {
-
     public function getSuperCache()
     {
         return 'super!';
@@ -41,18 +39,17 @@ class Model_3 extends Model_2
 
 class CacheElementTest extends \PHPUnit_Framework_TestCase
 {
-
     public function test()
     {
         $collection = new ModelCollectionIdentifiers(array(
-            'Sonata\Cache\Tests\Invalidation\Model_3' => 'getId'
+            'Sonata\Cache\Tests\Invalidation\Model_3' => 'getId',
         ));
 
-        $m3 = new Model_3;
+        $m3 = new Model_3();
         $this->assertEquals('getId', $collection->getMethod($m3));
         $this->assertEquals('2', $collection->getIdentifier($m3));
 
-        $m1 = new Model_1;
+        $m1 = new Model_1();
         $this->assertEquals('getCacheIdentifier', $collection->getMethod($m1));
 
         $collection->addClass('Sonata\Cache\Tests\Invalidation\Model_3', 'getSuperCache');

@@ -12,11 +12,10 @@
 namespace Sonata\Cache\Exception;
 
 /**
- * UnsupportedException
+ * UnsupportedException.
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
 class UnsupportedException extends \Exception
 {
-
 }

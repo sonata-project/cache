@@ -20,7 +20,7 @@ class PRedisCounterTest extends \PHPUnit_Framework_TestCase
     protected $parameters = array(
         'host'     => '127.0.0.1',
         'port'     => 6379,
-        'database' => 42
+        'database' => 42,
     );
 
     public function setUp()

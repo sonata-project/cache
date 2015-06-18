@@ -11,7 +11,6 @@
 
 namespace Sonata\Cache;
 
-use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\Invalidation\InvalidationInterface;
 use Sonata\Cache\Invalidation\Recorder;
 
@@ -33,7 +32,7 @@ class CacheManager implements CacheManagerInterface
     protected $recorder;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param InvalidationInterface $cacheInvalidation A cache invalidation instance
      * @param array                 $cacheServices     An array of cache services

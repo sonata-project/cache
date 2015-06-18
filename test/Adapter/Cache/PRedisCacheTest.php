@@ -11,8 +11,8 @@
 
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
-use Sonata\Cache\Adapter\Cache\PRedisCache;
 use Predis\Client;
+use Sonata\Cache\Adapter\Cache\PRedisCache;
 
 class PRedisCacheTest extends BaseTest
 {
@@ -38,7 +38,7 @@ class PRedisCacheTest extends BaseTest
         $client = new Client(array(
             'host'     => '127.0.0.1',
             'port'     => 6379,
-            'database' => 42
+            'database' => 42,
         ));
 
         $client->flushdb();
@@ -52,12 +52,12 @@ class PRedisCacheTest extends BaseTest
         return new PRedisCache(array(
             'host'     => '127.0.0.1',
             'port'     => 6379,
-            'database' => 42
+            'database' => 42,
         ));
     }
 
     /**
-     * Tests the flushAll method when connection is a single one
+     * Tests the flushAll method when connection is a single one.
      */
     public function testFlushAllForSingleConnection()
     {
@@ -79,7 +79,7 @@ class PRedisCacheTest extends BaseTest
     }
 
     /**
-     * Tests the flushAll method when connection is a cluster one
+     * Tests the flushAll method when connection is a cluster one.
      */
     public function testFlushAllForClusterConnection()
     {

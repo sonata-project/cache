@@ -35,7 +35,6 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
 
         socket_close($socket);
 
-
         $memcached = new \Memcached();
         $memcached->addServer('127.0.0.1', 11211);
 
@@ -45,7 +44,7 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
     public function testCounterBackend()
     {
         $backend = new MemcachedCounter('prefix', array(
-            array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100)
+            array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
         ));
 
         $counter = $backend->set(Counter::create('mycounter', 10));
@@ -78,7 +77,7 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
     public function testNonExistantKey()
     {
         $backend = new MemcachedCounter('prefix', array(
-            array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100)
+            array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
         ));
 
         $counter = $backend->increment(Counter::create('mynewcounter.inc', 10));

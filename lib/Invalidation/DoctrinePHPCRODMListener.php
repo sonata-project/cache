@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -10,12 +11,11 @@
 
 namespace Sonata\Cache\Invalidation;
 
-use Sonata\Cache\CacheAdapterInterface;
-
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ODM\PHPCR\Event;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Common\Util\ClassUtils;
+use Doctrine\ODM\PHPCR\Event;
+use Sonata\Cache\CacheAdapterInterface;
 
 class DoctrinePHPCRODMListener implements EventSubscriber
 {
@@ -43,7 +43,7 @@ class DoctrinePHPCRODMListener implements EventSubscriber
     {
         return array(
             Event::preRemove,
-            Event::preUpdate
+            Event::preUpdate,
         );
     }
 
@@ -75,7 +75,7 @@ class DoctrinePHPCRODMListener implements EventSubscriber
         }
 
         $parameters = array(
-            ClassUtils::getClass($args->getDocument()) => $identifier
+            ClassUtils::getClass($args->getDocument()) => $identifier,
         );
 
         foreach ($this->caches as $cache) {

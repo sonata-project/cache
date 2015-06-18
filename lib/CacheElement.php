@@ -20,7 +20,7 @@ final class CacheElement
     const MONTH = 2.63e+6;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $ttl;
 
@@ -45,16 +45,16 @@ final class CacheElement
     protected $contextualKeys = array();
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param array   $keys           An array of keys
-     * @param mixed   $data           Data
-     * @param integer $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
-     * @param array   $contextualKeys An array of contextual keys
+     * @param array $keys           An array of keys
+     * @param mixed $data           Data
+     * @param int   $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
+     * @param array $contextualKeys An array of contextual keys
      */
-    public function __construct(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function __construct(array $keys, $data, $ttl = self::DAY, array $contextualKeys = array())
     {
-        $this->createdAt      = new \DateTime;
+        $this->createdAt      = new \DateTime();
         $this->keys           = $keys;
         $this->ttl            = $ttl;
         $this->data           = $data;
@@ -62,7 +62,7 @@ final class CacheElement
     }
 
     /**
-     * Returns the keys
+     * Returns the keys.
      *
      * @return array
      */
@@ -72,9 +72,9 @@ final class CacheElement
     }
 
     /**
-     * Returns the time to live
+     * Returns the time to live.
      *
-     * @return integer
+     * @return int
      */
     public function getTtl()
     {
@@ -82,7 +82,7 @@ final class CacheElement
     }
 
     /**
-     * Returns the data
+     * Returns the data.
      *
      * @return mixed
      */
@@ -92,9 +92,9 @@ final class CacheElement
     }
 
     /**
-     * Returns TRUE whether the cache is expired
+     * Returns TRUE whether the cache is expired.
      *
-     * @return boolean
+     * @return bool
      */
     public function isExpired()
     {
@@ -117,7 +117,7 @@ final class CacheElement
     }
 
     /**
-     * Returns the contextual keys
+     * Returns the contextual keys.
      *
      * @return array
      */

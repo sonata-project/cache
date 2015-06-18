@@ -11,7 +11,6 @@
 
 namespace Sonata\Cache;
 
-
 interface CounterAdapterInterface
 {
     /**
