@@ -8,30 +8,36 @@ php:
   - 7.0
   - hhvm
 
+sudo: false
+
 cache:
   directories:
+    - $HOME/.composer/cache
+    - $HOME/.cache/pip
     - vendor
 
-services:
-  - memcached
-  - mongodb
-  - redis-server
-
-before_script:
-  - echo "extension=mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - echo "extension=memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - echo "extension=apc.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - wget https://getcomposer.org/composer.phar
-  - php composer.phar install --dev --prefer-source
-  # must be set after composer to avoid issue with autoloading
-  - echo "apc.enable_cli=On" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-
-script: phpunit
-
-notifications:
-    webhooks: https://sonata-project.org/bundles/cache/master/travis
-
 matrix:
+  fast_finish: true
+  include:
+    - php: 5.3
+      env: COMPOSER_FLAGS="--prefer-lowest"
   allow_failures:
     - php: 7.0
     - php: hhvm
+
+before_script:
+  - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
+  - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo "extension=mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo "extension=memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo "extension=apc.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - composer selfupdate
+  - composer config -q github-oauth.github.com $GITHUB_OAUTH_TOKEN
+  - travis_wait composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+  # must be set after composer to avoid issue with autoloading
+  - echo "apc.enable_cli=On" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
+script: make test
+
+notifications:
+  webhooks: https://sonata-project.org/bundles/cache/master/travis
