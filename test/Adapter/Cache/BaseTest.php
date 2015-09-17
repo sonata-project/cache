@@ -42,7 +42,6 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
         // test flush all
         $res = $cache->flushAll();
         $this->assertTrue(true === $res); // make sure it's really boolean TRUE
-
         $this->assertFalse($cache->has(array('id' => 7)));
     }
 

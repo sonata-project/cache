@@ -16,6 +16,13 @@ use Sonata\Cache\Exception\UnsupportedException;
 
 /**
  * Handles OpCode cache.
+ *
+ * For user cache this Adapter use this extensions:
+ *  - Apc extension for PHP version < 5.5.0 (see http://php.net/manual/fr/book.apc.php)
+ *  - Apcu extension for PHP version >= 5.5.0 (see https://github.com/krakjoe/apcu)
+ * And for opcode cache use the Apc extension for PHP version < 5.5.0 and opcache instead (see http://php.net/manual/fr/book.opcache.php)
+ *
+ * @author Amine Zaghdoudi <amine.zaghdoudi@ekino.com>
  */
 class OpCodeCache extends BaseCacheHandler
 {
@@ -82,10 +89,14 @@ class OpCodeCache extends BaseCacheHandler
     {
         if ($this->currentOnly) {
             if (version_compare(PHP_VERSION, '5.5.0', '>=') && function_exists('opcache_reset')) {
-                return opcache_reset();
-            } elseif (function_exists('apc_clear_cache')) {
-                return apc_clear_cache('user') && apc_clear_cache();
+                opcache_reset();
             }
+
+            if (function_exists('apc_clear_cache')) {
+                apc_clear_cache('user') && apc_clear_cache();
+            }
+
+            return true;
         }
 
         $result = true;
@@ -209,8 +220,6 @@ class OpCodeCache extends BaseCacheHandler
         if (!extension_loaded('apc') || !ini_get('apc.enabled')) {
             throw new UnsupportedException(__CLASS__.' does not support data caching. you should install APC or APCu to use it');
         }
-
-        return true;
     }
 
     /**
