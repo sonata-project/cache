@@ -33,7 +33,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cache->has(array('id' => 42)));
 
         $res = $cache->flush(array('id' => 42));
-        $this->assertTrue(true === $res); // make sure it's really boolean TRUE
+        $this->assertTrue($res);
         $this->assertFalse($cache->has(array('id' => 42)));
 
         $cacheElement = $cache->get(array('id' => 7));
@@ -41,7 +41,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
 
         // test flush all
         $res = $cache->flushAll();
-        $this->assertTrue(true === $res); // make sure it's really boolean TRUE
+        $this->assertTrue($res);
         $this->assertFalse($cache->has(array('id' => 7)));
     }
 
