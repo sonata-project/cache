@@ -10,6 +10,11 @@ php:
 
 sudo: false
 
+services:
+  - mongodb
+  - memcached
+  - redis-server
+
 cache:
   directories:
     - $HOME/.composer/cache
@@ -31,7 +36,8 @@ before_script:
   - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo "extension=mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo "extension=memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - echo "extension=apc.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo "extension=redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && `php-config --vernum` -ge 50500 ]]; then pecl config-set preferred_state beta; printf "yes\n" | pecl install apcu; else echo "extension=apc.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; fi;
   - composer selfupdate
   - composer config -q github-oauth.github.com $GITHUB_OAUTH_TOKEN
   - travis_wait composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
