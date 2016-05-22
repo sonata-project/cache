@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -19,7 +19,7 @@ use Sonata\Cache\CacheAdapterInterface;
 
 class DoctrinePHPCRODMListener implements EventSubscriber
 {
-    protected $caches = array();
+    protected $caches = [];
 
     protected $collectionIdentifiers;
 
@@ -41,10 +41,10 @@ class DoctrinePHPCRODMListener implements EventSubscriber
      */
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             Event::preRemove,
             Event::preUpdate,
-        );
+        ];
     }
 
     /**
@@ -74,9 +74,9 @@ class DoctrinePHPCRODMListener implements EventSubscriber
             return;
         }
 
-        $parameters = array(
+        $parameters = [
             ClassUtils::getClass($args->getDocument()) => $identifier,
-        );
+        ];
 
         foreach ($this->caches as $cache) {
             $cache->flush($parameters);

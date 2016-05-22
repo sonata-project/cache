@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -42,9 +42,9 @@ class RecorderTest extends \PHPUnit_Framework_TestCase
 {
     public function testRecorder()
     {
-        $collection = new ModelCollectionIdentifiers(array(
+        $collection = new ModelCollectionIdentifiers([
             'Sonata\Cache\Tests\Invalidation\Recorder_Model_1' => 'getCacheIdentifier',
-        ));
+        ]);
 
         $m1 = new Recorder_Model_1();
         $m2 = new Recorder_Model_2();

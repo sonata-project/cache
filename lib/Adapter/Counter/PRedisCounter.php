@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -26,10 +26,10 @@ class PRedisCounter extends BaseCounter
      * @param array $parameters
      * @param array $options
      */
-    public function __construct(array $parameters = array(), array $options = array())
+    public function __construct(array $parameters = [], array $options = [])
     {
         $this->parameters = $parameters;
-        $this->options    = $options;
+        $this->options = $options;
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -27,7 +27,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = [])
     {
         return true;
     }
@@ -43,7 +43,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = [])
     {
         return new CacheElement($keys, $data, $ttl, $contextualKeys);
     }
