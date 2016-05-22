@@ -19,7 +19,8 @@
         "predis/predis": "^0.8",
         "doctrine/phpcr-odm": "^1.0",
         "jackalope/jackalope-doctrine-dbal": "^1.0",
-        "symfony/phpunit-bridge": "^2.7 || ^3.0"
+        "symfony/phpunit-bridge": "^2.7 || ^3.0",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "suggest": {
         "doctrine/orm": "ORM support",
