@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -29,7 +29,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cache->has(array('id' => 7)));
 
         // test flush
-        $cache->set(array('id'                   => 42), 'data');
+        $cache->set(array('id' => 42), 'data');
         $this->assertTrue($cache->has(array('id' => 42)));
 
         $res = $cache->flush(array('id' => 42));

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -66,6 +66,18 @@ class DoctrinePHPCRODMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
+    public function addCache(CacheAdapterInterface $cache)
+    {
+        if (!$cache->isContextual()) {
+            return;
+        }
+
+        $this->caches[] = $cache;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function flush(LifecycleEventArgs $args)
     {
         $identifier = $this->collectionIdentifiers->getIdentifier($args->getDocument());
@@ -81,17 +93,5 @@ class DoctrinePHPCRODMListener implements EventSubscriber
         foreach ($this->caches as $cache) {
             $cache->flush($parameters);
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addCache(CacheAdapterInterface $cache)
-    {
-        if (!$cache->isContextual()) {
-            return;
-        }
-
-        $this->caches[] = $cache;
     }
 }
