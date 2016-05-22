@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -41,7 +41,7 @@ class PRedisCache extends BaseCacheHandler
      */
     public function flushAll()
     {
-        $command    = $this->getClient()->createCommand('flushdb');
+        $command = $this->getClient()->createCommand('flushdb');
         $connection = $this->getClient()->getConnection();
 
         if ($connection instanceof PredisCluster) {
