@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -36,8 +36,8 @@ class PRedisCacheTest extends BaseTest
         socket_close($socket);
 
         $client = new Client(array(
-            'host'     => '127.0.0.1',
-            'port'     => 6379,
+            'host' => '127.0.0.1',
+            'port' => 6379,
             'database' => 42,
         ));
 
@@ -50,8 +50,8 @@ class PRedisCacheTest extends BaseTest
     public function getCache()
     {
         return new PRedisCache(array(
-            'host'     => '127.0.0.1',
-            'port'     => 6379,
+            'host' => '127.0.0.1',
+            'port' => 6379,
             'database' => 42,
         ));
     }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -27,7 +27,7 @@ final class Counter
             throw new \RuntimeException('The value is not numeric for the counter');
         }
 
-        $this->name  = $name;
+        $this->name = $name;
         $this->value = $value;
     }
 
