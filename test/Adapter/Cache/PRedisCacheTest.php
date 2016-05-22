@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -25,7 +25,7 @@ class PRedisCacheTest extends BaseTest
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
         // setup the default timeout (avoid max execution time)
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => 1, 'usec' => 0));
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, ['sec' => 1, 'usec' => 0]);
 
         $result = @socket_connect($socket, '127.0.0.1', 6379);
 
@@ -35,11 +35,11 @@ class PRedisCacheTest extends BaseTest
 
         socket_close($socket);
 
-        $client = new Client(array(
+        $client = new Client([
             'host'     => '127.0.0.1',
             'port'     => 6379,
             'database' => 42,
-        ));
+        ]);
 
         $client->flushdb();
     }
@@ -49,11 +49,11 @@ class PRedisCacheTest extends BaseTest
      */
     public function getCache()
     {
-        return new PRedisCache(array(
+        return new PRedisCache([
             'host'     => '127.0.0.1',
             'port'     => 6379,
             'database' => 42,
-        ));
+        ]);
     }
 
     /**
@@ -62,7 +62,7 @@ class PRedisCacheTest extends BaseTest
     public function testFlushAllForSingleConnection()
     {
         $cache = $this->getMockBuilder('Sonata\Cache\Adapter\Cache\PRedisCache')
-            ->setMethods(array('getClient'))
+            ->setMethods(['getClient'])
             ->getMock();
 
         $command = $this->getMock('Predis\Command\CommandInterface');
@@ -84,13 +84,13 @@ class PRedisCacheTest extends BaseTest
     public function testFlushAllForClusterConnection()
     {
         $cache = $this->getMockBuilder('Sonata\Cache\Adapter\Cache\PRedisCache')
-            ->setMethods(array('getClient'))
+            ->setMethods(['getClient'])
             ->getMock();
 
         $command = $this->getMock('Predis\Command\CommandInterface');
 
         $connection = $this->getMock('Predis\Connection\PredisCluster');
-        $connection->expects($this->exactly(5))->method('executeCommandOnNodes')->with($this->equalTo($command))->will($this->onConsecutiveCalls(array(false), array(true), array(false, true), array(true, false), array(true, true)));
+        $connection->expects($this->exactly(5))->method('executeCommandOnNodes')->with($this->equalTo($command))->will($this->onConsecutiveCalls([false], [true], [false, true], [true, false], [true, true]));
 
         $client = $this->getMock('Predis\ClientInterface');
         $client->expects($this->exactly(5))->method('createCommand')->with($this->equalTo('flushdb'))->will($this->returnValue($command));

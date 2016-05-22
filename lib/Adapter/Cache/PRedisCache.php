@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -30,7 +30,7 @@ class PRedisCache extends BaseCacheHandler
      * @param array $parameters
      * @param array $options
      */
-    public function __construct(array $parameters = array(), array $options = array())
+    public function __construct(array $parameters = [], array $options = [])
     {
         $this->parameters = $parameters;
         $this->options = $options;
@@ -41,7 +41,7 @@ class PRedisCache extends BaseCacheHandler
      */
     public function flushAll()
     {
-        $command    = $this->getClient()->createCommand('flushdb');
+        $command = $this->getClient()->createCommand('flushdb');
         $connection = $this->getClient()->getConnection();
 
         if ($connection instanceof PredisCluster) {
@@ -60,7 +60,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = [])
     {
         $this->getClient()->del($this->computeCacheKeys($keys));
 
@@ -83,7 +83,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = [])
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 

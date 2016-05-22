@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -28,7 +28,7 @@ class MongoCounterTest extends \PHPUnit_Framework_TestCase
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
         // setup the default timeout (avoid max execution time)
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => 1, 'usec' => 0));
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, ['sec' => 1, 'usec' => 0]);
 
         $result = @socket_connect($socket, '127.0.0.1', 27017);
 
@@ -43,12 +43,12 @@ class MongoCounterTest extends \PHPUnit_Framework_TestCase
         $mongo
             ->selectDB('sonata_counter_test')
             ->selectCollection('counter')
-            ->remove(array());
+            ->remove([]);
     }
 
     public function testCounterBackend()
     {
-        $backend = new MongoCounter(array('127.0.0.1:27017'), 'sonata_counter_test', 'counter');
+        $backend = new MongoCounter(['127.0.0.1:27017'], 'sonata_counter_test', 'counter');
 
         $counter = $backend->set(Counter::create('mycounter', 10));
 
@@ -77,7 +77,7 @@ class MongoCounterTest extends \PHPUnit_Framework_TestCase
 
     public function testNonExistantKey()
     {
-        $backend = new MongoCounter(array('127.0.0.1:27017'), 'sonata_counter_test', 'counter');
+        $backend = new MongoCounter(['127.0.0.1:27017'], 'sonata_counter_test', 'counter');
 
         $counter = $backend->increment(Counter::create('mynewcounter.inc', 10));
 
