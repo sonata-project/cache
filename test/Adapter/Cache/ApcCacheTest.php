@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -34,7 +34,7 @@ class ApcCacheTest extends BaseTest
      */
     public function getCache()
     {
-        $cache = new ApcCache('http://localhost', 'prefix_', array(), array());
+        $cache = new ApcCache('http://localhost', 'prefix_', [], []);
 
         // force to clear the current apc instance (ie, ignore the servers informations)
         $cache->setCurrentOnly(true);

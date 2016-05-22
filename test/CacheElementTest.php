@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -17,9 +17,9 @@ class CacheElementTest extends \PHPUnit_Framework_TestCase
 {
     public function testCache()
     {
-        $cacheKeys = array(
+        $cacheKeys = [
           'block_id' => '1',
-        );
+        ];
 
         $cache = new CacheElement($cacheKeys, 'data', 20);
 
@@ -37,12 +37,12 @@ class CacheElementTest extends \PHPUnit_Framework_TestCase
 
     public function testContextual()
     {
-        $cacheKeys = array(
+        $cacheKeys = [
           'block_id' => '1',
-        );
+        ];
 
-        $cache = new CacheElement($cacheKeys, 'data', CacheElement::DAY, array('foo' => 'bar'));
+        $cache = new CacheElement($cacheKeys, 'data', CacheElement::DAY, ['foo' => 'bar']);
 
-        $this->assertEquals(array('foo' => 'bar'), $cache->getContextualKeys());
+        $this->assertEquals(['foo' => 'bar'], $cache->getContextualKeys());
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -30,8 +30,8 @@ class MongoCache extends BaseCacheHandler
      */
     public function __construct(array $servers, $database, $collection)
     {
-        $this->servers        = $servers;
-        $this->databaseName   = $database;
+        $this->servers = $servers;
+        $this->databaseName = $database;
         $this->collectionName = $collection;
     }
 
@@ -40,17 +40,17 @@ class MongoCache extends BaseCacheHandler
      */
     public function flushAll()
     {
-        return $this->flush(array());
+        return $this->flush([]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = [])
     {
-        $result = $this->getCollection()->remove($keys, array(
+        $result = $this->getCollection()->remove($keys, [
             'w' => 1,
-        ));
+        ]);
 
         return $result['ok'] == 1 && $result['err'] === null;
     }
@@ -60,7 +60,7 @@ class MongoCache extends BaseCacheHandler
      */
     public function has(array $keys)
     {
-        $keys['_timeout'] = array('$gt' => time());
+        $keys['_timeout'] = ['$gt' => time()];
 
         return $this->getCollection()->count($keys) > 0;
     }
@@ -100,16 +100,16 @@ class MongoCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = [])
     {
         $time = time();
 
         $cacheElement = new CacheElement($keys, $data, $ttl, $contextualKeys);
 
         $keys = $cacheElement->getContextualKeys() + $cacheElement->getKeys();
-        $keys['_value']       = new \MongoBinData(serialize($cacheElement), \MongoBinData::BYTE_ARRAY);
-        $keys['_updated_at']  = $time;
-        $keys['_timeout']     = $time + $cacheElement->getTtl();
+        $keys['_value'] = new \MongoBinData(serialize($cacheElement), \MongoBinData::BYTE_ARRAY);
+        $keys['_updated_at'] = $time;
+        $keys['_timeout'] = $time + $cacheElement->getTtl();
 
         $this->getCollection()->save($keys);
 
@@ -133,15 +133,13 @@ class MongoCache extends BaseCacheHandler
      */
     private function getRecord(array $keys)
     {
-        $keys['_timeout'] = array('$gt' => time());
+        $keys['_timeout'] = ['$gt' => time()];
 
-        $results =  $this->getCollection()->find($keys);
+        $results = $this->getCollection()->find($keys);
 
         if ($results->hasNext()) {
             return $results->getNext();
         }
-
-        return;
     }
 
     /**

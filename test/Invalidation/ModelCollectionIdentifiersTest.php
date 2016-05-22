@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -41,9 +41,9 @@ class CacheElementTest extends \PHPUnit_Framework_TestCase
 {
     public function test()
     {
-        $collection = new ModelCollectionIdentifiers(array(
+        $collection = new ModelCollectionIdentifiers([
             'Sonata\Cache\Tests\Invalidation\Model_3' => 'getId',
-        ));
+        ]);
 
         $m3 = new Model_3();
         $this->assertEquals('getId', $collection->getMethod($m3));

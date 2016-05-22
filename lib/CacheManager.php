@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -24,7 +24,7 @@ class CacheManager implements CacheManagerInterface
     /**
      * @var array
      */
-    protected $cacheServices = array();
+    protected $cacheServices = [];
 
     /**
      * @var Recorder
@@ -40,7 +40,7 @@ class CacheManager implements CacheManagerInterface
     public function __construct(InvalidationInterface $cacheInvalidation, array $cacheServices)
     {
         $this->cacheInvalidation = $cacheInvalidation;
-        $this->cacheServices     = $cacheServices;
+        $this->cacheServices = $cacheServices;
     }
 
     /**

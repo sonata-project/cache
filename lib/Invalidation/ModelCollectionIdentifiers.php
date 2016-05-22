@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -13,12 +13,12 @@ namespace Sonata\Cache\Invalidation;
 
 class ModelCollectionIdentifiers
 {
-    protected $classes = array();
+    protected $classes = [];
 
     /**
      * @param array $classes
      */
-    public function __construct(array $classes = array())
+    public function __construct(array $classes = [])
     {
         foreach ($classes as $class => $identifier) {
             $this->addClass($class, $identifier);
@@ -47,7 +47,7 @@ class ModelCollectionIdentifiers
             return false;
         }
 
-        return call_user_func(array($object, $identifier));
+        return call_user_func([$object, $identifier]);
     }
 
     /**
