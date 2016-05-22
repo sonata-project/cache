@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -29,19 +29,7 @@ class PRedisCounter extends BaseCounter
     public function __construct(array $parameters = array(), array $options = array())
     {
         $this->parameters = $parameters;
-        $this->options    = $options;
-    }
-
-    /**
-     * @return Client
-     */
-    private function getClient()
-    {
-        if (!$this->client) {
-            $this->client = new Client($this->parameters, $this->options);
-        }
-
-        return $this->client;
+        $this->options = $options;
     }
 
     /**
@@ -92,5 +80,17 @@ class PRedisCounter extends BaseCounter
     public function get($name)
     {
         return Counter::create($name, (int) $this->getClient()->get($name));
+    }
+
+    /**
+     * @return Client
+     */
+    private function getClient()
+    {
+        if (!$this->client) {
+            $this->client = new Client($this->parameters, $this->options);
+        }
+
+        return $this->client;
     }
 }

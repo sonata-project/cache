@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -61,12 +61,12 @@ class OpCodeCache extends BaseCacheHandler
      */
     public function __construct($url, $prefix, array $servers, array $timeout = array())
     {
-        $this->url     = $url;
-        $this->prefix  = $prefix;
+        $this->url = $url;
+        $this->prefix = $prefix;
         $this->servers = $servers;
 
         $defaultTimeout = array(
-            'sec'  => 5,
+            'sec' => 5,
             'usec' => 0,
         );
 

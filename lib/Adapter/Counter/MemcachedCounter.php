@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -27,24 +27,8 @@ class MemcachedCounter extends BaseCounter
      */
     public function __construct($prefix, array $servers)
     {
-        $this->prefix  = $prefix;
+        $this->prefix = $prefix;
         $this->servers = $servers;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    private function getCollection()
-    {
-        if (!$this->collection) {
-            $this->collection = new \Memcached();
-
-            foreach ($this->servers as $server) {
-                $this->collection->addServer($server['host'], $server['port'], $server['weight']);
-            }
-        }
-
-        return $this->collection;
     }
 
     /**
@@ -87,5 +71,21 @@ class MemcachedCounter extends BaseCounter
     public function get($name)
     {
         return Counter::create($name, (int) $this->getCollection()->get($this->prefix.'.'.$name));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    private function getCollection()
+    {
+        if (!$this->collection) {
+            $this->collection = new \Memcached();
+
+            foreach ($this->servers as $server) {
+                $this->collection->addServer($server['host'], $server['port'], $server['weight']);
+            }
+        }
+
+        return $this->collection;
     }
 }
