@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -30,7 +30,7 @@ class ApcCounter extends BaseCounter
      */
     public function __construct($prefix)
     {
-        $this->prefix  = $prefix;
+        $this->prefix = $prefix;
     }
 
     /**

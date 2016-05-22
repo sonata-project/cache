@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -15,13 +15,12 @@ use Sonata\Cache\CacheElement;
 
 class MongoCache extends BaseCacheHandler
 {
+    protected $collection;
     private $servers;
 
     private $databaseName;
 
     private $collectionName;
-
-    protected $collection;
 
     /**
      * @param array $servers
@@ -30,8 +29,8 @@ class MongoCache extends BaseCacheHandler
      */
     public function __construct(array $servers, $database, $collection)
     {
-        $this->servers        = $servers;
-        $this->databaseName   = $database;
+        $this->servers = $servers;
+        $this->databaseName = $database;
         $this->collectionName = $collection;
     }
 
@@ -66,24 +65,6 @@ class MongoCache extends BaseCacheHandler
     }
 
     /**
-     * @return \MongoCollection
-     */
-    private function getCollection()
-    {
-        if (!$this->collection) {
-            $class = self::getMongoClass();
-
-            $mongo = new $class(sprintf('mongodb://%s', implode(',', $this->servers)));
-
-            $this->collection = $mongo
-                ->selectDB($this->databaseName)
-                ->selectCollection($this->collectionName);
-        }
-
-        return $this->collection;
-    }
-
-    /**
      * Returns the valid Mongo class client for the current php driver.
      *
      * @return string
@@ -107,9 +88,9 @@ class MongoCache extends BaseCacheHandler
         $cacheElement = new CacheElement($keys, $data, $ttl, $contextualKeys);
 
         $keys = $cacheElement->getContextualKeys() + $cacheElement->getKeys();
-        $keys['_value']       = new \MongoBinData(serialize($cacheElement), \MongoBinData::BYTE_ARRAY);
-        $keys['_updated_at']  = $time;
-        $keys['_timeout']     = $time + $cacheElement->getTtl();
+        $keys['_value'] = new \MongoBinData(serialize($cacheElement), \MongoBinData::BYTE_ARRAY);
+        $keys['_updated_at'] = $time;
+        $keys['_timeout'] = $time + $cacheElement->getTtl();
 
         $this->getCollection()->save($keys);
 
@@ -127,6 +108,32 @@ class MongoCache extends BaseCacheHandler
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function isContextual()
+    {
+        return true;
+    }
+
+    /**
+     * @return \MongoCollection
+     */
+    private function getCollection()
+    {
+        if (!$this->collection) {
+            $class = self::getMongoClass();
+
+            $mongo = new $class(sprintf('mongodb://%s', implode(',', $this->servers)));
+
+            $this->collection = $mongo
+                ->selectDB($this->databaseName)
+                ->selectCollection($this->collectionName);
+        }
+
+        return $this->collection;
+    }
+
+    /**
      * @param array $keys
      *
      * @return array|null
@@ -135,20 +142,12 @@ class MongoCache extends BaseCacheHandler
     {
         $keys['_timeout'] = array('$gt' => time());
 
-        $results =  $this->getCollection()->find($keys);
+        $results = $this->getCollection()->find($keys);
 
         if ($results->hasNext()) {
             return $results->getNext();
         }
 
         return;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isContextual()
-    {
-        return true;
     }
 }

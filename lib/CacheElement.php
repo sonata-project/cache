@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -54,10 +54,10 @@ final class CacheElement
      */
     public function __construct(array $keys, $data, $ttl = self::DAY, array $contextualKeys = array())
     {
-        $this->createdAt      = new \DateTime();
-        $this->keys           = $keys;
-        $this->ttl            = $ttl;
-        $this->data           = $data;
+        $this->createdAt = new \DateTime();
+        $this->keys = $keys;
+        $this->ttl = $ttl;
+        $this->data = $data;
         $this->contextualKeys = $contextualKeys;
     }
 

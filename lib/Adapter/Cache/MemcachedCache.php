@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -27,7 +27,7 @@ class MemcachedCache extends BaseCacheHandler
      */
     public function __construct($prefix, array $servers)
     {
-        $this->prefix  = $prefix;
+        $this->prefix = $prefix;
         $this->servers = $servers;
     }
 
@@ -58,22 +58,6 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    private function getCollection()
-    {
-        if (!$this->collection) {
-            $this->collection = new \Memcached();
-
-            foreach ($this->servers as $server) {
-                $this->collection->addServer($server['host'], $server['port'], $server['weight']);
-            }
-        }
-
-        return $this->collection;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
@@ -94,16 +78,6 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    private function computeCacheKeys(array $keys)
-    {
-        ksort($keys);
-
-        return md5($this->prefix.serialize($keys));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function get(array $keys)
     {
         return $this->handleGet($keys, $this->getCollection()->get($this->computeCacheKeys($keys)));
@@ -115,5 +89,31 @@ class MemcachedCache extends BaseCacheHandler
     public function isContextual()
     {
         return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    private function getCollection()
+    {
+        if (!$this->collection) {
+            $this->collection = new \Memcached();
+
+            foreach ($this->servers as $server) {
+                $this->collection->addServer($server['host'], $server['port'], $server['weight']);
+            }
+        }
+
+        return $this->collection;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    private function computeCacheKeys(array $keys)
+    {
+        ksort($keys);
+
+        return md5($this->prefix.serialize($keys));
     }
 }

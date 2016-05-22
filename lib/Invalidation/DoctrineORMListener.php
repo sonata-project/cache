@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -64,6 +64,18 @@ class DoctrineORMListener implements EventSubscriber
     }
 
     /**
+     * @param CacheAdapterInterface $cache
+     */
+    public function addCache(CacheAdapterInterface $cache)
+    {
+        if (!$cache->isContextual()) {
+            return;
+        }
+
+        $this->caches[] = $cache;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function flush(LifecycleEventArgs $args)
@@ -81,17 +93,5 @@ class DoctrineORMListener implements EventSubscriber
         foreach ($this->caches as $cache) {
             $cache->flush($parameters);
         }
-    }
-
-    /**
-     * @param CacheAdapterInterface $cache
-     */
-    public function addCache(CacheAdapterInterface $cache)
-    {
-        if (!$cache->isContextual()) {
-            return;
-        }
-
-        $this->caches[] = $cache;
     }
 }
