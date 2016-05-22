@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -27,7 +27,7 @@ final class CacheElement
     /**
      * @var array
      */
-    protected $keys = array();
+    protected $keys = [];
 
     /**
      * @var mixed
@@ -42,7 +42,7 @@ final class CacheElement
     /**
      * @var array
      */
-    protected $contextualKeys = array();
+    protected $contextualKeys = [];
 
     /**
      * Constructor.
@@ -52,12 +52,12 @@ final class CacheElement
      * @param int   $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
      * @param array $contextualKeys An array of contextual keys
      */
-    public function __construct(array $keys, $data, $ttl = self::DAY, array $contextualKeys = array())
+    public function __construct(array $keys, $data, $ttl = self::DAY, array $contextualKeys = [])
     {
-        $this->createdAt      = new \DateTime();
-        $this->keys           = $keys;
-        $this->ttl            = $ttl;
-        $this->data           = $data;
+        $this->createdAt = new \DateTime();
+        $this->keys = $keys;
+        $this->ttl = $ttl;
+        $this->data = $data;
         $this->contextualKeys = $contextualKeys;
     }
 

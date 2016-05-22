@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -27,7 +27,7 @@ class MemcachedCache extends BaseCacheHandler
      */
     public function __construct($prefix, array $servers)
     {
-        $this->prefix  = $prefix;
+        $this->prefix = $prefix;
         $this->servers = $servers;
     }
 
@@ -42,7 +42,7 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = [])
     {
         return $this->getCollection()->delete($this->computeCacheKeys($keys));
     }
@@ -74,7 +74,7 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = [])
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 

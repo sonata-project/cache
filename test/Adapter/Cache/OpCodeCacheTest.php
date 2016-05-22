@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -22,7 +22,7 @@ class OpCodeCacheTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->cache = new OpCodeCache('http://localhost', 'prefix_', array(), array());
+        $this->cache = new OpCodeCache('http://localhost', 'prefix_', [], []);
         $this->cache->setCurrentOnly(true);
     }
 
