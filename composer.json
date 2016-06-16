@@ -31,13 +31,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Sonata\\Cache\\Tests\\": "test/",
             "Sonata\\Cache\\": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sonata\\Cache\\Tests\\": "test/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.x-dev"
+            "dev-master": "2.x-dev"
         }
     }
 }
