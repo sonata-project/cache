@@ -9,7 +9,7 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">./lib/Cache/</directory>
+            <directory suffix=".php">./src/Cache/</directory>
         </whitelist>
     </filter>
 </phpunit>
