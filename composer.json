@@ -31,8 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sonata\\Cache\\Tests\\": "test/",
             "Sonata\\Cache\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sonata\\Cache\\Tests\\": "test/"
         }
     },
     "extra": {
