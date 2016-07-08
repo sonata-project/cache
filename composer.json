@@ -30,10 +30,10 @@
         "predis/predis": "Install redis php"
     },
     "autoload": {
-        "psr-4": {
-            "Sonata\\Cache\\Tests\\": "test/",
-            "Sonata\\Cache\\": "src/"
-        }
+        "psr-4": { "Sonata\\Cache\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Sonata\\Cache\\Tests\\": "test/" }
     },
     "extra": {
         "branch-alias": {
