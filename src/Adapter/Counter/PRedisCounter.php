@@ -85,7 +85,7 @@ class PRedisCounter extends BaseCounter
     /**
      * @return Client
      */
-    private function getClient()
+    private function getClient(): Client
     {
         if (!$this->client) {
             $this->client = new Client($this->parameters, $this->options);

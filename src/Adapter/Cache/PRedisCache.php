@@ -143,7 +143,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    private function computeCacheKeys(array $keys)
+    private function computeCacheKeys(array $keys): string
     {
         ksort($keys);
 

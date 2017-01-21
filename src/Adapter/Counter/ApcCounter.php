@@ -28,7 +28,7 @@ class ApcCounter extends BaseCounter
      *
      * @param string $prefix A prefix to avoid clash between instances
      */
-    public function __construct($prefix)
+    public function __construct(string $prefix)
     {
         $this->prefix = $prefix;
     }

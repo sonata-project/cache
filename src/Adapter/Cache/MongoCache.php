@@ -27,7 +27,7 @@ class MongoCache extends BaseCacheHandler
      * @param $database
      * @param $collection
      */
-    public function __construct(array $servers, $database, $collection)
+    public function __construct(array $servers, string $database, string $collection)
     {
         $this->servers = $servers;
         $this->databaseName = $database;
@@ -118,7 +118,7 @@ class MongoCache extends BaseCacheHandler
     /**
      * @return \MongoCollection
      */
-    private function getCollection()
+    private function getCollection(): \MongoCollection
     {
         if (!$this->collection) {
             $class = self::getMongoClass();

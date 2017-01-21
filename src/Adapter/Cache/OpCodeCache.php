@@ -59,7 +59,7 @@ class OpCodeCache extends BaseCacheHandler
      * @param array  $servers An array of servers
      * @param array  $timeout An array of timeout options
      */
-    public function __construct($url, $prefix, array $servers, array $timeout = array())
+    public function __construct(string $url, string $prefix, array $servers, array $timeout = array())
     {
         $this->url = $url;
         $this->prefix = $prefix;

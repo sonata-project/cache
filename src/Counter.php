@@ -21,7 +21,7 @@ final class Counter
      * @param string $name
      * @param mixed  $value
      */
-    private function __construct($name, $value = 0)
+    private function __construct(string $name, $value = 0)
     {
         if (!is_int($value)) {
             throw new \RuntimeException('The value is not numeric for the counter');
