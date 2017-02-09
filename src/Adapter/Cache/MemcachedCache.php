@@ -25,7 +25,7 @@ class MemcachedCache extends BaseCacheHandler
      * @param $prefix
      * @param array $servers
      */
-    public function __construct($prefix, array $servers)
+    public function __construct(string $prefix, array $servers)
     {
         $this->prefix = $prefix;
         $this->servers = $servers;
@@ -94,7 +94,7 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    private function getCollection()
+    private function getCollection(): \Memcached
     {
         if (!$this->collection) {
             $this->collection = new \Memcached();
@@ -110,7 +110,7 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    private function computeCacheKeys(array $keys)
+    private function computeCacheKeys(array $keys): string
     {
         ksort($keys);
 

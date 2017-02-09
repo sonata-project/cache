@@ -28,7 +28,7 @@ class MongoCounter extends BaseCounter
      * @param $database
      * @param $collection
      */
-    public function __construct(array $servers, $database, $collection)
+    public function __construct(array $servers, string $database, string $collection)
     {
         $this->servers = $servers;
         $this->databaseName = $database;
@@ -97,7 +97,7 @@ class MongoCounter extends BaseCounter
     /**
      * @return \MongoCollection
      */
-    private function getCollection()
+    private function getCollection(): \MongoCollection
     {
         if (!$this->collection) {
             $class = MongoCache::getMongoClass();

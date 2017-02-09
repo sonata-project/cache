@@ -27,7 +27,7 @@ class DoctrineORMListener implements EventSubscriber
      * @param ModelCollectionIdentifiers $collectionIdentifiers
      * @param array                      $caches
      */
-    public function __construct(ModelCollectionIdentifiers $collectionIdentifiers, $caches)
+    public function __construct(ModelCollectionIdentifiers $collectionIdentifiers, array $caches)
     {
         $this->collectionIdentifiers = $collectionIdentifiers;
 

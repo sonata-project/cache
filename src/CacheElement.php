@@ -52,7 +52,7 @@ final class CacheElement
      * @param int   $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
      * @param array $contextualKeys An array of contextual keys
      */
-    public function __construct(array $keys, $data, $ttl = self::DAY, array $contextualKeys = array())
+    public function __construct(array $keys, $data, int $ttl = self::DAY, array $contextualKeys = array())
     {
         $this->createdAt = new \DateTime();
         $this->keys = $keys;

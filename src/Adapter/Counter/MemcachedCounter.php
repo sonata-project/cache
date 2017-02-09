@@ -25,7 +25,7 @@ class MemcachedCounter extends BaseCounter
      * @param $prefix
      * @param array $servers
      */
-    public function __construct($prefix, array $servers)
+    public function __construct(string $prefix, array $servers)
     {
         $this->prefix = $prefix;
         $this->servers = $servers;
@@ -76,7 +76,7 @@ class MemcachedCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    private function getCollection()
+    private function getCollection(): \Memcached
     {
         if (!$this->collection) {
             $this->collection = new \Memcached();
