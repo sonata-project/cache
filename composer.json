@@ -15,12 +15,12 @@
     "require-dev": {
         "php": "^7.0",
         "psr/log": "^1.0",
-        "doctrine/orm": "^2.2",
-        "predis/predis": "^1.0",
-        "doctrine/phpcr-odm": "^1.0",
-        "jackalope/jackalope-doctrine-dbal": "^1.0",
-        "symfony/phpunit-bridge": "^3.0",
-        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
+        "doctrine/orm": "^2.5",
+        "predis/predis": "^1.1",
+        "doctrine/phpcr-odm": "^1.4",
+        "jackalope/jackalope-doctrine-dbal": "^1.2",
+        "symfony/phpunit-bridge": "^3.2",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.1"
     },
     "suggest": {
         "doctrine/orm": "ORM support",
@@ -34,6 +34,11 @@
     },
     "autoload-dev": {
         "psr-4": { "Sonata\\Cache\\Tests\\": "test/" }
+    },
+    "conflicts": {
+        "doctrine/orm": "<2.5",
+        "predis/predis": "<1.1",
+        "doctrine/phpcr-odm": "<1.4"
     },
     "extra": {
         "branch-alias": {
