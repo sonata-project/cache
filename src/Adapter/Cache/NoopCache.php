@@ -19,7 +19,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flushAll()
+    public function flushAll(): bool
     {
         return true;
     }
@@ -27,7 +27,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = array()): bool
     {
         return true;
     }
@@ -35,7 +35,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function has(array $keys)
+    public function has(array $keys): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement
     {
         return new CacheElement($keys, $data, $ttl, $contextualKeys);
     }
@@ -51,7 +51,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function get(array $keys)
+    public function get(array $keys): CacheElement
     {
         throw new UnsupportedException('The NoopCache::get() cannot called');
     }
@@ -59,7 +59,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function isContextual()
+    public function isContextual(): bool
     {
         return false;
     }

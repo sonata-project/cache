@@ -11,6 +11,8 @@
 
 namespace Sonata\Cache;
 
+use Sonata\Cache\CacheElement;
+
 interface CacheAdapterInterface
 {
     /**
@@ -20,7 +22,7 @@ interface CacheAdapterInterface
      *
      * @return CacheElement
      */
-    public function get(array $keys);
+    public function get(array $keys): CacheElement;
 
     /**
      * Returns TRUE whether cache contains data identified by keys.
@@ -29,7 +31,7 @@ interface CacheAdapterInterface
      *
      * @return bool
      */
-    public function has(array $keys);
+    public function has(array $keys): bool;
 
     /**
      * Sets value in cache.
@@ -41,7 +43,7 @@ interface CacheAdapterInterface
      *
      * @return CacheElement
      */
-    public function set(array $keys, $value, $ttl = CacheElement::DAY, array $contextualKeys = array());
+    public function set(array $keys, $value, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement;
 
     /**
      * Flushes data from cache identified by keys.
@@ -50,19 +52,19 @@ interface CacheAdapterInterface
      *
      * @return bool
      */
-    public function flush(array $keys = array());
+    public function flush(array $keys = array()): bool;
 
     /**
      * Flushes all data from cache.
      *
      * @return bool
      */
-    public function flushAll();
+    public function flushAll(): bool;
 
     /**
      * Returns TRUE whether cache is contextual.
      *
      * @return bool
      */
-    public function isContextual();
+    public function isContextual(): bool;
 }

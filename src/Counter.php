@@ -19,14 +19,10 @@ final class Counter
 
     /**
      * @param string $name
-     * @param mixed  $value
+     * @param int    $value
      */
-    private function __construct(string $name, $value = 0)
+    private function __construct(string $name, int $value = 0)
     {
-        if (!is_int($value)) {
-            throw new \RuntimeException('The value is not numeric for the counter');
-        }
-
         $this->name = $name;
         $this->value = $value;
     }
@@ -34,26 +30,26 @@ final class Counter
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getValue()
+    public function getValue(): int
     {
         return $this->value;
     }
 
     /**
      * @param string $name
-     * @param mixed  $value
+     * @param int    $value
      *
      * @return Counter
      */
-    public static function create($name, $value = 0)
+    public static function create(string $name, int $value = 0): Counter
     {
         return new self($name, $value);
     }

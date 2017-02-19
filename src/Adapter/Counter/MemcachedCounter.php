@@ -34,7 +34,7 @@ class MemcachedCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function increment($counter, $number = 1)
+    public function increment(Counter $counter, int $number = 1): Counter
     {
         $counter = $this->transform($counter);
 
@@ -46,7 +46,7 @@ class MemcachedCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function decrement($counter, $number = 1)
+    public function decrement(Counter $counter, int $number = 1): Counter
     {
         $counter = $this->transform($counter);
 
@@ -58,7 +58,7 @@ class MemcachedCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function set(Counter $counter)
+    public function set(Counter $counter): Counter
     {
         $this->getCollection()->add($this->prefix.'.'.$counter->getName(), $counter->getValue());
 
@@ -68,7 +68,7 @@ class MemcachedCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function get($name)
+    public function get(string $name): Counter
     {
         return Counter::create($name, (int) $this->getCollection()->get($this->prefix.'.'.$name));
     }

@@ -20,9 +20,9 @@ abstract class BaseCacheHandler implements CacheAdapterInterface
      * @param array $keys
      * @param mixed $data
      *
-     * @return CacheElement
+     * @return CacheElementInterface
      */
-    protected function handleGet(array $keys, $data)
+    protected function handleGet(array $keys, CacheElement $data = null): CacheElement
     {
         if ($data instanceof CacheElement) {
             return $data;

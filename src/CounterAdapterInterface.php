@@ -19,7 +19,7 @@ interface CounterAdapterInterface
      *
      * @return Counter
      */
-    public function increment(/*Counter*/ $counter, $number = 1);
+    public function increment(Counter $counter, int $number = 1): Counter;
 
     /**
      * @param Counter|string $counter
@@ -27,19 +27,19 @@ interface CounterAdapterInterface
      *
      * @return Counter
      */
-    public function decrement(/*Counter*/ $counter, $number = 1);
+    public function decrement(Counter $counter, int $number = 1): Counter;
 
     /**
      * @param Counter $counter
      *
      * @return Counter
      */
-    public function set(Counter $counter);
+    public function set(Counter $counter): Counter;
 
     /**
      * @param string $name
      *
      * @return Counter
      */
-    public function get($name);
+    public function get(string $name): Counter;
 }

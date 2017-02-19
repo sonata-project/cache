@@ -66,7 +66,7 @@ final class CacheElement
      *
      * @return array
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return $this->keys;
     }
@@ -76,7 +76,7 @@ final class CacheElement
      *
      * @return int
      */
-    public function getTtl()
+    public function getTtl(): int
     {
         return $this->ttl;
     }
@@ -96,7 +96,7 @@ final class CacheElement
      *
      * @return bool
      */
-    public function isExpired()
+    public function isExpired(): bool
     {
         return strtotime('now') > ($this->createdAt->format('U') + $this->ttl);
     }
@@ -104,7 +104,7 @@ final class CacheElement
     /**
      * @return \DateTime
      */
-    public function getExpirationDate()
+    public function getExpirationDate(): \DateTime
     {
         if ($this->isExpired()) {
             return new \DateTime();
@@ -121,7 +121,7 @@ final class CacheElement
      *
      * @return array
      */
-    public function getContextualKeys()
+    public function getContextualKeys(): array
     {
         return $this->contextualKeys;
     }

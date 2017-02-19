@@ -85,7 +85,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flushAll()
+    public function flushAll(): bool
     {
         if ($this->currentOnly) {
             if (version_compare(PHP_VERSION, '5.5.0', '>=') && function_exists('opcache_reset')) {
@@ -143,7 +143,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = array()): bool
     {
         if ($this->currentOnly) {
             $this->checkApc();
@@ -157,7 +157,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function has(array $keys)
+    public function has(array $keys): bool
     {
         $this->checkApc();
 
@@ -167,7 +167,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement
     {
         $this->checkApc();
 
@@ -185,7 +185,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function get(array $keys)
+    public function get(array $keys): CacheElement
     {
         $this->checkApc();
 
@@ -195,7 +195,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function isContextual()
+    public function isContextual(): bool
     {
         return false;
     }
