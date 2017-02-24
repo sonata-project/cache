@@ -13,9 +13,9 @@ namespace Sonata\Cache;
 
 final class Counter
 {
-    protected $name;
+    private $name;
 
-    protected $value;
+    private $value;
 
     /**
      * @param string $name

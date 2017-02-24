@@ -22,27 +22,27 @@ final class CacheElement
     /**
      * @var int
      */
-    protected $ttl;
+    private $ttl;
 
     /**
      * @var array
      */
-    protected $keys = array();
+    private $keys = array();
 
     /**
      * @var mixed
      */
-    protected $data;
+    private $data;
 
     /**
      * @var \DateTime
      */
-    protected $createdAt;
+    private $createdAt;
 
     /**
      * @var array
      */
-    protected $contextualKeys = array();
+    private $contextualKeys = array();
 
     /**
      * Constructor.
