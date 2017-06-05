@@ -14,6 +14,7 @@ namespace Sonata\Cache\Adapter\Cache;
 use Predis\Client;
 use Predis\Connection\PredisCluster;
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 
 class PRedisCache extends BaseCacheHandler
 {
@@ -83,7 +84,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 
@@ -115,7 +116,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function get(array $keys): CacheElement
+    public function get(array $keys): CacheElementInterface
     {
         return $this->handleGet($keys, unserialize($this->getClient()->hget($this->computeCacheKeys($keys), 'sonata__data')));
     }

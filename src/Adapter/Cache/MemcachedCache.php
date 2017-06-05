@@ -58,7 +58,7 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 

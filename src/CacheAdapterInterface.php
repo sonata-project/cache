@@ -11,7 +11,7 @@
 
 namespace Sonata\Cache;
 
-use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 
 interface CacheAdapterInterface
 {
@@ -20,9 +20,9 @@ interface CacheAdapterInterface
      *
      * @param array $keys
      *
-     * @return CacheElement
+     * @return CacheElementInterface
      */
-    public function get(array $keys): CacheElement;
+    public function get(array $keys): CacheElementInterface;
 
     /**
      * Returns TRUE whether cache contains data identified by keys.
@@ -41,9 +41,9 @@ interface CacheAdapterInterface
      * @param int   $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
      * @param array $contextualKeys An array of contextual keys
      *
-     * @return CacheElement
+     * @return CacheElementInterface
      */
-    public function set(array $keys, $value, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement;
+    public function set(array $keys, $value, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface;
 
     /**
      * Flushes data from cache identified by keys.

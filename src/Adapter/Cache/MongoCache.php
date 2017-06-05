@@ -12,6 +12,7 @@
 namespace Sonata\Cache\Adapter\Cache;
 
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 
 class MongoCache extends BaseCacheHandler
 {
@@ -81,7 +82,7 @@ class MongoCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
     {
         $time = time();
 
@@ -100,7 +101,7 @@ class MongoCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function get(array $keys): CacheElement
+    public function get(array $keys): CacheElementInterface
     {
         $record = $this->getRecord($keys);
 

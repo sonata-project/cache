@@ -12,6 +12,7 @@
 namespace Sonata\Cache\Adapter\Cache;
 
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 use Sonata\Cache\Exception\UnsupportedException;
 
 /**
@@ -167,7 +168,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElement
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
     {
         $this->checkApc();
 
@@ -185,7 +186,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function get(array $keys): CacheElement
+    public function get(array $keys): CacheElementInterface
     {
         $this->checkApc();
 

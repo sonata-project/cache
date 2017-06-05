@@ -11,7 +11,7 @@
 
 namespace Sonata\Cache;
 
-final class CacheElement
+final class CacheElement implements CacheElementInterface
 {
     const MINUTE = 60;
     const HOUR = 3600;
@@ -62,9 +62,7 @@ final class CacheElement
     }
 
     /**
-     * Returns the keys.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getKeys(): array
     {
@@ -72,9 +70,7 @@ final class CacheElement
     }
 
     /**
-     * Returns the time to live.
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function getTtl(): int
     {
@@ -82,9 +78,7 @@ final class CacheElement
     }
 
     /**
-     * Returns the data.
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getData()
     {
@@ -92,9 +86,7 @@ final class CacheElement
     }
 
     /**
-     * Returns TRUE whether the cache is expired.
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function isExpired(): bool
     {
@@ -102,9 +94,9 @@ final class CacheElement
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
-    public function getExpirationDate(): \DateTime
+    public function getExpirationDate(): \DateTimeInterface
     {
         if ($this->isExpired()) {
             return new \DateTime();
@@ -117,9 +109,7 @@ final class CacheElement
     }
 
     /**
-     * Returns the contextual keys.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getContextualKeys(): array
     {
