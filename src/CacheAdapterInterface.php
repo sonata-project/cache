@@ -11,6 +11,8 @@
 
 namespace Sonata\Cache;
 
+use Sonata\Cache\CacheElementInterface;
+
 interface CacheAdapterInterface
 {
     /**
@@ -18,9 +20,9 @@ interface CacheAdapterInterface
      *
      * @param array $keys
      *
-     * @return CacheElement
+     * @return CacheElementInterface
      */
-    public function get(array $keys);
+    public function get(array $keys): CacheElementInterface;
 
     /**
      * Returns TRUE whether cache contains data identified by keys.
@@ -29,7 +31,7 @@ interface CacheAdapterInterface
      *
      * @return bool
      */
-    public function has(array $keys);
+    public function has(array $keys): bool;
 
     /**
      * Sets value in cache.
@@ -39,9 +41,9 @@ interface CacheAdapterInterface
      * @param int   $ttl            A time to live, default 86400 seconds (CacheElement::DAY)
      * @param array $contextualKeys An array of contextual keys
      *
-     * @return CacheElement
+     * @return CacheElementInterface
      */
-    public function set(array $keys, $value, $ttl = CacheElement::DAY, array $contextualKeys = array());
+    public function set(array $keys, $value, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface;
 
     /**
      * Flushes data from cache identified by keys.
@@ -50,19 +52,19 @@ interface CacheAdapterInterface
      *
      * @return bool
      */
-    public function flush(array $keys = array());
+    public function flush(array $keys = array()): bool;
 
     /**
      * Flushes all data from cache.
      *
      * @return bool
      */
-    public function flushAll();
+    public function flushAll(): bool;
 
     /**
      * Returns TRUE whether cache is contextual.
      *
      * @return bool
      */
-    public function isContextual();
+    public function isContextual(): bool;
 }

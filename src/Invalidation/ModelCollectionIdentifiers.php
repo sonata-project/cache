@@ -29,7 +29,7 @@ class ModelCollectionIdentifiers
      * @param string $class
      * @param mixed  $identifier
      */
-    public function addClass($class, $identifier)
+    public function addClass(string $class, $identifier)
     {
         $this->classes[$class] = $identifier;
     }
@@ -53,7 +53,7 @@ class ModelCollectionIdentifiers
     /**
      * @param $object
      *
-     * @return bool
+     * @return mixed
      */
     public function getMethod($object)
     {

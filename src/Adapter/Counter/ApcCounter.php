@@ -36,7 +36,7 @@ class ApcCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function increment($counter, $number = 1)
+    public function increment(Counter $counter, int $number = 1): Counter
     {
         $counter = $this->transform($counter);
 
@@ -48,7 +48,7 @@ class ApcCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function decrement($counter, $number = 1)
+    public function decrement(Counter $counter, int $number = 1): Counter
     {
         $counter = $this->transform($counter);
 
@@ -60,7 +60,7 @@ class ApcCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function set(Counter $counter)
+    public function set(Counter $counter): Counter
     {
         apc_store($this->prefix.'/'.$counter->getName(), $counter->getValue());
 
@@ -70,7 +70,7 @@ class ApcCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function get($name)
+    public function get(string $name): Counter
     {
         return Counter::create($name, (int) apc_fetch($this->prefix.'/'.$name));
     }

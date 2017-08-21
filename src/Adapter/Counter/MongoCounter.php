@@ -38,7 +38,7 @@ class MongoCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function increment($counter, $number = 1)
+    public function increment(Counter $counter, int $number = 1): Counter
     {
         $counter = $this->transform($counter);
 
@@ -55,7 +55,7 @@ class MongoCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function decrement($counter, $number = 1)
+    public function decrement(Counter $counter, int $number = 1): Counter
     {
         $counter = $this->transform($counter);
 
@@ -72,7 +72,7 @@ class MongoCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function set(Counter $counter)
+    public function set(Counter $counter): Counter
     {
         $result = $this->getCollection()->findAndModify(
             array('counter' => $counter->getName()),
@@ -87,7 +87,7 @@ class MongoCounter extends BaseCounter
     /**
      * {@inheritdoc}
      */
-    public function get($name)
+    public function get(string $name): Counter
     {
         $result = $this->getCollection()->findOne(array('counter' => $name));
 

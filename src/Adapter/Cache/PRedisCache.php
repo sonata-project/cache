@@ -14,6 +14,7 @@ namespace Sonata\Cache\Adapter\Cache;
 use Predis\Client;
 use Predis\Connection\PredisCluster;
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 
 class PRedisCache extends BaseCacheHandler
 {
@@ -39,7 +40,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flushAll()
+    public function flushAll(): bool
     {
         $command = $this->getClient()->createCommand('flushdb');
         $connection = $this->getClient()->getConnection();
@@ -60,7 +61,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array())
+    public function flush(array $keys = array()): bool
     {
         $this->getClient()->del($this->computeCacheKeys($keys));
 
@@ -75,7 +76,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function has(array $keys)
+    public function has(array $keys): bool
     {
         return $this->getClient()->exists($this->computeCacheKeys($keys));
     }
@@ -83,7 +84,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, $ttl = CacheElement::DAY, array $contextualKeys = array())
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 
@@ -115,7 +116,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function get(array $keys)
+    public function get(array $keys): CacheElementInterface
     {
         return $this->handleGet($keys, unserialize($this->getClient()->hget($this->computeCacheKeys($keys), 'sonata__data')));
     }
@@ -123,7 +124,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function isContextual()
+    public function isContextual(): bool
     {
         return false;
     }
@@ -131,7 +132,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * @return Client
      */
-    protected function getClient()
+    protected function getClient(): Client
     {
         if (!$this->client) {
             $this->client = new Client($this->parameters, $this->options);

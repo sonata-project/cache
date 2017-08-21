@@ -13,6 +13,7 @@ namespace Sonata\Cache\Adapter\Cache;
 
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\CacheElement;
+use Sonata\Cache\CacheElementInterface;
 
 abstract class BaseCacheHandler implements CacheAdapterInterface
 {
@@ -20,11 +21,11 @@ abstract class BaseCacheHandler implements CacheAdapterInterface
      * @param array $keys
      * @param mixed $data
      *
-     * @return CacheElement
+     * @return CacheElementInterface
      */
-    protected function handleGet(array $keys, $data)
+    protected function handleGet(array $keys, $data = null): CacheElementInterface
     {
-        if ($data instanceof CacheElement) {
+        if ($data instanceof CacheElementInterface) {
             return $data;
         }
 
