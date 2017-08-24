@@ -21,7 +21,7 @@ interface CacheManagerInterface
      * @param string                $name         A cache name
      * @param CacheAdapterInterface $cacheManager A cache service
      */
-    public function addCacheService(string $name, CacheAdapterInterface $cacheManager): void;
+    public function addCacheService(string $name, CacheAdapterInterface $cacheManager);
 
     /**
      * Gets a cache service by a given name.
