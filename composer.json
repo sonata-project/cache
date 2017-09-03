@@ -10,6 +10,10 @@
             "name": "Thomas Rabaix",
             "email": "thomas.rabaix@gmail.com",
             "homepage": "https://sonata-project.org/"
+        },
+        {
+            "name": "Sonata Community",
+            "homepage": "https://github.com/sonata-project/cache/contributors"
         }
     ],
     "require-dev": {
