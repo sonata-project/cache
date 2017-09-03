@@ -16,9 +16,11 @@
             "homepage": "https://github.com/sonata-project/cache/contributors"
         }
     ],
+    "require": {
+        "php": "^7.1",
+        "psr/log": "^1.0"
+    },
     "require-dev": {
-        "php": "^7.0",
-        "psr/log": "^1.0",
         "doctrine/orm": "^2.5",
         "predis/predis": "^1.1",
         "doctrine/phpcr-odm": "^1.4",
