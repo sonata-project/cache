@@ -10,17 +10,23 @@
             "name": "Thomas Rabaix",
             "email": "thomas.rabaix@gmail.com",
             "homepage": "https://sonata-project.org/"
+        },
+        {
+            "name": "Sonata Community",
+            "homepage": "https://github.com/sonata-project/cache/contributors"
         }
     ],
+    "require": {
+        "php": "^7.1",
+        "psr/log": "^1.0"
+    },
     "require-dev": {
-        "php": "^7.0",
-        "psr/log": "^1.0",
         "doctrine/orm": "^2.5",
-        "predis/predis": "^1.1",
         "doctrine/phpcr-odm": "^1.4",
         "jackalope/jackalope-doctrine-dbal": "^1.2",
-        "symfony/phpunit-bridge": "^3.2",
-        "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+        "predis/predis": "^1.1",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.1",
+        "symfony/phpunit-bridge": "^3.2"
     },
     "suggest": {
         "doctrine/orm": "ORM support",
@@ -37,8 +43,11 @@
     },
     "conflicts": {
         "doctrine/orm": "<2.5",
-        "predis/predis": "<1.1",
-        "doctrine/phpcr-odm": "<1.4"
+        "doctrine/phpcr-odm": "<1.4",
+        "predis/predis": "<1.1"
+    },
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
