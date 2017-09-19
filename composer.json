@@ -39,7 +39,7 @@
         "psr-4": { "Sonata\\Cache\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "Sonata\\Cache\\Tests\\": "test/" }
+        "psr-4": { "Sonata\\Cache\\Tests\\": "tests/" }
     },
     "conflicts": {
         "doctrine/orm": "<2.5",
