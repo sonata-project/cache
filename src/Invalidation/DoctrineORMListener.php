@@ -50,7 +50,7 @@ class DoctrineORMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
-    public function preRemove(LifecycleEventArgs $args): void
+    public function preRemove(LifecycleEventArgs $args)
     {
         $this->flush($args);
     }
@@ -58,7 +58,7 @@ class DoctrineORMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
-    public function preUpdate(LifecycleEventArgs $args): void
+    public function preUpdate(LifecycleEventArgs $args)
     {
         $this->flush($args);
     }
@@ -66,7 +66,7 @@ class DoctrineORMListener implements EventSubscriber
     /**
      * @param CacheAdapterInterface $cache
      */
-    public function addCache(CacheAdapterInterface $cache): void
+    public function addCache(CacheAdapterInterface $cache)
     {
         if (!$cache->isContextual()) {
             return;
@@ -78,7 +78,7 @@ class DoctrineORMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
-    protected function flush(LifecycleEventArgs $args): void
+    protected function flush(LifecycleEventArgs $args)
     {
         $identifier = $this->collectionIdentifiers->getIdentifier($args->getEntity());
 
