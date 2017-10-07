@@ -53,14 +53,14 @@ interface CacheManagerInterface
      *
      * @param array $keys
      */
-    public function invalidate(array $keys);
+    public function invalidate(array $keys): void;
 
     /**
      * Sets the recorder.
      *
      * @param Recorder $recorder
      */
-    public function setRecorder(Recorder $recorder);
+    public function setRecorder(Recorder $recorder): void;
 
     /**
      * Gets the recorder.
