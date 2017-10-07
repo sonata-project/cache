@@ -78,7 +78,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * @param bool $bool
      */
-    public function setCurrentOnly($bool)
+    public function setCurrentOnly($bool): void
     {
         $this->currentOnly = $bool;
     }

@@ -50,7 +50,7 @@ class DoctrinePHPCRODMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
-    public function preRemove(LifecycleEventArgs $args)
+    public function preRemove(LifecycleEventArgs $args): void
     {
         $this->flush($args);
     }
@@ -58,7 +58,7 @@ class DoctrinePHPCRODMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
-    public function preUpdate(LifecycleEventArgs $args)
+    public function preUpdate(LifecycleEventArgs $args): void
     {
         $this->flush($args);
     }
@@ -66,7 +66,7 @@ class DoctrinePHPCRODMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
-    public function addCache(CacheAdapterInterface $cache)
+    public function addCache(CacheAdapterInterface $cache): void
     {
         if (!$cache->isContextual()) {
             return;
@@ -78,7 +78,7 @@ class DoctrinePHPCRODMListener implements EventSubscriber
     /**
      * {@inheritdoc}
      */
-    protected function flush(LifecycleEventArgs $args)
+    protected function flush(LifecycleEventArgs $args): void
     {
         $identifier = $this->collectionIdentifiers->getIdentifier($args->getDocument());
 

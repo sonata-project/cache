@@ -29,7 +29,7 @@ class ModelCollectionIdentifiers
      * @param string $class
      * @param mixed  $identifier
      */
-    public function addClass(string $class, $identifier)
+    public function addClass(string $class, $identifier): void
     {
         $this->classes[$class] = $identifier;
     }

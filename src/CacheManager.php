@@ -82,7 +82,7 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function invalidate(array $keys)
+    public function invalidate(array $keys): void
     {
         $this->cacheInvalidation->invalidate($this->getCacheServices(), $keys);
     }
@@ -90,7 +90,7 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function setRecorder(Recorder $recorder)
+    public function setRecorder(Recorder $recorder): void
     {
         $this->recorder = $recorder;
     }
