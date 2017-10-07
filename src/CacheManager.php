@@ -46,7 +46,7 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function addCacheService(string $name, CacheAdapterInterface $cacheManager)
+    public function addCacheService(string $name, CacheAdapterInterface $cacheManager): void
     {
         $this->cacheServices[$name] = $cacheManager;
     }
