@@ -15,7 +15,7 @@ class Recorder
 {
     protected $collectionIdentifiers;
 
-    protected $stack = array();
+    protected $stack = [];
 
     protected $current = 0;
 
@@ -25,7 +25,7 @@ class Recorder
     public function __construct(ModelCollectionIdentifiers $collectionIdentifiers)
     {
         $this->collectionIdentifiers = $collectionIdentifiers;
-        $this->stack[$this->current] = array();
+        $this->stack[$this->current] = [];
     }
 
     /**
@@ -42,7 +42,7 @@ class Recorder
         }
 
         if (!isset($this->stack[$this->current][$class])) {
-            $this->stack[$this->current][$class] = array();
+            $this->stack[$this->current][$class] = [];
         }
 
         if (!in_array($identifier, $this->stack[$this->current][$class])) {
@@ -83,6 +83,6 @@ class Recorder
     public function reset(): void
     {
         $this->current = 0;
-        $this->stack = array();
+        $this->stack = [];
     }
 }

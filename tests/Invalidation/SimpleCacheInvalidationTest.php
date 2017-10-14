@@ -26,13 +26,13 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
         $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
         $cache->expects($this->exactly(1))->method('flush');
 
-        $caches = array($cache);
+        $caches = [$cache];
 
-        $this->assertTrue($cacheInvalidation->invalidate($caches, array('test' => 1)));
+        $this->assertTrue($cacheInvalidation->invalidate($caches, ['test' => 1]));
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testWithoutLogger()
     {
@@ -41,14 +41,14 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
         $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
         $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception()));
 
-        $caches = array($cache);
+        $caches = [$cache];
 
-        $cacheInvalidation->invalidate($caches, array('page_id' => 1));
+        $cacheInvalidation->invalidate($caches, ['page_id' => 1]);
     }
 
     public function testWithLogger()
     {
-        $logger = $this->getMock('Psr\Log\LoggerInterface', array(), array(), '', false);
+        $logger = $this->getMock('Psr\Log\LoggerInterface', [], [], '', false);
         $logger->expects($this->exactly(1))->method('info');
         $logger->expects($this->exactly(1))->method('alert');
 
@@ -57,20 +57,20 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
         $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
         $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception()));
 
-        $caches = array($cache);
+        $caches = [$cache];
 
-        $cacheInvalidation->invalidate($caches, array('page_id' => 1));
+        $cacheInvalidation->invalidate($caches, ['page_id' => 1]);
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testInvalidCacheHandle()
     {
         $cacheInvalidation = new SimpleCacheInvalidation();
 
-        $caches = array(new SimpleCacheInvalidationTest_Cache());
+        $caches = [new SimpleCacheInvalidationTest_Cache()];
 
-        $cacheInvalidation->invalidate($caches, array('page_id' => 1));
+        $cacheInvalidation->invalidate($caches, ['page_id' => 1]);
     }
 }

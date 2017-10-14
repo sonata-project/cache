@@ -50,7 +50,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * @var array
      */
-    protected $timeout = array();
+    protected $timeout = [];
 
     /**
      * Constructor.
@@ -60,16 +60,16 @@ class OpCodeCache extends BaseCacheHandler
      * @param array  $servers An array of servers
      * @param array  $timeout An array of timeout options
      */
-    public function __construct(string $url, string $prefix, array $servers, array $timeout = array())
+    public function __construct(string $url, string $prefix, array $servers, array $timeout = [])
     {
         $this->url = $url;
         $this->prefix = $prefix;
         $this->servers = $servers;
 
-        $defaultTimeout = array(
+        $defaultTimeout = [
             'sec' => 5,
             'usec' => 0,
-        );
+        ];
 
         $this->timeout['RCV'] = isset($timeout['RCV']) ? array_merge($defaultTimeout, $timeout['RCV']) : $defaultTimeout;
         $this->timeout['SND'] = isset($timeout['SND']) ? array_merge($defaultTimeout, $timeout['SND']) : $defaultTimeout;
@@ -144,7 +144,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array()): bool
+    public function flush(array $keys = []): bool
     {
         if ($this->currentOnly) {
             $this->checkApc();
@@ -168,7 +168,7 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElementInterface
     {
         $this->checkApc();
 

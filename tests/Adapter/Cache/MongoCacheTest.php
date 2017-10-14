@@ -26,7 +26,7 @@ class MongoCacheTest extends BaseTest
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
         // setup the default timeout (avoid max execution time)
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => 1, 'usec' => 0));
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, ['sec' => 1, 'usec' => 0]);
 
         $result = @socket_connect($socket, '127.0.0.1', 27017);
 
@@ -41,7 +41,7 @@ class MongoCacheTest extends BaseTest
         $mongo
             ->selectDB('sonata_counter_test')
             ->selectCollection('counter')
-            ->remove(array());
+            ->remove([]);
     }
 
     /**
@@ -49,6 +49,6 @@ class MongoCacheTest extends BaseTest
      */
     public function getCache()
     {
-        return new MongoCache(array('127.0.0.1:27017'), 'sonata_cache_test', 'cache');
+        return new MongoCache(['127.0.0.1:27017'], 'sonata_cache_test', 'cache');
     }
 }

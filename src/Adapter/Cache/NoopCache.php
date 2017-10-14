@@ -28,7 +28,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array()): bool
+    public function flush(array $keys = []): bool
     {
         return true;
     }
@@ -44,7 +44,7 @@ class NoopCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElementInterface
     {
         return new CacheElement($keys, $data, $ttl, $contextualKeys);
     }

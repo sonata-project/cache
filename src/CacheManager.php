@@ -24,7 +24,7 @@ class CacheManager implements CacheManagerInterface
     /**
      * @var array
      */
-    protected $cacheServices = array();
+    protected $cacheServices = [];
 
     /**
      * @var Recorder

@@ -40,7 +40,7 @@ class MongoCache extends BaseCacheHandler
      */
     public function flushAll(): bool
     {
-        return $this->flush(array());
+        return $this->flush([]);
     }
 
     /**
@@ -48,9 +48,9 @@ class MongoCache extends BaseCacheHandler
      */
     public function flush(array $keys = array()): bool
     {
-        $result = $this->getCollection()->remove($keys, array(
+        $result = $this->getCollection()->remove($keys, [
             'w' => 1,
-        ));
+        ]);
 
         return $result['ok'] == 1 && $result['err'] === null;
     }
@@ -60,7 +60,7 @@ class MongoCache extends BaseCacheHandler
      */
     public function has(array $keys): bool
     {
-        $keys['_timeout'] = array('$gt' => time());
+        $keys['_timeout'] = ['$gt' => time()];
 
         return $this->getCollection()->count($keys) > 0;
     }
@@ -82,7 +82,7 @@ class MongoCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElementInterface
     {
         $time = time();
 
@@ -141,7 +141,7 @@ class MongoCache extends BaseCacheHandler
      */
     private function getRecord(array $keys)
     {
-        $keys['_timeout'] = array('$gt' => time());
+        $keys['_timeout'] = ['$gt' => time()];
 
         $results = $this->getCollection()->find($keys);
 

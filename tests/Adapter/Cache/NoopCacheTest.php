@@ -19,10 +19,10 @@ class NoopCacheTest extends \PHPUnit_Framework_TestCase
     {
         $cache = new NoopCache();
 
-        $this->assertTrue($cache->flush(array()));
+        $this->assertTrue($cache->flush([]));
         $this->assertTrue($cache->flushAll());
-        $this->assertFalse($cache->has(array()));
-        $this->assertFalse($cache->has(array()));
+        $this->assertFalse($cache->has([]));
+        $this->assertFalse($cache->has([]));
     }
 
     /**
@@ -31,6 +31,6 @@ class NoopCacheTest extends \PHPUnit_Framework_TestCase
     public function getGet()
     {
         $cache = new NoopCache();
-        $cache->get(array());
+        $cache->get([]);
     }
 }

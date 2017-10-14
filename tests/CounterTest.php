@@ -16,7 +16,7 @@ use Sonata\Cache\Counter;
 class CounterTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException TypeError
+     * @expectedException \TypeError
      */
     public function testInvalidValue()
     {

@@ -17,11 +17,11 @@ use Sonata\Cache\Counter;
 
 class PRedisCounterTest extends \PHPUnit_Framework_TestCase
 {
-    protected $parameters = array(
+    protected $parameters = [
         'host' => '127.0.0.1',
         'port' => 6379,
         'database' => 42,
-    );
+    ];
 
     public function setUp()
     {
@@ -32,7 +32,7 @@ class PRedisCounterTest extends \PHPUnit_Framework_TestCase
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
         // setup the default timeout (avoid max execution time)
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => 1, 'usec' => 0));
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, ['sec' => 1, 'usec' => 0]);
 
         $result = @socket_connect($socket, '127.0.0.1', 6379);
 

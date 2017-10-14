@@ -19,7 +19,7 @@ use Sonata\Cache\CacheAdapterInterface;
 
 class DoctrineORMListener implements EventSubscriber
 {
-    protected $caches = array();
+    protected $caches = [];
 
     protected $collectionIdentifiers;
 
@@ -41,10 +41,10 @@ class DoctrineORMListener implements EventSubscriber
      */
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::preRemove,
             Events::preUpdate,
-        );
+        ];
     }
 
     /**
@@ -86,9 +86,9 @@ class DoctrineORMListener implements EventSubscriber
             return;
         }
 
-        $parameters = array(
+        $parameters = [
             ClassUtils::getClass($args->getEntity()) => $identifier,
-        );
+        ];
 
         foreach ($this->caches as $cache) {
             $cache->flush($parameters);

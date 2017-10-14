@@ -42,7 +42,7 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array()): bool
+    public function flush(array $keys = []): bool
     {
         return $this->getCollection()->delete($this->computeCacheKeys($keys));
     }
@@ -58,7 +58,7 @@ class MemcachedCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElementInterface
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 

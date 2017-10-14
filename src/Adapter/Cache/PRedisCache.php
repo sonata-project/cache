@@ -31,7 +31,7 @@ class PRedisCache extends BaseCacheHandler
      * @param array $parameters
      * @param array $options
      */
-    public function __construct(array $parameters = array(), array $options = array())
+    public function __construct(array $parameters = [], array $options = [])
     {
         $this->parameters = $parameters;
         $this->options = $options;
@@ -61,7 +61,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array()): bool
+    public function flush(array $keys = []): bool
     {
         $this->getClient()->del($this->computeCacheKeys($keys));
 
@@ -84,7 +84,7 @@ class PRedisCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = array()): CacheElementInterface
+    public function set(array $keys, $data, int $ttl = CacheElement::DAY, array $contextualKeys = []): CacheElementInterface
     {
         $cacheElement = new CacheElement($keys, $data, $ttl);
 

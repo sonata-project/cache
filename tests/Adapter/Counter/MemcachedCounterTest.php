@@ -25,7 +25,7 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
         // setup the default timeout (avoid max execution time)
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => 1, 'usec' => 0));
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, ['sec' => 1, 'usec' => 0]);
 
         $result = @socket_connect($socket, '127.0.0.1', 11211);
 
@@ -43,9 +43,9 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
 
     public function testCounterBackend()
     {
-        $backend = new MemcachedCounter('prefix', array(
-            array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
-        ));
+        $backend = new MemcachedCounter('prefix', [
+            ['host' => '127.0.0.1', 'port' => 11211, 'weight' => 100],
+        ]);
 
         $counter = $backend->set(Counter::create('mycounter', 10));
 
@@ -76,9 +76,9 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
 
     public function testNonExistantKey()
     {
-        $backend = new MemcachedCounter('prefix', array(
-            array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
-        ));
+        $backend = new MemcachedCounter('prefix', [
+            ['host' => '127.0.0.1', 'port' => 11211, 'weight' => 100],
+        ]);
 
         $counter = $backend->increment(Counter::create('mynewcounter.inc', 10));
 
