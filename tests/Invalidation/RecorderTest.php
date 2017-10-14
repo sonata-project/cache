@@ -40,7 +40,7 @@ class Recorder_Model_3
 
 class RecorderTest extends \PHPUnit_Framework_TestCase
 {
-    public function testRecorder()
+    public function testRecorder(): void
     {
         $collection = new ModelCollectionIdentifiers([
             'Sonata\Cache\Tests\Invalidation\Recorder_Model_1' => 'getCacheIdentifier',

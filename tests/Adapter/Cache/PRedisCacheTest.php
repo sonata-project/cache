@@ -16,7 +16,7 @@ use Sonata\Cache\Adapter\Cache\PRedisCache;
 
 class PRedisCacheTest extends BaseTest
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists('\Predis\Client', true)) {
             $this->markTestSkipped('PRedis is not installed');
@@ -59,7 +59,7 @@ class PRedisCacheTest extends BaseTest
     /**
      * Tests the flushAll method when connection is a single one.
      */
-    public function testFlushAllForSingleConnection()
+    public function testFlushAllForSingleConnection(): void
     {
         $cache = $this->getMockBuilder('Sonata\Cache\Adapter\Cache\PRedisCache')
             ->setMethods(['getClient'])
@@ -81,7 +81,7 @@ class PRedisCacheTest extends BaseTest
     /**
      * Tests the flushAll method when connection is a cluster one.
      */
-    public function testFlushAllForClusterConnection()
+    public function testFlushAllForClusterConnection(): void
     {
         $cache = $this->getMockBuilder('Sonata\Cache\Adapter\Cache\PRedisCache')
             ->setMethods(['getClient'])

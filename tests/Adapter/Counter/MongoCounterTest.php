@@ -17,7 +17,7 @@ use Sonata\Cache\Counter;
 
 class MongoCounterTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $class = MongoCache::getMongoClass();
 
@@ -46,7 +46,7 @@ class MongoCounterTest extends \PHPUnit_Framework_TestCase
             ->remove([]);
     }
 
-    public function testCounterBackend()
+    public function testCounterBackend(): void
     {
         $backend = new MongoCounter(['127.0.0.1:27017'], 'sonata_counter_test', 'counter');
 
@@ -75,7 +75,7 @@ class MongoCounterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(-10, $counter->getValue());
     }
 
-    public function testNonExistantKey()
+    public function testNonExistantKey(): void
     {
         $backend = new MongoCounter(['127.0.0.1:27017'], 'sonata_counter_test', 'counter');
 

@@ -15,7 +15,7 @@ use Sonata\Cache\Adapter\Cache\NoopCache;
 
 class NoopCacheTest extends \PHPUnit_Framework_TestCase
 {
-    public function testNoopCache()
+    public function testNoopCache(): void
     {
         $cache = new NoopCache();
 
@@ -28,7 +28,7 @@ class NoopCacheTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \RuntimeException
      */
-    public function getGet()
+    public function getGet(): void
     {
         $cache = new NoopCache();
         $cache->get([]);

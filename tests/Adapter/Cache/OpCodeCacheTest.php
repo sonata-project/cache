@@ -20,13 +20,13 @@ class OpCodeCacheTest extends \PHPUnit_Framework_TestCase
      */
     protected $cache;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->cache = new OpCodeCache('http://localhost', 'prefix_', [], []);
         $this->cache->setCurrentOnly(true);
     }
 
-    public function testFlushAll()
+    public function testFlushAll(): void
     {
         $res = $this->cache->flushAll();
         $this->assertTrue($res);

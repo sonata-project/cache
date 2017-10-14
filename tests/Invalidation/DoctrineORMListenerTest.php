@@ -24,7 +24,7 @@ class DoctrineORMListenerTest_Model
 
 class DoctrineORMListenerTest extends \PHPUnit_Framework_TestCase
 {
-    public function test()
+    public function test(): void
     {
         $collection = new ModelCollectionIdentifiers();
 

@@ -16,7 +16,7 @@ use Sonata\Cache\Counter;
 
 class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists('\Memcached', true)) {
             $this->markTestSkipped('Memcached is not installed');
@@ -41,7 +41,7 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
         $memcached->fetchAll();
     }
 
-    public function testCounterBackend()
+    public function testCounterBackend(): void
     {
         $backend = new MemcachedCounter('prefix', [
             ['host' => '127.0.0.1', 'port' => 11211, 'weight' => 100],
@@ -74,7 +74,7 @@ class MemcachedCounterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $counter->getValue());
     }
 
-    public function testNonExistantKey()
+    public function testNonExistantKey(): void
     {
         $backend = new MemcachedCounter('prefix', [
             ['host' => '127.0.0.1', 'port' => 11211, 'weight' => 100],

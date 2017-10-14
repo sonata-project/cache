@@ -15,7 +15,7 @@ use Sonata\Cache\Adapter\Cache\MongoCache;
 
 class MongoCacheTest extends BaseTest
 {
-    public function setUp()
+    public function setUp(): void
     {
         $class = MongoCache::getMongoClass();
 

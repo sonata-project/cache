@@ -15,7 +15,7 @@ use Sonata\Cache\Adapter\Cache\MemcachedCache;
 
 class MemcachedCacheTest extends BaseTest
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists('\Memcached', true)) {
             $this->markTestSkipped('Memcached is not installed');
