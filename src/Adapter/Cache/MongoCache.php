@@ -46,7 +46,7 @@ class MongoCache extends BaseCacheHandler
     /**
      * {@inheritdoc}
      */
-    public function flush(array $keys = array()): bool
+    public function flush(array $keys = []): bool
     {
         $result = $this->getCollection()->remove($keys, [
             'w' => 1,
