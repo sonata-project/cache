@@ -15,7 +15,7 @@ use Sonata\Cache\CacheElement;
 
 class CacheElementTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCache()
+    public function testCache(): void
     {
         $cacheKeys = [
           'block_id' => '1',
@@ -35,7 +35,7 @@ class CacheElementTest extends \PHPUnit_Framework_TestCase
         $cache->getExpirationDate();
     }
 
-    public function testContextual()
+    public function testContextual(): void
     {
         $cacheKeys = [
           'block_id' => '1',

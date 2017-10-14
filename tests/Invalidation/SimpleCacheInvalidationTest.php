@@ -19,7 +19,7 @@ class SimpleCacheInvalidationTest_Cache
 
 class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
 {
-    public function testInvalidate()
+    public function testInvalidate(): void
     {
         $cacheInvalidation = new SimpleCacheInvalidation();
 
@@ -34,7 +34,7 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \RuntimeException
      */
-    public function testWithoutLogger()
+    public function testWithoutLogger(): void
     {
         $cacheInvalidation = new SimpleCacheInvalidation();
 
@@ -46,7 +46,7 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
         $cacheInvalidation->invalidate($caches, ['page_id' => 1]);
     }
 
-    public function testWithLogger()
+    public function testWithLogger(): void
     {
         $logger = $this->getMock('Psr\Log\LoggerInterface', [], [], '', false);
         $logger->expects($this->exactly(1))->method('info');
@@ -65,7 +65,7 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \RuntimeException
      */
-    public function testInvalidCacheHandle()
+    public function testInvalidCacheHandle(): void
     {
         $cacheInvalidation = new SimpleCacheInvalidation();
 

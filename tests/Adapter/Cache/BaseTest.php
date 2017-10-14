@@ -20,7 +20,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
      */
     abstract public function getCache();
 
-    public function testBasicOperations()
+    public function testBasicOperations(): void
     {
         // init cache
         $cache = $this->getCache();
@@ -45,7 +45,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($cache->has(['id' => 7]));
     }
 
-    public function testNonExistantCache()
+    public function testNonExistantCache(): void
     {
         $cache = $this->getCache();
 
@@ -55,7 +55,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cacheElement->isExpired());
     }
 
-    public function testExpired()
+    public function testExpired(): void
     {
         $cache = $this->getCache();
 

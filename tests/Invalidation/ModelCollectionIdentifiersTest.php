@@ -39,7 +39,7 @@ class Model_3 extends Model_2
 
 class CacheElementTest extends \PHPUnit_Framework_TestCase
 {
-    public function test()
+    public function test(): void
     {
         $collection = new ModelCollectionIdentifiers([
             'Sonata\Cache\Tests\Invalidation\Model_3' => 'getId',

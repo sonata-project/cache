@@ -18,12 +18,12 @@ class CounterTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \TypeError
      */
-    public function testInvalidValue()
+    public function testInvalidValue(): void
     {
         Counter::create('value', 'data');
     }
 
-    public function testClass()
+    public function testClass(): void
     {
         $counter = Counter::create('mycounter', 42);
 

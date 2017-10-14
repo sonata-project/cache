@@ -23,7 +23,7 @@ class PRedisCounterTest extends \PHPUnit_Framework_TestCase
         'database' => 42,
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists('\Predis\Client', true)) {
             $this->markTestSkipped('PRedis is not installed');
@@ -47,7 +47,7 @@ class PRedisCounterTest extends \PHPUnit_Framework_TestCase
         $client->flushdb();
     }
 
-    public function testCounterBackend()
+    public function testCounterBackend(): void
     {
         $backend = new PRedisCounter($this->parameters);
 
@@ -76,7 +76,7 @@ class PRedisCounterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(-10, $counter->getValue());
     }
 
-    public function testNonExistantKey()
+    public function testNonExistantKey(): void
     {
         $backend = new PRedisCounter($this->parameters);
 

@@ -16,7 +16,7 @@ use Sonata\Cache\Counter;
 
 class ApcCounterTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!function_exists('apc_store')) {
             $this->markTestSkipped('APC is not installed');
@@ -29,7 +29,7 @@ class ApcCounterTest extends \PHPUnit_Framework_TestCase
         apc_clear_cache('user');
     }
 
-    public function testCounterBackend()
+    public function testCounterBackend(): void
     {
         $backend = new ApcCounter('prefix');
 
@@ -57,7 +57,7 @@ class ApcCounterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(-10, $counter->getValue());
     }
 
-    public function testNonExistantKey()
+    public function testNonExistantKey(): void
     {
         $backend = new ApcCounter('prefix');
 
