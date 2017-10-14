@@ -41,7 +41,7 @@ interface CacheAdapterInterface
      *
      * @return CacheElement
      */
-    public function set(array $keys, $value, $ttl = CacheElement::DAY, array $contextualKeys = array());
+    public function set(array $keys, $value, $ttl = CacheElement::DAY, array $contextualKeys = []);
 
     /**
      * Flushes data from cache identified by keys.
@@ -50,7 +50,7 @@ interface CacheAdapterInterface
      *
      * @return bool
      */
-    public function flush(array $keys = array());
+    public function flush(array $keys = []);
 
     /**
      * Flushes all data from cache.
