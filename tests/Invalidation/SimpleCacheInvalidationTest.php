@@ -32,7 +32,7 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testWithoutLogger()
     {
@@ -63,7 +63,7 @@ class SimpleCacheInvalidationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testInvalidCacheHandle()
     {
