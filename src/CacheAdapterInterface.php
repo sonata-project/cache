@@ -11,8 +11,6 @@
 
 namespace Sonata\Cache;
 
-use Sonata\Cache\CacheElementInterface;
-
 interface CacheAdapterInterface
 {
     /**
