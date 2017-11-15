@@ -40,7 +40,7 @@ class MemcachedCounter extends BaseCounter
 
         $value = $this->getCollection()->increment($this->prefix.'.'.$counter->getName(), $number);
 
-        return $this->handleIncrement($this->getCollection()->getResultCode() !== 0 ? false : $value, $counter, $number);
+        return $this->handleIncrement(0 !== $this->getCollection()->getResultCode() ? false : $value, $counter, $number);
     }
 
     /**
@@ -52,7 +52,7 @@ class MemcachedCounter extends BaseCounter
 
         $value = $this->getCollection()->decrement($this->prefix.'.'.$counter->getName(), $number);
 
-        return $this->handleDecrement($this->getCollection()->getResultCode() !== 0 ? false : $value, $counter, $number);
+        return $this->handleDecrement(0 !== $this->getCollection()->getResultCode() ? false : $value, $counter, $number);
     }
 
     /**

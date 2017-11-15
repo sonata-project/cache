@@ -49,7 +49,7 @@ final class Counter
      *
      * @return Counter
      */
-    public static function create(string $name, int $value = 0): Counter
+    public static function create(string $name, int $value = 0): self
     {
         return new self($name, $value);
     }

@@ -52,7 +52,7 @@ class MemcachedCache extends BaseCacheHandler
      */
     public function has(array $keys): bool
     {
-        return $this->getCollection()->get($this->computeCacheKeys($keys)) !== false;
+        return false !== $this->getCollection()->get($this->computeCacheKeys($keys));
     }
 
     /**
