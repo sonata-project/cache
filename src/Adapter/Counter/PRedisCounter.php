@@ -39,7 +39,7 @@ class PRedisCounter extends BaseCounter
     {
         $counter = $this->transform($counter);
 
-        if ($this->getClient()->get($counter->getName()) === null) {
+        if (null === $this->getClient()->get($counter->getName())) {
             $this->getClient()->set($counter->getName(), $value = $counter->getValue() + $number);
         } else {
             $value = $this->getClient()->incrby($counter->getName(), $number);
@@ -55,7 +55,7 @@ class PRedisCounter extends BaseCounter
     {
         $counter = $this->transform($counter);
 
-        if ($this->getClient()->get($counter->getName()) === null) {
+        if (null === $this->getClient()->get($counter->getName())) {
             $this->getClient()->set($counter->getName(), $value = $counter->getValue() - $number);
         } else {
             $value = $this->getClient()->decrby($counter->getName(), $number);

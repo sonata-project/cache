@@ -82,7 +82,7 @@ class DoctrineORMListener implements EventSubscriber
     {
         $identifier = $this->collectionIdentifiers->getIdentifier($args->getEntity());
 
-        if ($identifier === false) {
+        if (false === $identifier) {
             return;
         }
 

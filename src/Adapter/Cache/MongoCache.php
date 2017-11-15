@@ -52,7 +52,7 @@ class MongoCache extends BaseCacheHandler
             'w' => 1,
         ]);
 
-        return $result['ok'] == 1 && $result['err'] === null;
+        return 1 == $result['ok'] && null === $result['err'];
     }
 
     /**

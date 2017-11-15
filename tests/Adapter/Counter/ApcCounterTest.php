@@ -22,7 +22,7 @@ class ApcCounterTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('APC is not installed');
         }
 
-        if (ini_get('apc.enable_cli') == 0) {
+        if (0 == ini_get('apc.enable_cli')) {
             $this->markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
         }
 
