@@ -37,7 +37,7 @@ class Recorder
 
         $identifier = $this->collectionIdentifiers->getIdentifier($object);
 
-        if ($identifier === false) {
+        if (false === $identifier) {
             return;
         }
 

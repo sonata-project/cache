@@ -49,7 +49,7 @@ class MongoCounter extends BaseCounter
             ['new' => true]
         );
 
-        return $this->handleIncrement(count($result) === 0 ? false : $result['value'], $counter, $number);
+        return $this->handleIncrement(0 === count($result) ? false : $result['value'], $counter, $number);
     }
 
     /**
@@ -66,7 +66,7 @@ class MongoCounter extends BaseCounter
             ['new' => true]
         );
 
-        return $this->handleDecrement(count($result) === 0 ? false : $result['value'], $counter, $number);
+        return $this->handleDecrement(0 === count($result) ? false : $result['value'], $counter, $number);
     }
 
     /**

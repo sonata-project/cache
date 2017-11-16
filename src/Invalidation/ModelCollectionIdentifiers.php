@@ -57,7 +57,7 @@ class ModelCollectionIdentifiers
      */
     public function getMethod($object)
     {
-        if ($object === null) {
+        if (null === $object) {
             return false;
         }
 

@@ -82,7 +82,7 @@ class DoctrinePHPCRODMListener implements EventSubscriber
     {
         $identifier = $this->collectionIdentifiers->getIdentifier($args->getDocument());
 
-        if ($identifier === false) {
+        if (false === $identifier) {
             return;
         }
 
