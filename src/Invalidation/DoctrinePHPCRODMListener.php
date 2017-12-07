@@ -80,14 +80,14 @@ class DoctrinePHPCRODMListener implements EventSubscriber
      */
     protected function flush(LifecycleEventArgs $args): void
     {
-        $identifier = $this->collectionIdentifiers->getIdentifier($args->getDocument());
+        $identifier = $this->collectionIdentifiers->getIdentifier($args->getObject());
 
         if (false === $identifier) {
             return;
         }
 
         $parameters = [
-            ClassUtils::getClass($args->getDocument()) => $identifier,
+            ClassUtils::getClass($args->getObject()) => $identifier,
         ];
 
         foreach ($this->caches as $cache) {
