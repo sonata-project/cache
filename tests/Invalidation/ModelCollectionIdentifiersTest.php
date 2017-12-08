@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,6 +13,7 @@
 
 namespace Sonata\Cache\Tests\Invalidation;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Invalidation\ModelCollectionIdentifiers;
 
 class Model_1
@@ -37,7 +40,7 @@ class Model_3 extends Model_2
     }
 }
 
-class CacheElementTest extends \PHPUnit_Framework_TestCase
+class CacheElementTest extends TestCase
 {
     public function test(): void
     {

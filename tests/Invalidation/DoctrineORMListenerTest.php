@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,6 +13,7 @@
 
 namespace Sonata\Cache\Tests\Cache\Invalidation;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Invalidation\DoctrineORMListener;
 use Sonata\Cache\Invalidation\ModelCollectionIdentifiers;
 
@@ -22,7 +25,7 @@ class DoctrineORMListenerTest_Model
     }
 }
 
-class DoctrineORMListenerTest extends \PHPUnit_Framework_TestCase
+class DoctrineORMListenerTest extends TestCase
 {
     public function test(): void
     {
@@ -30,12 +33,12 @@ class DoctrineORMListenerTest extends \PHPUnit_Framework_TestCase
 
         $listener = new DoctrineORMListener($collection, []);
 
-        $event = $this->getMock('Doctrine\ORM\Event\LifecycleEventArgs', [], [], '', false);
+        $event = $this->createMock('Doctrine\ORM\Event\LifecycleEventArgs');
         $event->expects($this->exactly(4))
             ->method('getEntity')
             ->will($this->returnValue(new DoctrineORMListenerTest_Model()));
 
-        $cache = $this->getMock('Sonata\Cache\CacheAdapterInterface');
+        $cache = $this->createMock('Sonata\Cache\CacheAdapterInterface');
         $cache->expects($this->exactly(2))
             ->method('flush')
             ->will($this->returnValue(true));

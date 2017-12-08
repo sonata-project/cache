@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,11 +13,12 @@
 
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Predis\Client;
 use Sonata\Cache\Adapter\Counter\PRedisCounter;
 use Sonata\Cache\Counter;
 
-class PRedisCounterTest extends \PHPUnit_Framework_TestCase
+class PRedisCounterTest extends TestCase
 {
     protected $parameters = [
         'host' => '127.0.0.1',

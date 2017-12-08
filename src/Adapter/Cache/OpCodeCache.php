@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -212,9 +214,9 @@ class OpCodeCache extends BaseCacheHandler
     /**
      * Check that Apc is enabled.
      *
-     * @return bool
-     *
      * @throws UnsupportedException
+     *
+     * @return bool
      */
     protected function checkApc()
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,9 +13,10 @@
 
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Adapter\Cache\NoopCache;
 
-class NoopCacheTest extends \PHPUnit_Framework_TestCase
+class NoopCacheTest extends TestCase
 {
     public function testNoopCache(): void
     {
@@ -25,11 +28,10 @@ class NoopCacheTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($cache->has([]));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function getGet(): void
     {
+        $this->expectException(\RuntimeException::class);
+
         $cache = new NoopCache();
         $cache->get([]);
     }
