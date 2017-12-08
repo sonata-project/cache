@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,9 +13,10 @@
 
 namespace Sonata\Cache\Tests\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\CacheElement;
 
-class CacheElementTest extends \PHPUnit_Framework_TestCase
+class CacheElementTest extends TestCase
 {
     public function testCache(): void
     {

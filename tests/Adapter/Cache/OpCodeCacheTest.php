@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,9 +13,10 @@
 
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Adapter\Cache\OpCodeCache;
 
-class OpCodeCacheTest extends \PHPUnit_Framework_TestCase
+class OpCodeCacheTest extends TestCase
 {
     /**
      * @var OpCodeCache

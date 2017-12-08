@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,11 +13,12 @@
 
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Adapter\Cache\MongoCache;
 use Sonata\Cache\Adapter\Counter\MongoCounter;
 use Sonata\Cache\Counter;
 
-class MongoCounterTest extends \PHPUnit_Framework_TestCase
+class MongoCounterTest extends TestCase
 {
     public function setUp(): void
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,10 +13,11 @@
 
 namespace Sonata\Cache\Tests\Cache\Invalidation;
 
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use PHPUnit\Framework\TestCase;
+use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\Invalidation\DoctrinePHPCRODMListener;
 use Sonata\Cache\Invalidation\ModelCollectionIdentifiers;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Sonata\Cache\CacheAdapterInterface;
 
 class DoctrinePHPCRODMListenerTest_Model
 {
@@ -24,7 +27,7 @@ class DoctrinePHPCRODMListenerTest_Model
     }
 }
 
-class DoctrinePHPCRODMListenerTest extends \PHPUnit_Framework_TestCase
+class DoctrinePHPCRODMListenerTest extends TestCase
 {
     public function test(): void
     {

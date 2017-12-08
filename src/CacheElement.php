@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -13,11 +15,11 @@ namespace Sonata\Cache;
 
 final class CacheElement implements CacheElementInterface
 {
-    const MINUTE = 60;
-    const HOUR = 3600;
-    const DAY = 86400;
-    const WEEK = 604800;
-    const MONTH = 2.63e+6;
+    public const MINUTE = 60;
+    public const HOUR = 3600;
+    public const DAY = 86400;
+    public const WEEK = 604800;
+    public const MONTH = 2.63e+6;
 
     /**
      * @var int
