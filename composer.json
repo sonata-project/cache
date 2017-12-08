@@ -34,10 +34,10 @@
         "predis/predis": "<1.1"
     },
     "suggest": {
-        "doctrine/orm": "ORM support",
-        "doctrine/phpcr-odm": "PHPCR ODM support",
         "ext-apc": "Caching with ext/apc",
         "ext-memcached": "Caching with ext/memcached",
+        "doctrine/orm": "ORM support",
+        "doctrine/phpcr-odm": "PHPCR ODM support",
         "predis/predis": "Install redis php"
     },
     "autoload": {
