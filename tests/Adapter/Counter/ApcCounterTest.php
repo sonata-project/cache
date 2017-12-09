@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,10 +13,11 @@
 
 namespace Sonata\Cache\Tests\Adapter\Cache;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Adapter\Counter\ApcCounter;
 use Sonata\Cache\Counter;
 
-class ApcCounterTest extends \PHPUnit_Framework_TestCase
+class ApcCounterTest extends TestCase
 {
     public function setUp(): void
     {

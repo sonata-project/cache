@@ -28,11 +28,16 @@
         "sllh/php-cs-fixer-styleci-bridge": "^2.1",
         "symfony/phpunit-bridge": "^3.3"
     },
+    "conflict": {
+        "doctrine/orm": "<2.5",
+        "doctrine/phpcr-odm": "<1.4",
+        "predis/predis": "<1.1"
+    },
     "suggest": {
-        "doctrine/orm": "ORM support",
-        "doctrine/phpcr-odm": "PHPCR ODM support",
         "ext-apc": "Caching with ext/apc",
         "ext-memcached": "Caching with ext/memcached",
+        "doctrine/orm": "ORM support",
+        "doctrine/phpcr-odm": "PHPCR ODM support",
         "predis/predis": "Install redis php"
     },
     "autoload": {
@@ -40,11 +45,6 @@
     },
     "autoload-dev": {
         "psr-4": { "Sonata\\Cache\\Tests\\": "tests/" }
-    },
-    "conflicts": {
-        "doctrine/orm": "<2.5",
-        "doctrine/phpcr-odm": "<1.4",
-        "predis/predis": "<1.1"
     },
     "config": {
         "sort-packages": true

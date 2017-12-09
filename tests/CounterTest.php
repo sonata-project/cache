@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,15 +13,15 @@
 
 namespace Sonata\Cache\Tests\Counter;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Counter;
 
-class CounterTest extends \PHPUnit_Framework_TestCase
+class CounterTest extends TestCase
 {
-    /**
-     * @expectedException \TypeError
-     */
     public function testInvalidValue(): void
     {
+        $this->expectException(\TypeError::class);
+
         Counter::create('value', 'data');
     }
 

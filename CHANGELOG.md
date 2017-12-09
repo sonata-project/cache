@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.0.0](https://github.com/sonata-project/cache/compare/1.1.0...2.0.0) - 2016-08-29
+## [2.0.1](https://github.com/sonata-project/cache/compare/2.0.0...2.0.1) - 2017-12-08
+### Fixed
+- fatal error when using the memcached adapter
+
+## [2.0.0](https://github.com/sonata-project/cache/compare/1.x...2.0.0) - 2016-08-29
 ### Added
 - Type hinting on most methods
 

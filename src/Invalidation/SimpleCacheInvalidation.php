@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -49,7 +51,7 @@ class SimpleCacheInvalidation implements InvalidationInterface
                 if ($this->logger) {
                     $this->logger->alert(sprintf('[%s] %s', __CLASS__, $e->getMessage()));
                 } else {
-                    throw new \RunTimeException(null, null, $e);
+                    throw new \RunTimeException('', 0, $e);
                 }
             }
         }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -65,9 +67,9 @@ class PRedisCacheTest extends BaseTest
             ->setMethods(['getClient'])
             ->getMock();
 
-        $command = $this->getMock('Predis\Command\CommandInterface');
+        $command = $this->createMock('Predis\Command\CommandInterface');
 
-        $client = $this->getMock('Predis\ClientInterface');
+        $client = $this->createMock('Predis\ClientInterface');
         $client->expects($this->exactly(2))->method('createCommand')->with($this->equalTo('flushdb'))->will($this->returnValue($command));
         $client->expects($this->exactly(2))->method('getConnection');
         $client->expects($this->exactly(2))->method('executeCommand')->with($this->equalTo($command))->will($this->onConsecutiveCalls(false, true));
@@ -87,12 +89,12 @@ class PRedisCacheTest extends BaseTest
             ->setMethods(['getClient'])
             ->getMock();
 
-        $command = $this->getMock('Predis\Command\CommandInterface');
+        $command = $this->createMock('Predis\Command\CommandInterface');
 
-        $connection = $this->getMock('Predis\Connection\PredisCluster');
+        $connection = $this->createMock('Predis\Connection\PredisCluster');
         $connection->expects($this->exactly(5))->method('executeCommandOnNodes')->with($this->equalTo($command))->will($this->onConsecutiveCalls([false], [true], [false, true], [true, false], [true, true]));
 
-        $client = $this->getMock('Predis\ClientInterface');
+        $client = $this->createMock('Predis\ClientInterface');
         $client->expects($this->exactly(5))->method('createCommand')->with($this->equalTo('flushdb'))->will($this->returnValue($command));
         $client->expects($this->exactly(5))->method('getConnection')->will($this->returnValue($connection));
         $client->expects($this->never())->method('executeCommand');

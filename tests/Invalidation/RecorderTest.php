@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,6 +13,7 @@
 
 namespace Sonata\Cache\Tests\Invalidation;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\Cache\Invalidation\ModelCollectionIdentifiers;
 use Sonata\Cache\Invalidation\Recorder;
 
@@ -38,7 +41,7 @@ class Recorder_Model_3
     }
 }
 
-class RecorderTest extends \PHPUnit_Framework_TestCase
+class RecorderTest extends TestCase
 {
     public function testRecorder(): void
     {
