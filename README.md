@@ -26,7 +26,7 @@ Please provide a version constraint for the sonata-project/cache requirement: de
 
 use Sonata\Cache\Adapter\Cache\PRedisCache;
 
-$adapter = PRedisCache(array(
+$adapter = new PRedisCache(array(
     'host'     => '127.0.0.1',
     'port'     => 6379,
     'database' => 42
@@ -51,7 +51,7 @@ $cacheElement->getData(); // MyValue
 
 use Sonata\Cache\Adapter\Counter\PRedisCounter;
 
-$adapter = PRedisCounter(array(
+$adapter = new PRedisCounter(array(
     'host'     => '127.0.0.1',
     'port'     => 6379,
     'database' => 42
@@ -75,4 +75,3 @@ For questions and proposals you can post on this google groups
 
 * [Sonata Users](https://groups.google.com/group/sonata-users): Only for user questions
 * [Sonata Devs](https://groups.google.com/group/sonata-devs): Only for devs
-
