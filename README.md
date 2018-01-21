@@ -7,16 +7,8 @@ Cache is a small library to handle cache backend, the library also handle counte
 
 ### Installation using Composer
 
-Add the dependency:
-
 ```bash
-php composer.phar require sonata-project/cache
-```
-
-If asked for a version, type in 'dev-master' (unless you want another version):
-
-```bash
-Please provide a version constraint for the sonata-project/cache requirement: dev-master
+composer require sonata-project/cache
 ```
 
 ### Cache Usage
