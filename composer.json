@@ -35,7 +35,6 @@
         "doctrine/phpcr-odm": "^1.4",
         "jackalope/jackalope-doctrine-dbal": "^1.2",
         "predis/predis": "^1.1",
-        "sllh/php-cs-fixer-styleci-bridge": "^2.1",
         "symfony/phpunit-bridge": "^3.3"
     },
     "suggest": {
