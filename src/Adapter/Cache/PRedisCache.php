@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Cache\Adapter\Cache;
 
 use Predis\Client;
-use Predis\Connection\PredisCluster;
+use Predis\Connection\Aggregate\PredisCluster;
 use Sonata\Cache\CacheElement;
 use Sonata\Cache\CacheElementInterface;
 
