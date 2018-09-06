@@ -49,7 +49,7 @@ class ModelCollectionIdentifiers
             return false;
         }
 
-        return call_user_func([$object, $identifier]);
+        return \call_user_func([$object, $identifier]);
     }
 
     /**
@@ -69,7 +69,7 @@ class ModelCollectionIdentifiers
             }
         }
 
-        $class = get_class($object);
+        $class = \get_class($object);
 
         if (method_exists($object, 'getCacheIdentifier')) {
             $this->addClass($class, 'getCacheIdentifier');

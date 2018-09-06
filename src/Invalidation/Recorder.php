@@ -35,7 +35,7 @@ class Recorder
      */
     public function add($object): void
     {
-        $class = get_class($object);
+        $class = \get_class($object);
 
         $identifier = $this->collectionIdentifiers->getIdentifier($object);
 
@@ -47,7 +47,7 @@ class Recorder
             $this->stack[$this->current][$class] = [];
         }
 
-        if (!in_array($identifier, $this->stack[$this->current][$class])) {
+        if (!\in_array($identifier, $this->stack[$this->current][$class])) {
             $this->stack[$this->current][$class][] = $identifier;
         }
     }
