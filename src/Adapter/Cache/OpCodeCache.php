@@ -91,11 +91,11 @@ class OpCodeCache extends BaseCacheHandler
     public function flushAll(): bool
     {
         if ($this->currentOnly) {
-            if (version_compare(PHP_VERSION, '5.5.0', '>=') && function_exists('opcache_reset')) {
+            if (version_compare(PHP_VERSION, '5.5.0', '>=') && \function_exists('opcache_reset')) {
                 opcache_reset();
             }
 
-            if (function_exists('apc_clear_cache')) {
+            if (\function_exists('apc_clear_cache')) {
                 apc_clear_cache('user') && apc_clear_cache();
             }
 
@@ -105,7 +105,7 @@ class OpCodeCache extends BaseCacheHandler
         $result = true;
 
         foreach ($this->servers as $server) {
-            if (4 == count(explode('.', $server['ip']))) {
+            if (4 == \count(explode('.', $server['ip']))) {
                 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
             } else {
                 $socket = socket_create(AF_INET6, SOCK_STREAM, SOL_TCP);
@@ -220,7 +220,7 @@ class OpCodeCache extends BaseCacheHandler
      */
     protected function checkApc()
     {
-        if (!extension_loaded('apc') || !ini_get('apc.enabled')) {
+        if (!\extension_loaded('apc') || !ini_get('apc.enabled')) {
             throw new UnsupportedException(__CLASS__.' does not support data caching. you should install APC or APCu to use it');
         }
     }
