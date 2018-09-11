@@ -19,7 +19,7 @@ class ApcCacheTest extends BaseTest
 {
     public function setUp(): void
     {
-        if (!function_exists('apc_store')) {
+        if (!\function_exists('apc_store')) {
             $this->markTestSkipped('APC is not installed');
         }
 
