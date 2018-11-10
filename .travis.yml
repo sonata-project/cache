@@ -12,6 +12,7 @@ language: php
 php:
   - '7.1'
   - '7.2'
+  - '7.3'
   - nightly
 
 sudo: false
@@ -37,13 +38,14 @@ env:
 matrix:
   fast_finish: true
   include:
-    - php: '7.2'
+    - php: '7.3'
       env: TARGET=lint
     - php: '7.1'
       env: COMPOSER_FLAGS="--prefer-lowest"
-    - php: '7.2'
+    - php: '7.3'
       env: SYMFONY_DEPRECATIONS_HELPER=0
   allow_failures:
+    - php: 7.3
     - php: nightly
     - env: SYMFONY_DEPRECATIONS_HELPER=0
 
