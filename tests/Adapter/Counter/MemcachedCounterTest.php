@@ -53,28 +53,28 @@ class MemcachedCounterTest extends TestCase
         $counter = $backend->set(Counter::create('mycounter', 10));
 
         $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertEquals(10, $counter->getValue());
-        $this->assertEquals('mycounter', $counter->getName());
+        $this->assertSame(10, $counter->getValue());
+        $this->assertSame('mycounter', $counter->getName());
 
         $counter = $backend->get('mycounter');
         $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertEquals(10, $counter->getValue());
-        $this->assertEquals('mycounter', $counter->getName());
+        $this->assertSame(10, $counter->getValue());
+        $this->assertSame('mycounter', $counter->getName());
 
         $counter = $backend->increment($counter);
-        $this->assertEquals(11, $counter->getValue());
+        $this->assertSame(11, $counter->getValue());
 
         $counter = $backend->increment($counter, 10);
-        $this->assertEquals(21, $counter->getValue());
+        $this->assertSame(21, $counter->getValue());
 
         $counter = $backend->decrement($counter);
-        $this->assertEquals(20, $counter->getValue());
+        $this->assertSame(20, $counter->getValue());
 
         $counter = $backend->decrement($counter, 30);
 
         // If the operation would decrease the value below 0, the new value will be 0
         // from: http://fr2.php.net/manual/en/memcached.decrement.php
-        $this->assertEquals(0, $counter->getValue());
+        $this->assertSame(0, $counter->getValue());
     }
 
     public function testNonExistantKey(): void
@@ -85,10 +85,10 @@ class MemcachedCounterTest extends TestCase
 
         $counter = $backend->increment(Counter::create('mynewcounter.inc', 10));
 
-        $this->assertEquals(11, $counter->getValue());
+        $this->assertSame(11, $counter->getValue());
 
         $counter = $backend->decrement(Counter::create('mynewcounter.dec', 10));
 
-        $this->assertEquals(9, $counter->getValue());
+        $this->assertSame(9, $counter->getValue());
     }
 }

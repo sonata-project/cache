@@ -25,7 +25,7 @@ class ApcCounterTest extends TestCase
             $this->markTestSkipped('APC is not installed');
         }
 
-        if (0 == ini_get('apc.enable_cli')) {
+        if (0 === ini_get('apc.enable_cli')) {
             $this->markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
         }
 
@@ -39,25 +39,25 @@ class ApcCounterTest extends TestCase
         $counter = $backend->set(Counter::create('mycounter', 10));
 
         $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertEquals(10, $counter->getValue());
-        $this->assertEquals('mycounter', $counter->getName());
+        $this->assertSame(10, $counter->getValue());
+        $this->assertSame('mycounter', $counter->getName());
 
         $counter = $backend->get('mycounter');
         $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertEquals(10, $counter->getValue());
-        $this->assertEquals('mycounter', $counter->getName());
+        $this->assertSame(10, $counter->getValue());
+        $this->assertSame('mycounter', $counter->getName());
 
         $counter = $backend->increment($counter);
-        $this->assertEquals(11, $counter->getValue());
+        $this->assertSame(11, $counter->getValue());
 
         $counter = $backend->increment($counter, 10);
-        $this->assertEquals(21, $counter->getValue());
+        $this->assertSame(21, $counter->getValue());
 
         $counter = $backend->decrement($counter);
-        $this->assertEquals(20, $counter->getValue());
+        $this->assertSame(20, $counter->getValue());
 
         $counter = $backend->decrement($counter, 30);
-        $this->assertEquals(-10, $counter->getValue());
+        $this->assertSame(-10, $counter->getValue());
     }
 
     public function testNonExistantKey(): void
@@ -66,6 +66,6 @@ class ApcCounterTest extends TestCase
 
         $counter = $backend->increment(Counter::create('mycounter', 10));
 
-        $this->assertEquals(11, $counter->getValue());
+        $this->assertSame(11, $counter->getValue());
     }
 }
