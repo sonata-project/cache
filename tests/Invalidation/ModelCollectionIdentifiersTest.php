@@ -50,7 +50,7 @@ class CacheElementTest extends TestCase
 
         $m3 = new Model_3();
         $this->assertSame('getId', $collection->getMethod($m3));
-        $this->assertSame('2', $collection->getIdentifier($m3));
+        $this->assertSame(2, $collection->getIdentifier($m3));
 
         $m1 = new Model_1();
         $this->assertSame('getCacheIdentifier', $collection->getMethod($m1));
