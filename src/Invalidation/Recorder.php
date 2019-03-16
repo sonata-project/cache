@@ -47,7 +47,7 @@ class Recorder
             $this->stack[$this->current][$class] = [];
         }
 
-        if (!\in_array($identifier, $this->stack[$this->current][$class])) {
+        if (!\in_array($identifier, $this->stack[$this->current][$class], true)) {
             $this->stack[$this->current][$class][] = $identifier;
         }
     }

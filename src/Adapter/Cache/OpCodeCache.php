@@ -105,7 +105,7 @@ class OpCodeCache extends BaseCacheHandler
         $result = true;
 
         foreach ($this->servers as $server) {
-            if (4 == \count(explode('.', $server['ip']))) {
+            if (4 === \count(explode('.', $server['ip']))) {
                 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
             } else {
                 $socket = socket_create(AF_INET6, SOCK_STREAM, SOL_TCP);
@@ -136,7 +136,7 @@ class OpCodeCache extends BaseCacheHandler
             } while (!empty($buffer));
 
             if ($result) {
-                $result = 'ok' == substr($content, -2);
+                $result = 'ok' === substr($content, -2);
             }
         }
 
