@@ -36,16 +36,16 @@ class DoctrineORMListenerTest extends TestCase
         $event = $this->createMock('Doctrine\ORM\Event\LifecycleEventArgs');
         $event->expects($this->exactly(4))
             ->method('getEntity')
-            ->will($this->returnValue(new DoctrineORMListenerTest_Model()));
+            ->willReturn(new DoctrineORMListenerTest_Model());
 
         $cache = $this->createMock('Sonata\Cache\CacheAdapterInterface');
         $cache->expects($this->exactly(2))
             ->method('flush')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $cache->expects($this->exactly(1))
             ->method('isContextual')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $listener->addCache($cache);
 
