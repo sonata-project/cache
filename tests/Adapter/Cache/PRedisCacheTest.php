@@ -71,11 +71,11 @@ class PRedisCacheTest extends BaseTest
         $command = $this->createMock('Predis\Command\CommandInterface');
 
         $client = $this->createMock('Predis\ClientInterface');
-        $client->expects($this->exactly(2))->method('createCommand')->with($this->equalTo('flushdb'))->will($this->returnValue($command));
+        $client->expects($this->exactly(2))->method('createCommand')->with($this->equalTo('flushdb'))->willReturn($command);
         $client->expects($this->exactly(2))->method('getConnection');
         $client->expects($this->exactly(2))->method('executeCommand')->with($this->equalTo($command))->will($this->onConsecutiveCalls(false, true));
 
-        $cache->expects($this->exactly(6))->method('getClient')->will($this->returnValue($client));
+        $cache->expects($this->exactly(6))->method('getClient')->willReturn($client);
 
         $this->assertFalse($cache->flushAll());
         $this->assertTrue($cache->flushAll());
@@ -96,11 +96,11 @@ class PRedisCacheTest extends BaseTest
         $connection->expects($this->exactly(5))->method('executeCommandOnNodes')->with($this->equalTo($command))->will($this->onConsecutiveCalls([false], [true], [false, true], [true, false], [true, true]));
 
         $client = $this->createMock('Predis\ClientInterface');
-        $client->expects($this->exactly(5))->method('createCommand')->with($this->equalTo('flushdb'))->will($this->returnValue($command));
-        $client->expects($this->exactly(5))->method('getConnection')->will($this->returnValue($connection));
+        $client->expects($this->exactly(5))->method('createCommand')->with($this->equalTo('flushdb'))->willReturn($command);
+        $client->expects($this->exactly(5))->method('getConnection')->willReturn($connection);
         $client->expects($this->never())->method('executeCommand');
 
-        $cache->expects($this->exactly(10))->method('getClient')->will($this->returnValue($client));
+        $cache->expects($this->exactly(10))->method('getClient')->willReturn($client);
 
         $this->assertFalse($cache->flushAll());
         $this->assertTrue($cache->flushAll());
