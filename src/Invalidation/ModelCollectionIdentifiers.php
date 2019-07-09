@@ -17,9 +17,6 @@ class ModelCollectionIdentifiers
 {
     protected $classes = [];
 
-    /**
-     * @param array $classes
-     */
     public function __construct(array $classes = [])
     {
         foreach ($classes as $class => $identifier) {
@@ -28,8 +25,7 @@ class ModelCollectionIdentifiers
     }
 
     /**
-     * @param string $class
-     * @param mixed  $identifier
+     * @param mixed $identifier
      */
     public function addClass(string $class, $identifier): void
     {

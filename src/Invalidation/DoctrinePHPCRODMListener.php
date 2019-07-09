@@ -25,10 +25,6 @@ class DoctrinePHPCRODMListener implements EventSubscriber
 
     protected $collectionIdentifiers;
 
-    /**
-     * @param ModelCollectionIdentifiers $collectionIdentifiers
-     * @param array                      $caches
-     */
     public function __construct(ModelCollectionIdentifiers $collectionIdentifiers, array $caches)
     {
         $this->collectionIdentifiers = $collectionIdentifiers;

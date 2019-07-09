@@ -26,7 +26,6 @@ class MongoCounter extends BaseCounter
     private $collectionName;
 
     /**
-     * @param array $servers
      * @param $database
      * @param $collection
      */
@@ -96,9 +95,6 @@ class MongoCounter extends BaseCounter
         return Counter::create($name, $result ? (int) $result['value'] : 0);
     }
 
-    /**
-     * @return \MongoCollection
-     */
     private function getCollection(): \MongoCollection
     {
         if (!$this->collection) {
