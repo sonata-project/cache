@@ -25,7 +25,6 @@ class MemcachedCounter extends BaseCounter
 
     /**
      * @param $prefix
-     * @param array $servers
      */
     public function __construct(string $prefix, array $servers)
     {

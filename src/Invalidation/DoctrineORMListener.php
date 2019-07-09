@@ -25,10 +25,6 @@ class DoctrineORMListener implements EventSubscriber
 
     protected $collectionIdentifiers;
 
-    /**
-     * @param ModelCollectionIdentifiers $collectionIdentifiers
-     * @param array                      $caches
-     */
     public function __construct(ModelCollectionIdentifiers $collectionIdentifiers, array $caches)
     {
         $this->collectionIdentifiers = $collectionIdentifiers;
@@ -65,9 +61,6 @@ class DoctrineORMListener implements EventSubscriber
         $this->flush($args);
     }
 
-    /**
-     * @param CacheAdapterInterface $cache
-     */
     public function addCache(CacheAdapterInterface $cache): void
     {
         if (!$cache->isContextual()) {

@@ -17,15 +17,11 @@ interface CacheElementInterface
 {
     /**
      * Returns the keys.
-     *
-     * @return array
      */
     public function getKeys(): array;
 
     /**
      * Returns the time to live.
-     *
-     * @return int
      */
     public function getTtl(): int;
 
@@ -38,8 +34,6 @@ interface CacheElementInterface
 
     /**
      * Returns TRUE whether the cache is expired.
-     *
-     * @return bool
      */
     public function isExpired(): bool;
 
@@ -50,8 +44,6 @@ interface CacheElementInterface
 
     /**
      * Returns the contextual keys.
-     *
-     * @return array
      */
     public function getContextualKeys(): array;
 }

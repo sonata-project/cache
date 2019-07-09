@@ -15,9 +15,5 @@ namespace Sonata\Cache\Invalidation;
 
 interface InvalidationInterface
 {
-    /**
-     * @param array $caches
-     * @param array $array
-     */
     public function invalidate(array $caches, array $array);
 }
