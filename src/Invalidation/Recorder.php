@@ -21,9 +21,6 @@ class Recorder
 
     protected $current = 0;
 
-    /**
-     * @param ModelCollectionIdentifiers $collectionIdentifiers
-     */
     public function __construct(ModelCollectionIdentifiers $collectionIdentifiers)
     {
         $this->collectionIdentifiers = $collectionIdentifiers;

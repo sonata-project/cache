@@ -24,10 +24,6 @@ class PRedisCounter extends BaseCounter
 
     protected $client;
 
-    /**
-     * @param array $parameters
-     * @param array $options
-     */
     public function __construct(array $parameters = [], array $options = [])
     {
         $this->parameters = $parameters;
@@ -84,9 +80,6 @@ class PRedisCounter extends BaseCounter
         return Counter::create($name, (int) $this->getClient()->get($name));
     }
 
-    /**
-     * @return Client
-     */
     private function getClient(): Client
     {
         if (!$this->client) {

@@ -20,10 +20,7 @@ use Sonata\Cache\CacheElementInterface;
 abstract class BaseCacheHandler implements CacheAdapterInterface
 {
     /**
-     * @param array $keys
      * @param mixed $data
-     *
-     * @return CacheElementInterface
      */
     protected function handleGet(array $keys, $data = null): CacheElementInterface
     {
