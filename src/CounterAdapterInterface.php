@@ -17,31 +17,15 @@ interface CounterAdapterInterface
 {
     /**
      * @param Counter|string $counter
-     * @param int            $number
-     *
-     * @return Counter
      */
     public function increment(Counter $counter, int $number = 1): Counter;
 
     /**
      * @param Counter|string $counter
-     * @param int            $number
-     *
-     * @return Counter
      */
     public function decrement(Counter $counter, int $number = 1): Counter;
 
-    /**
-     * @param Counter $counter
-     *
-     * @return Counter
-     */
     public function set(Counter $counter): Counter;
 
-    /**
-     * @param string $name
-     *
-     * @return Counter
-     */
     public function get(string $name): Counter;
 }

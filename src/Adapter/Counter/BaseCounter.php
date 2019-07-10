@@ -20,8 +20,6 @@ abstract class BaseCounter implements CounterAdapterInterface
 {
     /**
      * @param $counter
-     *
-     * @return Counter
      */
     protected function transform($counter): Counter
     {
@@ -33,11 +31,7 @@ abstract class BaseCounter implements CounterAdapterInterface
     }
 
     /**
-     * @param mixed   $value
-     * @param Counter $counter
-     * @param int     $number
-     *
-     * @return Counter
+     * @param mixed $value
      */
     protected function handleIncrement($value, Counter $counter, int $number): Counter
     {
@@ -51,11 +45,7 @@ abstract class BaseCounter implements CounterAdapterInterface
     }
 
     /**
-     * @param mixed   $value
-     * @param Counter $counter
-     * @param int     $number
-     *
-     * @return Counter
+     * @param mixed $value
      */
     protected function handleDecrement($value, Counter $counter, int $number): Counter
     {

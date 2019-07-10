@@ -26,7 +26,6 @@ class MemcachedCache extends BaseCacheHandler
 
     /**
      * @param $prefix
-     * @param array $servers
      */
     public function __construct(string $prefix, array $servers)
     {

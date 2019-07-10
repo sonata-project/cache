@@ -26,7 +26,6 @@ class MongoCache extends BaseCacheHandler
     private $collectionName;
 
     /**
-     * @param array $servers
      * @param $database
      * @param $collection
      */
@@ -118,9 +117,6 @@ class MongoCache extends BaseCacheHandler
         return true;
     }
 
-    /**
-     * @return \MongoCollection
-     */
     private function getCollection(): \MongoCollection
     {
         if (!$this->collection) {
@@ -137,8 +133,6 @@ class MongoCache extends BaseCacheHandler
     }
 
     /**
-     * @param array $keys
-     *
      * @return array|null
      */
     private function getRecord(array $keys)

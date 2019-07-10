@@ -29,10 +29,6 @@ class PRedisCache extends BaseCacheHandler
      */
     protected $client;
 
-    /**
-     * @param array $parameters
-     * @param array $options
-     */
     public function __construct(array $parameters = [], array $options = [])
     {
         $this->parameters = $parameters;
@@ -131,9 +127,6 @@ class PRedisCache extends BaseCacheHandler
         return false;
     }
 
-    /**
-     * @return Client
-     */
     protected function getClient(): Client
     {
         if (!$this->client) {
