@@ -19,7 +19,7 @@ use Sonata\Cache\Counter;
 
 class ApcCounterTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!\function_exists('apc_store')) {
             $this->markTestSkipped('APC is not installed');
