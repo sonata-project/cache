@@ -19,7 +19,7 @@ use Sonata\Cache\Adapter\Cache\PRedisCache;
 
 class PRedisCacheTest extends BaseTest
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!class_exists('\Predis\Client', true)) {
             $this->markTestSkipped('PRedis is not installed');
