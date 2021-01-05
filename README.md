@@ -18,17 +18,17 @@ composer require sonata-project/cache
 
 use Sonata\Cache\Adapter\Cache\PRedisCache;
 
-$adapter = new PRedisCache(array(
+$adapter = new PRedisCache([
     'host'     => '127.0.0.1',
     'port'     => 6379,
-    'database' => 42
-));
+    'database' => 42,
+]);
 
-$keys = array(
-    'objectId' => 10
-);
+$keys = [
+    'objectId' => 10,
+];
 
-$adapter->set($keys, "MyValue", 86400);
+$adapter->set($keys, 'MyValue', 86400);
 
 $cacheElement = $adapter->get($keys);
 
@@ -43,14 +43,14 @@ $cacheElement->getData(); // MyValue
 
 use Sonata\Cache\Adapter\Counter\PRedisCounter;
 
-$adapter = new PRedisCounter(array(
+$adapter = new PRedisCounter([
     'host'     => '127.0.0.1',
     'port'     => 6379,
-    'database' => 42
-));
+    'database' => 42,
+]);
 
 
-$counter = $adapter->increment("mystats");
+$counter = $adapter->increment('mystats');
 
 // $counter is a Counter object
 $counter->getValue(); // will return 1 if the counter is new
@@ -60,4 +60,3 @@ $counter = $adapter->increment($counter, 10);
 $counter->getValue(); // will return 11
 
 ```
-
