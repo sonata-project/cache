@@ -19,7 +19,7 @@ use Sonata\Cache\Counter;
 
 class MemcachedCounterTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!class_exists('\Memcached', true)) {
             $this->markTestSkipped('Memcached is not installed');
