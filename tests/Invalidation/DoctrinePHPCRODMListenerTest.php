@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Cache\Tests\Cache\Invalidation;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use PHPUnit\Framework\TestCase;
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\Cache\Invalidation\DoctrinePHPCRODMListener;
