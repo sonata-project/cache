@@ -20,7 +20,7 @@ use Sonata\Cache\Counter;
 
 class MongoCounterTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $class = MongoCache::getMongoClass();
 

@@ -26,7 +26,7 @@ class PRedisCounterTest extends TestCase
         'database' => 42,
     ];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!class_exists('\Predis\Client', true)) {
             $this->markTestSkipped('PRedis is not installed');

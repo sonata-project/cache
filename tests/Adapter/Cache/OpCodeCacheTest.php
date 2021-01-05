@@ -23,7 +23,7 @@ class OpCodeCacheTest extends TestCase
      */
     protected $cache;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->cache = new OpCodeCache('http://localhost', 'prefix_', [], []);
         $this->cache->setCurrentOnly(true);
