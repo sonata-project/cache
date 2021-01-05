@@ -17,7 +17,7 @@ use Sonata\Cache\Adapter\Cache\ApcCache;
 
 class ApcCacheTest extends BaseTest
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!\function_exists('apc_store')) {
             $this->markTestSkipped('APC is not installed');
