@@ -6,6 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - fatal error when using the memcached adapter
 
+## [2.1.0](https://github.com/sonata-project/cache/compare/2.0.1...2.1.0) - 2021-01-05
+### Added
+- [[#165](https://github.com/sonata-project/cache/pull/165)] Allow PHP8 ([@VincentLanglet](https://github.com/VincentLanglet))
+
+### Fixed
+- [[#117](https://github.com/sonata-project/cache/pull/117)] Fixed the `PredisCluster` namespace in `PRedisCacheAdapter` ([@nanofelis](https://github.com/nanofelis))
+
 ## [2.0.0](https://github.com/sonata-project/cache/compare/1.x...2.0.0) - 2016-08-29
 ### Added
 - Type hinting on most methods

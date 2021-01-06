@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Sonata\Cache\Invalidation;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ODM\PHPCR\Event;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Sonata\Cache\CacheAdapterInterface;
 
 class DoctrinePHPCRODMListener implements EventSubscriber
