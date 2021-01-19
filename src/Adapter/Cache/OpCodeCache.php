@@ -91,7 +91,7 @@ class OpCodeCache extends BaseCacheHandler
     public function flushAll(): bool
     {
         if ($this->currentOnly) {
-            if (version_compare(PHP_VERSION, '5.5.0', '>=') && \function_exists('opcache_reset')) {
+            if (version_compare(\PHP_VERSION, '5.5.0', '>=') && \function_exists('opcache_reset')) {
                 opcache_reset();
             }
 
