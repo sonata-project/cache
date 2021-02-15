@@ -2,9 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.0.1](https://github.com/sonata-project/cache/compare/2.0.0...2.0.1) - 2017-12-08
+## [2.1.1](https://github.com/sonata-project/cache/compare/2.1.0...2.1.1) - 2021-02-15
 ### Fixed
-- fatal error when using the memcached adapter
+- [[#174](https://github.com/sonata-project/cache/pull/174)] Php version constraint ([@greg0ire](https://github.com/greg0ire))
 
 ## [2.1.0](https://github.com/sonata-project/cache/compare/2.0.1...2.1.0) - 2021-01-05
 ### Added
@@ -12,6 +12,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - [[#117](https://github.com/sonata-project/cache/pull/117)] Fixed the `PredisCluster` namespace in `PRedisCacheAdapter` ([@nanofelis](https://github.com/nanofelis))
+
+## [2.0.1](https://github.com/sonata-project/cache/compare/2.0.0...2.0.1) - 2017-12-08
+### Fixed
+- fatal error when using the memcached adapter
 
 ## [2.0.0](https://github.com/sonata-project/cache/compare/1.x...2.0.0) - 2016-08-29
 ### Added
