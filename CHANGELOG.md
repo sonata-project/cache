@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0](https://github.com/sonata-project/cache/compare/2.1.1...2.2.0) - 2021-08-03
+### Added
+- [[#209](https://github.com/sonata-project/cache/pull/209)] Added support for `psr/log` 2 and 3 ([@jordisala1991](https://github.com/jordisala1991))
+
+### Removed
+- [[#209](https://github.com/sonata-project/cache/pull/209)] Removed support for PHP < 7.3 ([@jordisala1991](https://github.com/jordisala1991))
+
 ## [2.1.1](https://github.com/sonata-project/cache/compare/2.1.0...2.1.1) - 2021-02-15
 ### Fixed
 - [[#174](https://github.com/sonata-project/cache/pull/174)] Php version constraint ([@greg0ire](https://github.com/greg0ire))
