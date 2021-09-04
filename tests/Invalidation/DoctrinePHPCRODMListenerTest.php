@@ -36,16 +36,16 @@ class DoctrinePHPCRODMListenerTest extends TestCase
         $listener = new DoctrinePHPCRODMListener($collection, []);
 
         $event = $this->createMock(LifecycleEventArgs::class, [], [], '', false);
-        $event->expects($this->exactly(4))
+        $event->expects(static::exactly(4))
             ->method('getObject')
             ->willReturn(new DoctrinePHPCRODMListenerTest_Model());
 
         $cache = $this->createMock(CacheAdapterInterface::class);
-        $cache->expects($this->exactly(2))
+        $cache->expects(static::exactly(2))
             ->method('flush')
             ->willReturn(true);
 
-        $cache->expects($this->exactly(1))
+        $cache->expects(static::exactly(1))
             ->method('isContextual')
             ->willReturn(true);
 
