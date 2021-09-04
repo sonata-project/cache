@@ -27,11 +27,11 @@ class SimpleCacheInvalidationTest extends TestCase
         $cacheInvalidation = new SimpleCacheInvalidation();
 
         $cache = $this->createMock('Sonata\Cache\CacheAdapterInterface');
-        $cache->expects($this->exactly(1))->method('flush');
+        $cache->expects(static::exactly(1))->method('flush');
 
         $caches = [$cache];
 
-        $this->assertTrue($cacheInvalidation->invalidate($caches, ['test' => 1]));
+        static::assertTrue($cacheInvalidation->invalidate($caches, ['test' => 1]));
     }
 
     public function testWithoutLogger(): void
@@ -41,7 +41,7 @@ class SimpleCacheInvalidationTest extends TestCase
         $cacheInvalidation = new SimpleCacheInvalidation();
 
         $cache = $this->createMock('Sonata\Cache\CacheAdapterInterface');
-        $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception()));
+        $cache->expects(static::exactly(1))->method('flush')->will(static::throwException(new \Exception()));
 
         $caches = [$cache];
 
@@ -51,13 +51,13 @@ class SimpleCacheInvalidationTest extends TestCase
     public function testWithLogger(): void
     {
         $logger = $this->createMock('Psr\Log\LoggerInterface');
-        $logger->expects($this->exactly(1))->method('info');
-        $logger->expects($this->exactly(1))->method('alert');
+        $logger->expects(static::exactly(1))->method('info');
+        $logger->expects(static::exactly(1))->method('alert');
 
         $cacheInvalidation = new SimpleCacheInvalidation($logger);
 
         $cache = $this->createMock('Sonata\Cache\CacheAdapterInterface');
-        $cache->expects($this->exactly(1))->method('flush')->will($this->throwException(new \Exception()));
+        $cache->expects(static::exactly(1))->method('flush')->will(static::throwException(new \Exception()));
 
         $caches = [$cache];
 

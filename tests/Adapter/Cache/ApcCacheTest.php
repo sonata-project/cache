@@ -20,11 +20,11 @@ class ApcCacheTest extends BaseTest
     protected function setUp(): void
     {
         if (!\function_exists('apc_store')) {
-            $this->markTestSkipped('APC is not installed');
+            static::markTestSkipped('APC is not installed');
         }
 
         if (0 === ini_get('apc.enable_cli')) {
-            $this->markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
+            static::markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
         }
 
         apc_clear_cache();

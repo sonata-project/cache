@@ -22,7 +22,7 @@ class MemcachedCounterTest extends TestCase
     protected function setUp(): void
     {
         if (!class_exists('\Memcached', true)) {
-            $this->markTestSkipped('Memcached is not installed');
+            static::markTestSkipped('Memcached is not installed');
         }
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -33,7 +33,7 @@ class MemcachedCounterTest extends TestCase
         $result = @socket_connect($socket, '127.0.0.1', 11211);
 
         if (!$result) {
-            $this->markTestSkipped('Memcached is not running');
+            static::markTestSkipped('Memcached is not running');
         }
 
         socket_close($socket);
@@ -52,29 +52,29 @@ class MemcachedCounterTest extends TestCase
 
         $counter = $backend->set(Counter::create('mycounter', 10));
 
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->get('mycounter');
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->increment($counter);
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
 
         $counter = $backend->increment($counter, 10);
-        $this->assertSame(21, $counter->getValue());
+        static::assertSame(21, $counter->getValue());
 
         $counter = $backend->decrement($counter);
-        $this->assertSame(20, $counter->getValue());
+        static::assertSame(20, $counter->getValue());
 
         $counter = $backend->decrement($counter, 30);
 
         // If the operation would decrease the value below 0, the new value will be 0
         // from: http://fr2.php.net/manual/en/memcached.decrement.php
-        $this->assertSame(0, $counter->getValue());
+        static::assertSame(0, $counter->getValue());
     }
 
     public function testNonExistantKey(): void
@@ -85,10 +85,10 @@ class MemcachedCounterTest extends TestCase
 
         $counter = $backend->increment(Counter::create('mynewcounter.inc', 10));
 
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
 
         $counter = $backend->decrement(Counter::create('mynewcounter.dec', 10));
 
-        $this->assertSame(9, $counter->getValue());
+        static::assertSame(9, $counter->getValue());
     }
 }

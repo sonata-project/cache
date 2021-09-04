@@ -22,11 +22,11 @@ class ApcCounterTest extends TestCase
     protected function setUp(): void
     {
         if (!\function_exists('apc_store')) {
-            $this->markTestSkipped('APC is not installed');
+            static::markTestSkipped('APC is not installed');
         }
 
         if (0 === ini_get('apc.enable_cli')) {
-            $this->markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
+            static::markTestSkipped('APC is not enabled in cli, please add apc.enable_cli=On into the apc.ini file');
         }
 
         apc_clear_cache('user');
@@ -38,26 +38,26 @@ class ApcCounterTest extends TestCase
 
         $counter = $backend->set(Counter::create('mycounter', 10));
 
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->get('mycounter');
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->increment($counter);
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
 
         $counter = $backend->increment($counter, 10);
-        $this->assertSame(21, $counter->getValue());
+        static::assertSame(21, $counter->getValue());
 
         $counter = $backend->decrement($counter);
-        $this->assertSame(20, $counter->getValue());
+        static::assertSame(20, $counter->getValue());
 
         $counter = $backend->decrement($counter, 30);
-        $this->assertSame(-10, $counter->getValue());
+        static::assertSame(-10, $counter->getValue());
     }
 
     public function testNonExistantKey(): void
@@ -66,6 +66,6 @@ class ApcCounterTest extends TestCase
 
         $counter = $backend->increment(Counter::create('mycounter', 10));
 
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
     }
 }

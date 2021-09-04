@@ -29,7 +29,7 @@ class CounterTest extends TestCase
     {
         $counter = Counter::create('mycounter', 42);
 
-        $this->assertSame('mycounter', $counter->getName());
-        $this->assertSame(42, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
+        static::assertSame(42, $counter->getValue());
     }
 }

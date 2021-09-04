@@ -29,7 +29,7 @@ class PRedisCounterTest extends TestCase
     protected function setUp(): void
     {
         if (!class_exists('\Predis\Client', true)) {
-            $this->markTestSkipped('PRedis is not installed');
+            static::markTestSkipped('PRedis is not installed');
         }
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -40,7 +40,7 @@ class PRedisCounterTest extends TestCase
         $result = @socket_connect($socket, '127.0.0.1', 6379);
 
         if (!$result) {
-            $this->markTestSkipped('Redis is not running');
+            static::markTestSkipped('Redis is not running');
         }
 
         socket_close($socket);
@@ -56,27 +56,27 @@ class PRedisCounterTest extends TestCase
 
         $counter = $backend->set(Counter::create('mycounter', 10));
 
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->get('mycounter');
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->increment($counter);
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
 
         $counter = $backend->increment($counter, 10);
-        $this->assertSame(21, $counter->getValue());
+        static::assertSame(21, $counter->getValue());
 
         $counter = $backend->decrement($counter);
-        $this->assertSame(20, $counter->getValue());
+        static::assertSame(20, $counter->getValue());
 
         $counter = $backend->decrement($counter, 30);
 
-        $this->assertSame(-10, $counter->getValue());
+        static::assertSame(-10, $counter->getValue());
     }
 
     public function testNonExistantKey(): void
@@ -85,10 +85,10 @@ class PRedisCounterTest extends TestCase
 
         $counter = $backend->increment(Counter::create('mynewcounter.inc', 10));
 
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
 
         $counter = $backend->decrement(Counter::create('mynewcounter.dec', 10));
 
-        $this->assertSame(9, $counter->getValue());
+        static::assertSame(9, $counter->getValue());
     }
 }

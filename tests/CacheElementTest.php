@@ -26,14 +26,14 @@ class CacheElementTest extends TestCase
 
         $cache = new CacheElement($cacheKeys, 'data', 20);
 
-        $this->assertSame(20, $cache->getTtl());
-        $this->assertSame($cacheKeys, $cache->getKeys());
-        $this->assertFalse($cache->isExpired());
+        static::assertSame(20, $cache->getTtl());
+        static::assertSame($cacheKeys, $cache->getKeys());
+        static::assertFalse($cache->isExpired());
 
         $cache = new CacheElement($cacheKeys, 'data', -1);
-        $this->assertTrue($cache->isExpired());
+        static::assertTrue($cache->isExpired());
 
-        $this->assertSame('data', $cache->getData());
+        static::assertSame('data', $cache->getData());
 
         $cache->getExpirationDate();
     }
@@ -46,6 +46,6 @@ class CacheElementTest extends TestCase
 
         $cache = new CacheElement($cacheKeys, 'data', CacheElement::DAY, ['foo' => 'bar']);
 
-        $this->assertSame(['foo' => 'bar'], $cache->getContextualKeys());
+        static::assertSame(['foo' => 'bar'], $cache->getContextualKeys());
     }
 }

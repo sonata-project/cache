@@ -22,7 +22,7 @@ class PRedisCacheTest extends BaseTest
     protected function setUp(): void
     {
         if (!class_exists('\Predis\Client', true)) {
-            $this->markTestSkipped('PRedis is not installed');
+            static::markTestSkipped('PRedis is not installed');
         }
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -33,7 +33,7 @@ class PRedisCacheTest extends BaseTest
         $result = @socket_connect($socket, '127.0.0.1', 6379);
 
         if (!$result) {
-            $this->markTestSkipped('Redis is not running');
+            static::markTestSkipped('Redis is not running');
         }
 
         socket_close($socket);
@@ -71,14 +71,14 @@ class PRedisCacheTest extends BaseTest
         $command = $this->createMock('Predis\Command\CommandInterface');
 
         $client = $this->createMock('Predis\ClientInterface');
-        $client->expects($this->exactly(2))->method('createCommand')->with($this->equalTo('flushdb'))->willReturn($command);
-        $client->expects($this->exactly(2))->method('getConnection');
-        $client->expects($this->exactly(2))->method('executeCommand')->with($this->equalTo($command))->will($this->onConsecutiveCalls(false, true));
+        $client->expects(static::exactly(2))->method('createCommand')->with(static::equalTo('flushdb'))->willReturn($command);
+        $client->expects(static::exactly(2))->method('getConnection');
+        $client->expects(static::exactly(2))->method('executeCommand')->with(static::equalTo($command))->will(static::onConsecutiveCalls(false, true));
 
-        $cache->expects($this->exactly(6))->method('getClient')->willReturn($client);
+        $cache->expects(static::exactly(6))->method('getClient')->willReturn($client);
 
-        $this->assertFalse($cache->flushAll());
-        $this->assertTrue($cache->flushAll());
+        static::assertFalse($cache->flushAll());
+        static::assertTrue($cache->flushAll());
     }
 
     /**
@@ -93,19 +93,19 @@ class PRedisCacheTest extends BaseTest
         $command = $this->createMock('Predis\Command\CommandInterface');
 
         $connection = $this->createMock(PredisCluster::class);
-        $connection->expects($this->exactly(5))->method('executeCommandOnNodes')->with($this->equalTo($command))->will($this->onConsecutiveCalls([false], [true], [false, true], [true, false], [true, true]));
+        $connection->expects(static::exactly(5))->method('executeCommandOnNodes')->with(static::equalTo($command))->will(static::onConsecutiveCalls([false], [true], [false, true], [true, false], [true, true]));
 
         $client = $this->createMock('Predis\ClientInterface');
-        $client->expects($this->exactly(5))->method('createCommand')->with($this->equalTo('flushdb'))->willReturn($command);
-        $client->expects($this->exactly(5))->method('getConnection')->willReturn($connection);
-        $client->expects($this->never())->method('executeCommand');
+        $client->expects(static::exactly(5))->method('createCommand')->with(static::equalTo('flushdb'))->willReturn($command);
+        $client->expects(static::exactly(5))->method('getConnection')->willReturn($connection);
+        $client->expects(static::never())->method('executeCommand');
 
-        $cache->expects($this->exactly(10))->method('getClient')->willReturn($client);
+        $cache->expects(static::exactly(10))->method('getClient')->willReturn($client);
 
-        $this->assertFalse($cache->flushAll());
-        $this->assertTrue($cache->flushAll());
-        $this->assertFalse($cache->flushAll());
-        $this->assertFalse($cache->flushAll());
-        $this->assertTrue($cache->flushAll());
+        static::assertFalse($cache->flushAll());
+        static::assertTrue($cache->flushAll());
+        static::assertFalse($cache->flushAll());
+        static::assertFalse($cache->flushAll());
+        static::assertTrue($cache->flushAll());
     }
 }

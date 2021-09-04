@@ -68,9 +68,9 @@ class RecorderTest extends TestCase
 
         $keys = $recorder->pop();
 
-        $this->assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_1', $innerKeys);
-        $this->assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_2', $innerKeys);
-        $this->assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_1', $keys);
-        $this->assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_3', $keys);
+        static::assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_1', $innerKeys);
+        static::assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_2', $innerKeys);
+        static::assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_1', $keys);
+        static::assertArrayHasKey('Sonata\Cache\Tests\Invalidation\Recorder_Model_3', $keys);
     }
 }

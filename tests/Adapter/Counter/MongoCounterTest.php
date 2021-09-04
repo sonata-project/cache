@@ -25,7 +25,7 @@ class MongoCounterTest extends TestCase
         $class = MongoCache::getMongoClass();
 
         if (!class_exists($class, true)) {
-            $this->markTestSkipped('Mongo is not installed');
+            static::markTestSkipped('Mongo is not installed');
         }
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -38,7 +38,7 @@ class MongoCounterTest extends TestCase
         socket_close($socket);
 
         if (!$result) {
-            $this->markTestSkipped('MongoDB is not running');
+            static::markTestSkipped('MongoDB is not running');
         }
 
         $mongo = new $class('mongodb://127.0.0.1:27017');
@@ -55,27 +55,27 @@ class MongoCounterTest extends TestCase
 
         $counter = $backend->set(Counter::create('mycounter', 10));
 
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->get('mycounter');
-        $this->assertInstanceOf('Sonata\Cache\Counter', $counter);
-        $this->assertSame(10, $counter->getValue());
-        $this->assertSame('mycounter', $counter->getName());
+        static::assertInstanceOf('Sonata\Cache\Counter', $counter);
+        static::assertSame(10, $counter->getValue());
+        static::assertSame('mycounter', $counter->getName());
 
         $counter = $backend->increment($counter);
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
 
         $counter = $backend->increment($counter, 10);
-        $this->assertSame(21, $counter->getValue());
+        static::assertSame(21, $counter->getValue());
 
         $counter = $backend->decrement($counter);
-        $this->assertSame(20, $counter->getValue());
+        static::assertSame(20, $counter->getValue());
 
         $counter = $backend->decrement($counter, 30);
 
-        $this->assertSame(-10, $counter->getValue());
+        static::assertSame(-10, $counter->getValue());
     }
 
     public function testNonExistantKey(): void
@@ -84,10 +84,10 @@ class MongoCounterTest extends TestCase
 
         $counter = $backend->increment(Counter::create('mynewcounter.inc', 10));
 
-        $this->assertSame(11, $counter->getValue());
+        static::assertSame(11, $counter->getValue());
 
         $counter = $backend->decrement(Counter::create('mynewcounter.dec', 10));
 
-        $this->assertSame(9, $counter->getValue());
+        static::assertSame(9, $counter->getValue());
     }
 }
