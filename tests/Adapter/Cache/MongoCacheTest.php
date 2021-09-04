@@ -22,7 +22,7 @@ class MongoCacheTest extends BaseTest
         $class = MongoCache::getMongoClass();
 
         if (!class_exists($class, true)) {
-            $this->markTestSkipped('Mongo is not installed');
+            static::markTestSkipped('Mongo is not installed');
         }
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -35,7 +35,7 @@ class MongoCacheTest extends BaseTest
         socket_close($socket);
 
         if (!$result) {
-            $this->markTestSkipped('MongoDB is not running');
+            static::markTestSkipped('MongoDB is not running');
         }
 
         $mongo = new $class('mongodb://127.0.0.1:27017');

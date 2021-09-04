@@ -28,24 +28,24 @@ abstract class BaseTest extends TestCase
         // init cache
         $cache = $this->getCache();
         $cacheElement = $cache->set(['id' => 7], 'data');
-        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
-        $this->assertTrue($cache->has(['id' => 7]));
+        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertTrue($cache->has(['id' => 7]));
 
         // test flush
         $cache->set(['id' => 42], 'data');
-        $this->assertTrue($cache->has(['id' => 42]));
+        static::assertTrue($cache->has(['id' => 42]));
 
         $res = $cache->flush(['id' => 42]);
-        $this->assertTrue($res);
-        $this->assertFalse($cache->has(['id' => 42]));
+        static::assertTrue($res);
+        static::assertFalse($cache->has(['id' => 42]));
 
         $cacheElement = $cache->get(['id' => 7]);
-        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
 
         // test flush all
         $res = $cache->flushAll();
-        $this->assertTrue($res);
-        $this->assertFalse($cache->has(['id' => 7]));
+        static::assertTrue($res);
+        static::assertFalse($cache->has(['id' => 7]));
     }
 
     public function testNonExistantCache(): void
@@ -54,8 +54,8 @@ abstract class BaseTest extends TestCase
 
         $cacheElement = $cache->get(['invalid']);
 
-        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
-        $this->assertTrue($cacheElement->isExpired());
+        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertTrue($cacheElement->isExpired());
     }
 
     public function testExpired(): void
@@ -68,8 +68,8 @@ abstract class BaseTest extends TestCase
 
         $cacheElement = $cache->get(['mykey']);
 
-        $this->assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
-        $this->assertTrue($cacheElement->isExpired());
-        $this->assertNull($cacheElement->getData());
+        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertTrue($cacheElement->isExpired());
+        static::assertNull($cacheElement->getData());
     }
 }

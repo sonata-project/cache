@@ -32,6 +32,6 @@ class OpCodeCacheTest extends TestCase
     public function testFlushAll(): void
     {
         $res = $this->cache->flushAll();
-        $this->assertTrue($res);
+        static::assertTrue($res);
     }
 }

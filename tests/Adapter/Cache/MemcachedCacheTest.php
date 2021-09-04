@@ -20,7 +20,7 @@ class MemcachedCacheTest extends BaseTest
     protected function setUp(): void
     {
         if (!class_exists('\Memcached', true)) {
-            $this->markTestSkipped('Memcached is not installed');
+            static::markTestSkipped('Memcached is not installed');
         }
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -31,7 +31,7 @@ class MemcachedCacheTest extends BaseTest
         $result = @socket_connect($socket, '127.0.0.1', 11211);
 
         if (!$result) {
-            $this->markTestSkipped('Memcached is not running');
+            static::markTestSkipped('Memcached is not running');
         }
 
         socket_close($socket);

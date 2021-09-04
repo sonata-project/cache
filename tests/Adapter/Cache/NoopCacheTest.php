@@ -22,10 +22,10 @@ class NoopCacheTest extends TestCase
     {
         $cache = new NoopCache();
 
-        $this->assertTrue($cache->flush([]));
-        $this->assertTrue($cache->flushAll());
-        $this->assertFalse($cache->has([]));
-        $this->assertFalse($cache->has([]));
+        static::assertTrue($cache->flush([]));
+        static::assertTrue($cache->flushAll());
+        static::assertFalse($cache->has([]));
+        static::assertFalse($cache->has([]));
     }
 
     public function getGet(): void
