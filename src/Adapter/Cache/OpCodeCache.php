@@ -106,9 +106,9 @@ class OpCodeCache extends BaseCacheHandler
 
         foreach ($this->servers as $server) {
             if (4 === \count(explode('.', $server['ip']))) {
-                $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+                $socket = socket_create(\AF_INET, \SOCK_STREAM, \SOL_TCP);
             } else {
-                $socket = socket_create(AF_INET6, SOCK_STREAM, SOL_TCP);
+                $socket = socket_create(\AF_INET6, \SOCK_STREAM, \SOL_TCP);
             }
 
             // generate the raw http request
@@ -122,8 +122,8 @@ class OpCodeCache extends BaseCacheHandler
             $command .= "Connection: Close\r\n\r\n";
 
             // setup the default timeout (avoid max execution time)
-            socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $this->timeout['SND']);
-            socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $this->timeout['RCV']);
+            socket_set_option($socket, \SOL_SOCKET, \SO_SNDTIMEO, $this->timeout['SND']);
+            socket_set_option($socket, \SOL_SOCKET, \SO_RCVTIMEO, $this->timeout['RCV']);
 
             socket_connect($socket, $server['ip'], $server['port']);
             socket_write($socket, $command);
