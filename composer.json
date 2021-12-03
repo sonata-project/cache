@@ -36,7 +36,7 @@
         "jackalope/jackalope-doctrine-dbal": "^1.2",
         "phpunit/phpunit": "^9.5",
         "predis/predis": "^1.1",
-        "symfony/phpunit-bridge": "^5.3"
+        "symfony/phpunit-bridge": "^6.0"
     },
     "suggest": {
         "ext-apc": "Caching with ext/apc",
