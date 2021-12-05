@@ -62,5 +62,6 @@
         "psr-4": {
             "Sonata\\Cache\\Tests\\": "tests/"
         }
-    }
+    },
+    "abandoned": true
 }
