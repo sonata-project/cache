@@ -216,7 +216,7 @@ class OpCodeCache extends BaseCacheHandler
      *
      * @throws UnsupportedException
      *
-     * @return bool
+     * @return void
      */
     protected function checkApc()
     {

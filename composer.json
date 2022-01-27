@@ -29,9 +29,14 @@
         "doctrine/orm": "^2.8",
         "doctrine/phpcr-odm": "^1.4",
         "jackalope/jackalope-doctrine-dbal": "^1.2",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^1.4",
+        "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
         "predis/predis": "^1.1",
-        "symfony/phpunit-bridge": "^6.0"
+        "psalm/plugin-phpunit": "^0.16.1",
+        "symfony/phpunit-bridge": "^6.0",
+        "vimeo/psalm": "^4.18"
     },
     "conflict": {
         "doctrine/orm": "<2.8",
