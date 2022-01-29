@@ -15,6 +15,7 @@ namespace Sonata\Cache\Tests\Adapter\Cache;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\Cache\CacheAdapterInterface;
+use Sonata\Cache\CacheElement;
 
 abstract class BaseTest extends TestCase
 {
@@ -28,7 +29,7 @@ abstract class BaseTest extends TestCase
         // init cache
         $cache = $this->getCache();
         $cacheElement = $cache->set(['id' => 7], 'data');
-        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertInstanceOf(CacheElement::class, $cacheElement);
         static::assertTrue($cache->has(['id' => 7]));
 
         // test flush
@@ -40,7 +41,7 @@ abstract class BaseTest extends TestCase
         static::assertFalse($cache->has(['id' => 42]));
 
         $cacheElement = $cache->get(['id' => 7]);
-        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertInstanceOf(CacheElement::class, $cacheElement);
 
         // test flush all
         $res = $cache->flushAll();
@@ -54,7 +55,7 @@ abstract class BaseTest extends TestCase
 
         $cacheElement = $cache->get(['invalid']);
 
-        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertInstanceOf(CacheElement::class, $cacheElement);
         static::assertTrue($cacheElement->isExpired());
     }
 
@@ -68,7 +69,7 @@ abstract class BaseTest extends TestCase
 
         $cacheElement = $cache->get(['mykey']);
 
-        static::assertInstanceOf('Sonata\Cache\CacheElement', $cacheElement);
+        static::assertInstanceOf(CacheElement::class, $cacheElement);
         static::assertTrue($cacheElement->isExpired());
         static::assertNull($cacheElement->getData());
     }

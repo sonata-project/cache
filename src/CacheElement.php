@@ -92,7 +92,7 @@ final class CacheElement implements CacheElementInterface
      */
     public function isExpired(): bool
     {
-        return strtotime('now') > ($this->createdAt->format('U') + $this->ttl);
+        return strtotime('now') > ((int) ($this->createdAt->format('U')) + $this->ttl);
     }
 
     /**

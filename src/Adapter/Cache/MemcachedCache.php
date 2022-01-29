@@ -109,9 +109,6 @@ class MemcachedCache extends BaseCacheHandler
         return $this->collection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     private function computeCacheKeys(array $keys): string
     {
         ksort($keys);
