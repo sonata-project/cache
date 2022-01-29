@@ -26,7 +26,6 @@
         "psr/log": "^1.0 || ^2.0 || ^3.0"
     },
     "require-dev": {
-        "alcaeus/mongo-php-adapter": "1.x-dev",
         "doctrine/orm": "^2.8",
         "doctrine/phpcr-odm": "^1.4",
         "jackalope/jackalope-doctrine-dbal": "^1.2",
