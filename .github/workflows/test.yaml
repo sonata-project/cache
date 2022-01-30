@@ -24,6 +24,12 @@ jobs:
         env:
             SYMFONY_REQUIRE: ${{matrix.symfony-require}}
 
+        services:
+            mongo:
+                image: mongo
+                ports:
+                    - 27017:27017
+
         strategy:
             matrix:
                 php-version:

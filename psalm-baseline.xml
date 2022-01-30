@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.19.0@a2ad69ae4f5ab1f7d225a8dc4e2ec2d9415ed599">
+    <file src="src/Adapter/Cache/MongoCache.php">
+        <UndefinedClass occurrences="7">
+            <code>$this-&gt;getCollection()</code>
+            <code>$this-&gt;getCollection()</code>
+            <code>$this-&gt;getCollection()</code>
+            <code>$this-&gt;getCollection()</code>
+            <code>\MongoBinData</code>
+            <code>\MongoBinData</code>
+            <code>\MongoCollection</code>
+        </UndefinedClass>
+    </file>
+    <file src="src/Adapter/Counter/MongoCounter.php">
+        <UndefinedClass occurrences="5">
+            <code>$this-&gt;getCollection()</code>
+            <code>$this-&gt;getCollection()</code>
+            <code>$this-&gt;getCollection()</code>
+            <code>$this-&gt;getCollection()</code>
+            <code>\MongoCollection</code>
+        </UndefinedClass>
+    </file>
+</files>

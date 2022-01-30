@@ -9,9 +9,8 @@ on:
         - cron: '30 0 * * *'
     push:
         branches:
+            - 2.x
             - 3.x
-            - 4.x
-            - 5.x
     pull_request:
 
 jobs:
@@ -52,7 +51,7 @@ jobs:
             - name: Install PHP with extensions
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '7.4'
+                  php-version: '8.1'
                   coverage: none
                   tools: composer:v2
                   extensions: mongodb
@@ -64,4 +63,4 @@ jobs:
                   composer-options: --prefer-dist --prefer-stable
 
             - name: Psalm
-              run: vendor/bin/psalm --show-info=false --stats --output-format=github --threads=$(nproc) --shepherd --php-version=7.4
+              run: vendor/bin/psalm --show-info=false --stats --output-format=github --threads=$(nproc) --shepherd --php-version=8.1
