@@ -3,6 +3,8 @@ Cache
 
 [![Build Status](https://secure.travis-ci.org/sonata-project/cache.png)](https://secure.travis-ci.org/#!/sonata-project/cache)
 
+## WARNING: This repository is deprecated
+
 Cache is a small library to handle cache backend, the library also handle counter.
 
 ### Installation using Composer
