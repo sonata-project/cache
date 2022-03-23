@@ -3,6 +3,7 @@
     "description": "Cache library",
     "license": "MIT",
     "type": "library",
+    "abandoned": true,
     "keywords": [
         "cache",
         "redis",
